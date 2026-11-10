@@ -11,6 +11,7 @@ nav{display:flex;gap:6px;overflow-x:auto;padding:10px;position:sticky;top:env(sa
 nav button,.btn{background:none;border:1px solid var(--gold);color:var(--gold);border-radius:20px;padding:8px 14px;font:inherit;white-space:nowrap;cursor:pointer}
 nav button.on,.btn.p{background:var(--gold);color:#10281c;font-weight:bold}
 .btn:disabled,.btn[disabled]{opacity:.4;cursor:not-allowed}
+.sec-toggle .sec-btn{font-size:17px;padding:10px;border-radius:14px}
 main{max-width:720px;margin:0 auto;padding:0 12px}
 .item{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid #2c5a45;border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
 .item img{width:64px;height:64px;object-fit:cover;border-radius:8px}.item .t{flex:1}.item b{display:block}
@@ -37,6 +38,9 @@ input[type=checkbox],input[type=radio]{width:auto}
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const eur=n=>'€'+Number(n).toFixed(2).replace('.',',');
 const CATS=['Piatti','Stuzzichini','Birre alla spina','Birre in bottiglia','Cocktail','Gin Premium','Vini'];
+// Mappa categoria -> sezione ('bar', 'rist', 'entrambi'). Usata per il toggle Bar/Ristorante.
+const CAT_SECS={'Piatti':'rist','Stuzzichini':'bar','Birre alla spina':'bar','Birre in bottiglia':'bar','Cocktail':'bar','Gin Premium':'bar','Vini':'bar'};
+const SECS=[{id:'bar',label:'🍺 Bar'},{id:'rist',label:'🍝 Ristorante'}];
 // [cat,nome,descrizione,[[formato,prezzo]...]]
 const SEED=[
 ['Gin Premium','Tanqueray','',[['',8]]],['Gin Premium','Mare','',[['',11]]],['Gin Premium',"Hendrick's",'',[['',11]]],['Gin Premium','Nordes','',[['',11]]],['Gin Premium','Malfy Pompelmo Rosa','',[['',11]]],
@@ -66,7 +70,7 @@ const SEED=[
 ['Stuzzichini','Tender di pollo 7pz','Allergeni: 3',[['',6.5]]],['Stuzzichini','Olive all’ascolana 7pz','Allergeni: 1,2,3,4,6,7,10,14',[['',5.5]]],
 ['Stuzzichini','Bouquet di arrosticini di pecora pz10','',[['',10]]],['Stuzzichini','Assaggio di salumi con sottoli e uva','Allergeni: 7,8',[['',5]]],
 ['Stuzzichini','Assaggio di formaggi con marmellata, noci e uva','Allergeni: 7,8',[['',5]]],['Stuzzichini','Peda Bucket 2/4 pers.','Mix dei nostri stuzzichini · Allergeni: 1,2,3,4,6,7,10,14',[['',20]]]
-].map((r,i)=>({id:'s'+i,cat:r[0],name:r[1],desc:r[2],prices:r[3],out:false,img:'',rem:[],add:[]}));
+].map((r,i)=>({id:'s'+i,cat:r[0],sec:CAT_SECS[r[0]]||'entrambi',name:r[1],desc:r[2],prices:r[3],out:false,img:'',rem:[],add:[]}));
 
 
 // ---- Archivio: menù locale + sync remoto (GitHub Pages)
@@ -211,7 +215,9 @@ async function pushMenuToGitHub(){
 }
 
 // ---- Router
-let cart=[],cat=CATS[1];const tavolo=()=>{const m=/^tavolo-(\d+)$/.exec(location.hash.slice(1));return m?m[1]:''};
+let cart=[],cat=CATS[1],curSec='bar';const tavolo=()=>{const m=/^tavolo-(\d+)$/.exec(location.hash.slice(1));return m?m[1]:''};
+// Restituisce la sezione di un piatto: 'bar', 'rist' o 'entrambi'. Retrocompatibile (usa CAT_SECS se manca .sec).
+const itemSec=i=>i.sec||(CAT_SECS[i.cat]||'entrambi');
 const view=()=>{const h=(location.hash||'#cliente').slice(1);return h.startsWith('tavolo-')?'cliente':h};
 function render(){stopScan();const v=view();if(v!=='admin')auth=false;$('#app').innerHTML='';
  const nav=`<div class="note" style="margin:8px"><a class="btn" href="#cliente">Menù</a> <a class="btn" href="#cameriera">Cameriera</a> <a class="btn" href="#admin">Gestione</a></div>`;
@@ -224,15 +230,26 @@ function closeSh(){$('#sh').classList.remove('show')}$('#sh').onclick=e=>{if(e.t
 function openSh(h){$('#shc').innerHTML=h;$('#sh').classList.add('show')}
 
 // ---- Cliente
-function cliente(){const list=items().filter(i=>i.cat===cat);
- const cats=[...new Set([...CATS,...items().map(i=>i.cat)])];
+function cliente(){
+ // Piatti della sezione corrente (curSec); 'entrambi' appare in entrambe
+ const listAll=items();
+ const inSec=listAll.filter(i=>{const s=itemSec(i);return s===curSec||s==='entrambi'});
+ // Categorie visibili in questa sezione (mantenendo l'ordine di CATS)
+ const cats=[...new Set([...CATS,...inSec.map(i=>i.cat)])].filter(c=>inSec.some(i=>i.cat===c));
+ // Se la cat corrente non è in questa sezione, passa alla prima disponibile
+ if(!cats.includes(cat)&&cats.length)cat=cats[0];
+ const list=inSec.filter(i=>i.cat===cat);
  const tot=cart.reduce((s,c)=>s+c.unit*c.q,0),n=cart.reduce((s,c)=>s+c.q,0);
- $('#app').innerHTML=`<nav>${cats.map(c=>`<button class="${c===cat?'on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</nav><main>
+ $('#app').innerHTML=`<div class="sec-toggle" style="display:flex;gap:6px;padding:10px;justify-content:center;background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:6">
+  ${SECS.map(s=>`<button class="btn sec-btn ${s.id===curSec?'p':''}" data-sec="${s.id}" style="flex:1;max-width:200px">${s.label}</button>`).join('')}
+ </div>
+ <nav>${cats.map(c=>`<button class="${c===cat?'on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</nav><main>
  ${tavolo()?'<p class="note">Sei al tavolo '+esc(tavolo())+'</p>':''}
  ${ST.L('ult',null)?'<div class="row" style="justify-content:center"><button class="btn" id="ul">Rivedi il QR del tuo ultimo ordine</button></div>':''}
  ${cat==='Gin Premium'?'<p class="note">Tutti i gin vengono serviti con toniche premium.</p>':''}
  ${list.length?list.map(i=>`<div class="item ${i.out?'out':''}" data-i="${i.id}">${i.img?`<img src="${i.img}" alt="">`:''}<div class="t"><b>${esc(i.name)}</b><span>${esc(i.desc)}</span></div><div class="pr">${i.out?'Terminato':fmtP(i)}</div></div>`).join(''):'<p class="note">Nessun piatto in questa categoria, per ora.</p>'}
  </main><div class="bar"><span>${n} ${n===1?'articolo':'articoli'} · <b class="pr">${eur(tot)}</b></span><button class="btn p" id="go" ${n?'':'disabled'}>Vedi ordine</button></div>`;
+ document.querySelectorAll('.sec-btn').forEach(b=>b.onclick=()=>{curSec=b.dataset.sec;render()});
  document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{cat=b.dataset.c;render()});
  document.querySelectorAll('.item').forEach(e=>e.onclick=()=>{const i=ST.menu[e.dataset.i];if(!i.out)pick(i)});
  $('#go').onclick=checkout;if($('#ul'))$('#ul').onclick=()=>showOrdQR(ST.L('ult',null));}
@@ -364,9 +381,10 @@ function admin(){
  <input id="ght" type="password" placeholder="Token GitHub (github_pat_...)" value="${esc(getGHToken())}" style="margin-top:6px">
  <div class="row"><button class="btn" id="ghts">Salva token</button><button class="btn" id="ghtc" style="color:var(--red);border-color:var(--red)">Cancella token</button></div>
  <input type="file" id="rmi_f" accept="application/json,.json" style="display:none"></div>
- <button class="btn p" id="new">+ Nuovo piatto / prodotto</button>
- ${l.map(i=>`<div class="item" data-e="${i.id}"><div class="t"><b>${esc(i.name)}</b><span>${esc(i.cat)}</span></div><div class="pr">${i.out?'Terminato':fmtP(i)}</div></div>`).join('')}</main>`;
- $('#new').onclick=()=>edit({id:'n'+Date.now(),cat:'Piatti',name:'',desc:'',prices:[['',0]],out:false,img:'',rem:[],add:[]});
+ <div class="row"><button class="btn p" id="new">+ Nuovo piatto / prodotto</button><button class="btn" id="gcats">📂 Gestisci categorie</button></div>
+ ${l.map(i=>`<div class="item" data-e="${i.id}"><div class="t"><b>${esc(i.name)}</b><span>${esc(i.cat)} · ${SECS.find(s=>s.id===itemSec(i))?.label||'🔁 Entrambi'}</span></div><div class="pr">${i.out?'Terminato':fmtP(i)}</div></div>`).join('')}</main>`;
+ $('#new').onclick=()=>edit({id:'n'+Date.now(),cat:'Piatti',sec:'rist',name:'',desc:'',prices:[['',0]],out:false,img:'',rem:[],add:[]});
+ $('#gcats').onclick=editCats;
  document.querySelectorAll('[data-e]').forEach(e=>e.onclick=()=>edit(ST.menu[e.dataset.e]));
  $('#aus').onclick=()=>{saveUrl($('#au').value.trim());drawQR()};$('#aom').onclick=manuale;drawQR();
  // Sync GitHub
@@ -389,6 +407,7 @@ function manuale(){openSh(`<h3 style="margin-top:0;color:var(--gold)">Ordine a m
 function edit(i){let img=i.img;const cs=[...new Set([...CATS,...items().map(x=>x.cat)])];
  openSh(`<h3 style="margin-top:0;color:var(--gold)">${i.name?'Modifica':'Nuovo'}</h3>
  <select id="ec">${cs.map(c=>`<option ${c===i.cat?'selected':''}>${esc(c)}</option>`).join('')}<option value="_">+ Nuova categoria…</option></select><input id="ecn" placeholder="Nome nuova categoria" style="display:none">
+ <select id="esec"><option value="bar" ${itemSec(i)==='bar'?'selected':''}>${SECS[0].label}</option><option value="rist" ${itemSec(i)==='rist'?'selected':''}>${SECS[1].label}</option><option value="entrambi" ${itemSec(i)==='entrambi'?'selected':''}>🔁 Entrambi</option></select>
  <input id="en" placeholder="Nome" value="${esc(i.name)}"><textarea id="ed" rows="2" placeholder="Descrizione / allergeni">${esc(i.desc)}</textarea>
  <textarea id="ep" rows="2" placeholder="Prezzi, uno per riga: formato=prezzo (es. 0,40 lt=6,50) oppure solo il prezzo">${esc(i.prices.map(p=>(p[0]?p[0]+'=':'')+String(p[1]).replace('.',',')).join('\n'))}</textarea>
  <input id="er" placeholder="Ingredienti che si possono togliere (separati da virgola)" value="${esc(i.rem.join(', '))}">
@@ -403,7 +422,37 @@ function edit(i){let img=i.img;const cs=[...new Set([...CATS,...items().map(x=>x
  $('#es').onclick=()=>{const nm=$('#en').value.trim();if(!nm)return alert('Inserisci il nome.');
   const prices=$('#ep').value.split('\n').map(x=>x.trim()).filter(Boolean).map(x=>{const k=x.lastIndexOf('=');return k<0?['',num(x)]:[x.slice(0,k).trim(),num(x.slice(k+1))]});
   const add=$('#ea').value.split('\n').map(x=>x.trim()).filter(Boolean).map(x=>{const k=x.lastIndexOf('=');return [x.slice(0,k).trim(),num(x.slice(k+1))]});
-  saveItem({id:i.id,cat:$('#ec').value==='_'?($('#ecn').value.trim()||'Altro'):$('#ec').value,name:nm,desc:$('#ed').value.trim(),prices:prices.length?prices:[['',0]],out:$('#eo').checked,img,rem:$('#er').value.split(',').map(x=>x.trim()).filter(Boolean),add});closeSh()};
+  const sec=$('#esec')?$('#esec').value:(i.sec||'entrambi');
+  saveItem({id:i.id,cat:$('#ec').value==='_'?($('#ecn').value.trim()||'Altro'):$('#ec').value,sec,name:nm,desc:$('#ed').value.trim(),prices:prices.length?prices:[['',0]],out:$('#eo').checked,img,rem:$('#er').value.split(',').map(x=>x.trim()).filter(Boolean),add});closeSh()};
  $('#ex').onclick=closeSh;if($('#edl'))$('#edl').onclick=()=>{if(confirm('Eliminare?')){delItem(i.id);closeSh()}}}
+// ---- Gestione categorie (aggiungi/rimuovi) ----
+function editCats(){
+ const allCats=[...new Set([...CATS,...items().map(x=>x.cat)])];
+ openSh(`<h3 style="margin-top:0;color:var(--gold)">Gestisci categorie</h3>
+ ${allCats.map(c=>{const count=items().filter(i=>i.cat===c).length;const sec=itemSec({cat:c});const secLabel=SECS.find(s=>s.id===sec)?.label||(sec==='entrambi'?'🔁 Entrambi':'?');return `<div class="item" style="cursor:default;display:flex;align-items:center;gap:8px"><div style="flex:1"><b>${esc(c)}</b><br><span>${count} piatti · ${secLabel}</span></div><button class="btn" data-rmcat="${esc(c)}" style="color:var(--red);border-color:var(--red)">🗑</button></div>`}).join('')}
+ <h4 style="color:var(--gold);margin-top:16px">Aggiungi nuova categoria</h4>
+ <input id="newcat" placeholder="Nome categoria (es. Panini, Dolci)">
+ <select id="newcatsec">
+  ${SECS.map(s=>`<option value="${s.id}">${s.label}</option>`).join('')}
+  <option value="entrambi">🔁 Entrambi</option>
+ </select>
+ <div class="row"><button class="btn p" id="addcat" style="flex:1">+ Aggiungi categoria</button><button class="btn" id="ccats">Chiudi</button></div>`);
+ document.querySelectorAll('[data-rmcat]').forEach(b=>b.onclick=()=>{const c=b.dataset.rmcat;const count=items().filter(i=>i.cat===c).length;if(!confirm('Rimuovere la categoria "'+c+'"? I '+count+' piatti presenti verranno spostati nella categoria "Altro".'))return;
+  // Sposta i piatti in 'Altro' e rimuovi la categoria dall'elenco
+  items().filter(i=>i.cat===c).forEach(i=>{saveItem(Object.assign({},i,{cat:'Altro'}))});
+  // Se la cat corrente è quella rimossa, torna alla prima
+  if(cat===c)cat='Altro';
+  alert('Categoria "'+c+'" rimossa. I piatti sono ora in "Altro".');
+  closeSh();render();
+  // Apri di nuovo per mostrare la lista aggiornata
+  setTimeout(editCats,100);
+ });
+ $('#addcat').onclick=()=>{const n=$('#newcat').value.trim();if(!n)return alert('Inserisci un nome.');if(allCats.includes(n))return alert('Categoria già esistente.');const s=$('#newcatsec').value;
+  // Crea un piatto segnaposto invisibile con la nuova categoria
+  const ph={id:'cat_'+Date.now(),cat:n,sec:s||'entrambi',name:'(categoria nuova — aggiungi qui i piatti)',desc:'',prices:[['',0]],out:true,img:'',rem:[],add:[]};
+  saveItem(ph);alert('Categoria "'+n+'" aggiunta. Ora puoi usarla quando modifichi un piatto.');closeSh();render();setTimeout(editCats,100);
+ };
+ $('#ccats').onclick=closeSh;
+}
 initStore();render();
 </script></body></html>
