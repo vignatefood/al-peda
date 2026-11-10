@@ -89,8 +89,8 @@ const GH_OWNER='vignatefood';
 const GH_REPO='al-peda';
 const GH_BRANCH='main';
 const GH_PATH='menu.json';
-// URL predefinito del menu.json: così i clienti lo scaricano in automatico all'apertura dell'app
-// (non serve più configurarlo in Gestione, resta solo come override locale se serve)
+// URL predefinito del menu.json: GitHub Pages ha cache 10 min (vs jsdelivr 7gg, raw 5min)
+// L'app aggiunge ?t=<timestamp> + cache:no-store per scavalcare la cache del browser
 const DEFAULT_MENU_JSON_URL='https://vignatefood.github.io/al-peda/menu.json';
 function initStore(){
  ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));
@@ -193,8 +193,14 @@ async function pushMenuToGitHub(){
   const dataPut=await rPut.json().catch(()=>({}));
   if(rPut.ok){
    ST.S('rv',payload.ts);
-   setStatus('Menù pubblicato online! Tra ~1 minuto sarà visibile ai clienti.');
-   alert('Menù pubblicato con successo! Tra circa 1 minuto sarà visibile ai clienti.');
+   setStatus('Menù pubblicato online! Aggiornamento in corso…');
+   // Attendi 3s che GitHub propaghi il commit, poi ricarica il menù dal CDN
+   setTimeout(async()=>{
+    await loadRemoteMenu(true);
+    const m2=$('#rmp_status');
+    if(m2)m2.textContent='Menù pubblicato e ricaricato. I clienti vedranno le modifiche entro 10 minuti (cache GitHub Pages).';
+   },3000);
+   alert('Menù pubblicato con successo! L\'aggiornamento sarà visibile ai clienti entro 10 minuti (cache GitHub Pages).');
    return true;
   }else{
    setStatus('Errore upload: '+(dataPut.message||('HTTP '+rPut.status)));
