@@ -134,22 +134,68 @@ function lista(){return ST.L('lista',[])}
 function addOrd(t){const l=lista(),m=$('#cm');if(l.includes(t)){if(m)m.textContent='Ordine già in lista.';return}l.push(t);ST.S('lista',l);if(m)m.textContent='Ordine aggiunto ✔ ('+l.length+' in lista)';drawLst()}
 function drawLst(){const b=$('#lst');if(!b)return;const l=lista();b.innerHTML=l.length?l.map((t,k)=>'<div class="ord" style="margin:8px 0"><pre style="white-space:pre-wrap;font:inherit;margin:0">'+esc(t)+'</pre><div class="row"><button class="btn p" data-ev="'+k+'">Evaso</button></div></div>').join(''):'<p class="note">Nessun ordine in lista.</p>';
  b.querySelectorAll('[data-ev]').forEach(x=>x.onclick=()=>{const a=lista();a.splice(+x.dataset.ev,1);ST.S('lista',a);drawLst()})}
-let cam=null,raf=0;
-function stopScan(){cancelAnimationFrame(raf);if(cam){cam.getTracks().forEach(t=>t.stop());cam=null}}
+let cam=null,raf=0,scanBusy=false,scanTm=0;
+function stopScan(){cancelAnimationFrame(raf);raf=0;clearTimeout(scanTm);if(cam){cam.getTracks().forEach(t=>t.stop());cam=null}const v=$('#vd');if(v){try{v.srcObject=null}catch(e){}}}
 function cameriera(){
  if(!authC){$('#app').innerHTML='<main><h2 style="color:var(--gold)">Cameriera</h2><div class="item" style="display:block;cursor:default"><input id="pwc" type="password" placeholder="Password"><div class="row"><button class="btn p" id="pkc">Entra</button></div></div></main>';$('#pkc').onclick=()=>{if($('#pwc').value===PWC){authC=true;render()}else alert('Password errata.')};return}
- $('#app').innerHTML='<main><h2 style="color:var(--gold)">Lettura ordine</h2><div class="item" style="display:block;cursor:default"><p class="note" id="cm">Inquadra il QR del cliente.</p><video id="vd" playsinline muted style="width:100%;border-radius:10px;background:#000"></video><div class="row"><button class="btn p" id="cs">Scansiona di nuovo</button><label class="btn">📷 Leggi da foto<input type="file" id="cf" accept="image/*" capture="environment" style="display:none"></label></div></div><h3 style="color:var(--gold)">Ordini ricevuti</h3><div id="lst"></div><div class="item" style="display:block;cursor:default"><span>Se la fotocamera non parte, incolla qui il testo:</span><textarea id="mt" rows="3"></textarea><div class="row"><button class="btn" id="ma">Aggiungi testo</button></div></div></main>';
+ $('#app').innerHTML='<main><h2 style="color:var(--gold)">Lettura ordine</h2><div class="item" style="display:block;cursor:default"><p class="note" id="cm">Inquadra il QR del cliente.</p><video id="vd" playsinline muted autoplay style="width:100%;border-radius:10px;background:#000"></video><div class="row"><button class="btn p" id="cs">Scansiona di nuovo</button><label class="btn">📷 Leggi da foto<input type="file" id="cf" accept="image/*" capture="environment" style="display:none"></label></div></div><h3 style="color:var(--gold)">Ordini ricevuti</h3><div id="lst"></div><div class="item" style="display:block;cursor:default"><span>Se la fotocamera non parte, incolla qui il testo:</span><textarea id="mt" rows="3"></textarea><div class="row"><button class="btn" id="ma">Aggiungi testo</button></div></div></main>';
  $('#cs').onclick=startScan;$('#cf').onchange=e=>{const f=e.target.files[0];if(!f)return;const m=$('#cm');m.textContent='Lettura in corso…';const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,1200/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,c.width,c.height);const d=x.getImageData(0,0,c.width,c.height),r=typeof jsQR!=='undefined'?jsQR(d.data,c.width,c.height,{inversionAttempts:'attemptBoth'}):null;if(r&&r.data){addOrd(r.data)}else{m.textContent='QR non trovato: riprova avvicinandoti, tenendo il QR ben dritto e ben illuminato (senza riflessi).';const ta=$('#mt');if(ta){ta.value='';ta.placeholder='Incolla qui il testo dell\'ordine come fallback…'}}URL.revokeObjectURL(im.src);e.target.value=''};im.onerror=()=>{m.textContent='Impossibile leggere la foto. Riprova o incolla il testo qui sotto.'};im.src=URL.createObjectURL(f)};$('#ma').onclick=()=>{const v=$('#mt').value.trim();if(v){addOrd(v);$('#mt').value=''}};drawLst();startScan()}
-function startScan(){stopScan();const m=$('#cm');
- if(!navigator.mediaDevices){m.textContent='Errore: fotocamera non supportata. Apri l\'app su HTTPS (non su file://) e usa il campo testo qui sotto.';return}if(typeof jsQR==='undefined'||window.__jsQRFailed){m.textContent='Errore: lettore QR (jsQR) non caricato. Verifica la connessione internet, ricarica la pagina, oppure usa il campo testo qui sotto.';return}
+function startScan(){
+ if(scanBusy){return}
+ stopScan();
+ const m=$('#cm');if(!m){scanBusy=false;return}
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){m.textContent='Errore: fotocamera non supportata. Apri l\'app su HTTPS (non su file://) oppure usa il campo testo qui sotto.';return}
+ if(typeof jsQR==='undefined'||window.__jsQRFailed){m.textContent='Errore: lettore QR (jsQR) non caricato. Verifica la connessione internet, ricarica la pagina, oppure usa il campo testo qui sotto.';return}
  if(location.protocol!=='https:'&&location.hostname!=='localhost'&&location.hostname!=='127.0.0.1'){m.textContent='Attenzione: la fotocamera richiede HTTPS. Apri l\'app dall\'indirizzo pubblico https://… ; nel frattempo puoi leggere da foto o incollare il testo qui sotto.';return}
- navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(s=>{const v=$('#vd');if(!v){s.getTracks().forEach(t=>t.stop());return}cam=s;v.srcObject=s;v.play().catch(()=>{});m.textContent='Inquadra il QR del cliente (anche da vicino).';
-  const c=document.createElement('canvas'),x=c.getContext('2d',{willReadFrequently:true});
-  const SW=480; // scansione a risoluzione ridotta: jsQR è molto più veloce e basta per QR di un telefono
-  (function loop(){if(!cam)return;if(v.videoWidth){const sc=SW/Math.max(v.videoWidth,v.videoHeight);c.width=Math.round(v.videoWidth*sc);c.height=Math.round(v.videoHeight*sc);x.drawImage(v,0,0,c.width,c.height);const d=x.getImageData(0,0,c.width,c.height),r=jsQR(d.data,c.width,c.height,{inversionAttempts:'attemptBoth'});
-   if(r&&r.data){addOrd(r.data);if(navigator.vibrate)navigator.vibrate(150);stopScan();setTimeout(()=>{if($('#vd'))startScan()},1800);return}}
-   raf=requestAnimationFrame(loop)})()}).catch(er=>{m.textContent='Errore fotocamera: '+(er&&er.name||'?')+(er&&er.message?' – '+er.message:'')+'. Usa il campo testo qui sotto.'})}
-
+ scanBusy=true;
+ m.textContent='Avvio fotocamera…';
+ const tryGet=(cons,fallback)=>{
+  navigator.mediaDevices.getUserMedia(cons).then(s=>{
+   const v=$('#vd');
+   if(!v){s.getTracks().forEach(t=>t.stop());scanBusy=false;return}
+   cam=s;v.srcObject=s;
+   const ready=()=>{scanBusy=false;clearTimeout(scanTm);m.textContent='Inquadra il QR del cliente (puoi anche avvicinarti).';startLoop(v)};
+   if(v.readyState>=2){ready()}else{v.onloadedmetadata=ready}
+   v.play().catch(()=>{});
+   scanTm=setTimeout(()=>{if(!cam){scanBusy=false;m.textContent='La fotocamera non risponde. Verifica i permessi, chiudi le altre app che la usano, oppure usa il campo testo qui sotto.'}},8000);
+  }).catch(er=>{
+   if(fallback){tryGet(fallback,null);return}
+   scanBusy=false;
+   const name=er&&er.name||'?';
+   let msg='Errore fotocamera: '+name+(er&&er.message?' – '+er.message:'')+'. ';
+   if(name==='NotAllowedError'||name==='PermissionDeniedError')msg+='Consenti l\'accesso alla fotocamera nelle impostazioni del browser. ';
+   else if(name==='NotFoundError'||name==='DevicesNotFoundError')msg+='Nessuna fotocamera trovata sul dispositivo. ';
+   else if(name==='NotReadableError'||name==='TrackStartError')msg+='La fotocamera è occupata da un\'altra app: chiudila e riprova. ';
+   msg+='Nel frattempo puoi leggere da foto o incollare il testo qui sotto.';
+   m.textContent=msg;
+  });
+ };
+ tryGet({video:{facingMode:{ideal:'environment'}}},{video:true});
+}
+function startLoop(v){
+ cancelAnimationFrame(raf);raf=0;
+ const c=document.createElement('canvas'),x=c.getContext('2d',{willReadFrequently:true});
+ const SW=480;
+ (function loop(){
+  if(!cam){return}
+  if(v.videoWidth>0){
+   const sc=SW/Math.max(v.videoWidth,v.videoHeight);
+   c.width=Math.max(1,Math.round(v.videoWidth*sc));
+   c.height=Math.max(1,Math.round(v.videoHeight*sc));
+   x.drawImage(v,0,0,c.width,c.height);
+   const d=x.getImageData(0,0,c.width,c.height);
+   const r=jsQR(d.data,c.width,c.height,{inversionAttempts:'attemptBoth'});
+   if(r&&r.data){
+    addOrd(r.data);
+    if(navigator.vibrate)navigator.vibrate(150);
+    cancelAnimationFrame(raf);raf=0;
+    setTimeout(()=>{if(cam&&$('#vd')===v){startLoop(v)}},1500);
+    return;
+   }
+  }
+  raf=requestAnimationFrame(loop);
+ })();
+}
 
 // ---- Editor foto: riquadro quadrato fisso, tutte le foto escono 480x480
 function cropFoto(im,done){const V=280;let z=1,ox=0,oy=0;
