@@ -368,9 +368,14 @@ function admin(){
  if(!auth){$('#app').innerHTML='<main><h2 style="color:var(--gold)">Gestione</h2><div class="item" style="display:block;cursor:default"><input id="pw" type="password" placeholder="Password"><div class="row"><button class="btn p" id="pk">Entra</button></div></div></main>';
   $('#pk').onclick=()=>{if($('#pw').value===PWD){auth=true;render()}else alert('Password errata.')};return}
  const l=items().sort((a,b)=>a.cat.localeCompare(b.cat));
+ // Filtra per sezione corrente (curSec, come nel cliente). 'entrambi' appare in entrambe.
+ const lSec=l.filter(i=>{const s=itemSec(i);return s===curSec||s==='entrambi'});
  const rv=ST.L('rv',0),rvTxt=rv?new Date(rv).toLocaleString('it-IT'):'mai';
  const pmCount=Object.keys(ST.L('pm',{})).length;
  $('#app').innerHTML=`<main><h2 style="color:var(--gold)">Gestione menù</h2>
+ <div class="sec-toggle" style="display:flex;gap:6px;padding:8px;justify-content:center;background:var(--card);border-radius:10px;margin-bottom:10px">
+  ${SECS.map(s=>`<button class="btn sec-btn ${s.id===curSec?'p':''}" data-sec="${s.id}" style="flex:1;max-width:200px">${s.label}</button>`).join('')}
+ </div>
  <div class="item" style="display:block;cursor:default"><b>QR unico del locale</b><span>Indirizzo dell'app (quello definitivo, online)</span>
  <input id="au" placeholder="https://..." value="${esc(ST.url)}"><div class="row"><button class="btn" id="aus">Salva e mostra QR</button><button class="btn" id="aom">Ordine a mano</button></div><div id="qrs" style="text-align:center;margin-top:10px"></div></div>
  <div class="item" style="display:block;cursor:default"><b>Sincronizza menù online (GitHub Pages)</b><span>Indirizzo pubblico del file menu.json</span>
@@ -382,9 +387,10 @@ function admin(){
  <div class="row"><button class="btn" id="ghts">Salva token</button><button class="btn" id="ghtc" style="color:var(--red);border-color:var(--red)">Cancella token</button></div>
  <input type="file" id="rmi_f" accept="application/json,.json" style="display:none"></div>
  <div class="row"><button class="btn p" id="new">+ Nuovo piatto / prodotto</button><button class="btn" id="gcats">📂 Gestisci categorie</button></div>
- ${l.map(i=>`<div class="item" data-e="${i.id}"><div class="t"><b>${esc(i.name)}</b><span>${esc(i.cat)} · ${SECS.find(s=>s.id===itemSec(i))?.label||'🔁 Entrambi'}</span></div><div class="pr">${i.out?'Terminato':fmtP(i)}</div></div>`).join('')}</main>`;
- $('#new').onclick=()=>edit({id:'n'+Date.now(),cat:'Piatti',sec:'rist',name:'',desc:'',prices:[['',0]],out:false,img:'',rem:[],add:[]});
+ ${lSec.length?lSec.map(i=>`<div class="item" data-e="${i.id}"><div class="t"><b>${esc(i.name)}</b><span>${esc(i.cat)} · ${SECS.find(s=>s.id===itemSec(i))?.label||'🔁 Entrambi'}${i.out?' · 🔴 terminato':''}</span></div><div class="pr">${i.out?'Terminato':fmtP(i)}</div></div>`).join(''):'<p class="note">Nessun piatto in questa sezione.</p>'}</main>`;
+ $('#new').onclick=()=>edit({id:'n'+Date.now(),cat:curSec==='rist'?'Piatti':'Stuzzichini',sec:curSec,name:'',desc:'',prices:[['',0]],out:false,img:'',rem:[],add:[]});
  $('#gcats').onclick=editCats;
+ document.querySelectorAll('.sec-btn').forEach(b=>b.onclick=()=>{curSec=b.dataset.sec;render()});
  document.querySelectorAll('[data-e]').forEach(e=>e.onclick=()=>edit(ST.menu[e.dataset.e]));
  $('#aus').onclick=()=>{saveUrl($('#au').value.trim());drawQR()};$('#aom').onclick=manuale;drawQR();
  // Sync GitHub
