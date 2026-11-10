@@ -124,8 +124,9 @@ async function loadRemoteMenu(force){
   if(!r.ok){if(sub)sub.textContent='Menù remoto non raggiungibile ('+r.status+').';return false}
   const data=await r.json();
   if(!data||!data.items){if(sub)sub.textContent='Menu.json non valido.';return false}
-  // Salva timestamp remoto
+  // Salva timestamp remoto e numero tavoli (se presente nel file remoto)
   ST.S('rv',data.ts||Date.now());
+  if(data.nt)ST.S('nt',data.nt);
   // Fonde: SEED → remoto → locale (locale vince, così le modifiche fatte sul dispositivo non vengono perse)
   ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));
   Object.assign(ST.menu,data.items||{});
@@ -140,7 +141,7 @@ async function loadRemoteMenu(force){
 function exportMenu(){
  const m={};
  Object.values(ST.menu).forEach(it=>{m[it.id]=it});
- return {version:1,ts:Date.now(),generated:new Date().toISOString(),items:m};
+ return {version:2,ts:Date.now(),generated:new Date().toISOString(),nt:ST.L('nt',30),items:m};
 }
 // Importa un menu.json (sostituisce le modifiche locali)
 function importMenu(data){
@@ -148,6 +149,7 @@ function importMenu(data){
  const m={};
  Object.entries(data.items).forEach(([id,it])=>{if(it&&it.id)m[id]=it});
  ST.S('pm',m);
+ if(data.nt)ST.S('nt',data.nt);
  ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));
  Object.assign(ST.menu,m);
  Object.keys(ST.menu).forEach(k=>ST.menu[k].deleted&&delete ST.menu[k]);
@@ -263,7 +265,7 @@ function pick(i){openSh(`<h2 style="color:var(--gold);margin-top:0">${esc(i.name
   const rem=[...document.querySelectorAll('.rm:checked')].map(x=>x.value),add=[...document.querySelectorAll('.ad:checked')].map(x=>x.value.split('|'));
   cart.push({n:i.name+(p[0]?' ('+p[0]+')':''),q,unit:p[1]+add.reduce((s,a)=>s+ +a[1],0),rem,add:add.map(a=>a[0]),note:$('#nt').value.trim()});closeSh();render()}}
 function checkout(){openSh(`<h2 style="color:var(--gold);margin-top:0">Il tuo ordine</h2>${cart.map((c,k)=>`<label class="o"><span>${c.q}× ${esc(c.n)}<br><small class="note">${[...c.rem.map(r=>'senza '+r),...c.add.map(a=>'+ '+a),c.note].filter(Boolean).map(esc).join(', ')}</small></span><span><b>${eur(c.unit*c.q)}</b> <button class="btn" data-x="${k}">✕</button></span></label>`).join('')}
- <select id="tv"><option value="">Numero del tavolo…</option>${Array.from({length:Math.max(30,+tavolo()||0)},(_,k)=>`<option ${tavolo()==k+1?'selected':''}>${k+1}</option>`).join('')}<option>Banco</option></select><input id="nm" placeholder="Il tuo nome (facoltativo)">
+ <select id="tv"><option value="">Numero del tavolo…</option>${Array.from({length:Math.max(1,+(ST.L('nt',30))||30)},(_,k)=>`<option ${tavolo()==k+1?'selected':''}>${k+1}</option>`).join('')}<option>Banco</option></select><input id="nm" placeholder="Il tuo nome (facoltativo)">
  <div class="row"><button class="btn" id="cl">Chiudi</button><button class="btn p" id="inv" style="flex:1">Conferma ordine</button></div>`);
  document.querySelectorAll('[data-x]').forEach(b=>b.onclick=e=>{e.stopPropagation();cart.splice(+b.dataset.x,1);cart.length?checkout():closeSh();render()});
  $('#cl').onclick=closeSh;$('#inv').onclick=()=>{const t=$('#tv').value;if(!t)return alert('Scegli il numero del tavolo.');
@@ -376,6 +378,8 @@ function admin(){
  <div class="sec-toggle" style="display:flex;gap:6px;padding:8px;justify-content:center;background:var(--card);border-radius:10px;margin-bottom:10px">
   ${SECS.map(s=>`<button class="btn sec-btn ${s.id===curSec?'p':''}" data-sec="${s.id}" style="flex:1;max-width:200px">${s.label}</button>`).join('')}
  </div>
+ <div class="item" style="display:block;cursor:default"><b>Numero tavoli del locale</b><span>Quanti tavoli ha il locale? Il cliente vedrà una lista da 1 a questo numero</span>
+ <input id="nt" type="number" min="1" max="200" value="${esc(ST.L('nt',30))}" style="margin-top:6px"><div class="row"><button class="btn" id="nts">Salva numero tavoli</button></div></div>
  <div class="item" style="display:block;cursor:default"><b>QR unico del locale</b><span>Indirizzo dell'app (quello definitivo, online)</span>
  <input id="au" placeholder="https://..." value="${esc(ST.url)}"><div class="row"><button class="btn" id="aus">Salva e mostra QR</button><button class="btn" id="aom">Ordine a mano</button></div><div id="qrs" style="text-align:center;margin-top:10px"></div></div>
  <div class="item" style="display:block;cursor:default"><b>Sincronizza menù online (GitHub Pages)</b><span>Indirizzo pubblico del file menu.json</span>
@@ -390,6 +394,7 @@ function admin(){
  ${lSec.length?lSec.map(i=>`<div class="item" data-e="${i.id}"><div class="t"><b>${esc(i.name)}</b><span>${esc(i.cat)} · ${SECS.find(s=>s.id===itemSec(i))?.label||'🔁 Entrambi'}${i.out?' · 🔴 terminato':''}</span></div><div class="pr">${i.out?'Terminato':fmtP(i)}</div></div>`).join(''):'<p class="note">Nessun piatto in questa sezione.</p>'}</main>`;
  $('#new').onclick=()=>edit({id:'n'+Date.now(),cat:curSec==='rist'?'Piatti':'Stuzzichini',sec:curSec,name:'',desc:'',prices:[['',0]],out:false,img:'',rem:[],add:[]});
  $('#gcats').onclick=editCats;
+ $('#nts').onclick=()=>{const n=parseInt($('#nt').value,10);if(!n||n<1)return alert('Inserisci un numero valido (1 o maggiore).');if(n>200)return alert('Massimo 200 tavoli.');ST.S('nt',n);alert('Numero tavoli salvato: '+n+'. Ora i clienti vedranno i tavoli da 1 a '+n+'.');render()};
  document.querySelectorAll('.sec-btn').forEach(b=>b.onclick=()=>{curSec=b.dataset.sec;render()});
  document.querySelectorAll('[data-e]').forEach(e=>e.onclick=()=>edit(ST.menu[e.dataset.e]));
  $('#aus').onclick=()=>{saveUrl($('#au').value.trim());drawQR()};$('#aom').onclick=manuale;drawQR();
