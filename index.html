@@ -77,6 +77,18 @@ const ST={menu:{},url:'',rurl:'',L:(k,d)=>{try{return JSON.parse(localStorage.ge
 const subs=[];const fire=()=>subs.forEach(f=>f());
 const PWD='peda2027'; // password provvisoria: da cambiare prima della pubblicazione
 let auth=false,authC=true; // cameriera senza password; admin con password
+
+// ---- Configurazione GitHub (per caricare menu.json automaticamente) ----
+// Il token NON sta nel codice (GitHub lo bloccherebbe col secret scanner).
+// Va inserito una volta sola in Gestione → "Token GitHub".
+// Resta salvato nel localStorage del dispositivo admin.
+const GH_TOKEN_KEY='ght';
+function getGHToken(){return ST.L(GH_TOKEN_KEY,'')}
+function setGHToken(t){ST.S(GH_TOKEN_KEY,t)}
+const GH_OWNER='vignatefood';
+const GH_REPO='al-peda';
+const GH_BRANCH='main';
+const GH_PATH='menu.json';
 function initStore(){
  ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));
  Object.assign(ST.menu,ST.L('pm',{}));
@@ -132,6 +144,59 @@ function importMenu(data){
  Object.keys(ST.menu).forEach(k=>ST.menu[k].deleted&&delete ST.menu[k]);
  fire();
  return true;
+}
+
+// ---- Carica menu.json su GitHub automaticamente (PUT /repos/.../contents/menu.json) ----
+// UTF-8 safe: converte stringa → base64 gestendo i caratteri multibyte (è, à, emoji, ecc.)
+function strToBase64(str){
+ const bytes=new TextEncoder().encode(str);
+ let bin='';
+ bytes.forEach(b=>bin+=String.fromCharCode(b));
+ return btoa(bin);
+}
+async function pushMenuToGitHub(){
+ const token=getGHToken();
+ if(!token){alert('Token GitHub non configurato. Inseriscilo nel campo "Token GitHub" sotto, poi premi Salva token.');return false}
+ const m=$('#rmp_status');
+ const setStatus=s=>{if(m)m.textContent=s};
+ setStatus('Caricamento in corso…');
+ // 1) Verifica se menu.json esiste già, per recuperarne lo SHA (necessario per l'update)
+ const apiUrl=`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}?ref=${GH_BRANCH}`;
+ let sha=null;
+ try{
+  const rGet=await fetch(apiUrl,{headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json'}});
+  if(rGet.status===200){
+   const dataGet=await rGet.json();
+   sha=dataGet.sha;
+   setStatus('File esistente trovato, aggiornamento…');
+  }else if(rGet.status===404){
+   setStatus('Creazione nuovo file menu.json…');
+  }else{
+   const err=await rGet.json().catch(()=>({}));
+   setStatus('Errore verifica: '+(err.message||('HTTP '+rGet.status)));
+   if(rGet.status===401||rGet.status===403)alert('Token non valido o senza permessi. Verifica il token e che abbia scope "Contents: Read and write" sul repo al-peda.');
+   return false;
+  }
+ }catch(e){setStatus('Errore di rete: '+e.message);return false}
+ // 2) Carica il nuovo contenuto (PUT)
+ const payload=exportMenu();
+ const content=strToBase64(JSON.stringify(payload,null,2));
+ const body={message:'Aggiornamento menù del '+new Date().toLocaleString('it-IT'),content,branch:GH_BRANCH};
+ if(sha)body.sha=sha;
+ try{
+  const rPut=await fetch(apiUrl,{method:'PUT',headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+  const dataPut=await rPut.json().catch(()=>({}));
+  if(rPut.ok){
+   ST.S('rv',payload.ts);
+   setStatus('Menù pubblicato online! Tra ~1 minuto sarà visibile ai clienti.');
+   alert('Menù pubblicato con successo! Tra circa 1 minuto sarà visibile ai clienti.');
+   return true;
+  }else{
+   setStatus('Errore upload: '+(dataPut.message||('HTTP '+rPut.status)));
+   alert('Errore upload: '+(dataPut.message||('HTTP '+rPut.status)));
+   return false;
+  }
+ }catch(e){setStatus('Errore upload: '+e.message);alert('Errore upload: '+e.message);return false}
 }
 
 // ---- Router
@@ -282,8 +347,11 @@ function admin(){
  <input id="au" placeholder="https://..." value="${esc(ST.url)}"><div class="row"><button class="btn" id="aus">Salva e mostra QR</button><button class="btn" id="aom">Ordine a mano</button></div><div id="qrs" style="text-align:center;margin-top:10px"></div></div>
  <div class="item" style="display:block;cursor:default"><b>Sincronizza menù online (GitHub Pages)</b><span>Indirizzo pubblico del file menu.json</span>
  <input id="rm" placeholder="https://tuoutente.github.io/tuorepo/menu.json" value="${esc(ST.rurl)}">
- <div class="row"><button class="btn" id="rms">Salva URL</button><button class="btn" id="rml">Scarica da online</button><button class="btn p" id="rme">Esporta menù (file)</button><button class="btn" id="rmi">Importa menù (file)</button></div>
+ <div class="row"><button class="btn" id="rms">Salva URL</button><button class="btn" id="rml">Scarica da online</button><button class="btn p" id="rmp">⬆ Salva online</button><button class="btn" id="rme">Esporta menù (file)</button><button class="btn" id="rmi">Importa menù (file)</button></div>
  <small class="note">Ultimo aggiornamento remoto: ${rvTxt} · modifiche locali: ${pmCount} piatti</small>
+ <div id="rmp_status" class="note" style="margin-top:6px;min-height:1em">${getGHToken()?'':'⚠️ Token GitHub non configurato: il pulsante "Salva online" non funziona. Inseriscilo qui sotto.'}</div>
+ <input id="ght" type="password" placeholder="Token GitHub (github_pat_...)" value="${esc(getGHToken())}" style="margin-top:6px">
+ <div class="row"><button class="btn" id="ghts">Salva token</button><button class="btn" id="ghtc" style="color:var(--red);border-color:var(--red)">Cancella token</button></div>
  <input type="file" id="rmi_f" accept="application/json,.json" style="display:none"></div>
  <button class="btn p" id="new">+ Nuovo piatto / prodotto</button>
  ${l.map(i=>`<div class="item" data-e="${i.id}"><div class="t"><b>${esc(i.name)}</b><span>${esc(i.cat)}</span></div><div class="pr">${i.out?'Terminato':fmtP(i)}</div></div>`).join('')}</main>`;
@@ -293,6 +361,9 @@ function admin(){
  // Sync GitHub
  $('#rms').onclick=()=>{saveRUrl($('#rm').value.trim());alert('URL salvato. Ora premi "Scarica da online" per caricare il menù.')};
  $('#rml').onclick=async()=>{const ok=await loadRemoteMenu(true);alert(ok?'Menù scaricato da online.':'Impossibile scaricare il menù. Controlla l\'URL e la connessione.');render()};
+ $('#rmp').onclick=()=>pushMenuToGitHub();
+ $('#ghts').onclick=()=>{const t=$('#ght').value.trim();if(!t)return alert('Inserisci un token.');setGHToken(t);alert('Token salvato sul dispositivo. Ora puoi usare "Salva online".');render()};
+ $('#ghtc').onclick=()=>{if(confirm('Cancellare il token salvato?')){localStorage.removeItem(GH_TOKEN_KEY);render()}};
  $('#rme').onclick=()=>{const data=exportMenu();const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='menu.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);alert('menu.json scaricato. Ora caricalo nel tuo repo GitHub (replace se esiste già).')};
  $('#rmi').onclick=()=>$('#rmi_f').click();
  $('#rmi_f').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);if(importMenu(data)){alert('Menù importato: '+(Object.keys(data.items).length)+' piatti.');render()}}catch(err){alert('File non valido: '+err.message)}};r.readAsText(f);e.target.value=''};
