@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "ts": 1794351301247,
-  "generated": "2026-11-10T22:55:01.247Z",
+  "ts": 1794351414131,
+  "generated": "2026-11-10T22:56:54.131Z",
   "nt": 100,
   "items": {
     "s0": {
@@ -980,6 +980,23 @@
         ]
       ],
       "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "hide_Piatti": {
+      "id": "hide_Piatti",
+      "cat": "Piatti",
+      "sec": "rist",
+      "name": "(categoria nascosta)",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          0
+        ]
+      ],
+      "out": true,
       "img": "",
       "rem": [],
       "add": []
