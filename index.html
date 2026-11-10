@@ -10,6 +10,7 @@ header h1{margin:0;color:var(--gold);font-size:22px;letter-spacing:1px}header sm
 nav{display:flex;gap:6px;overflow-x:auto;padding:10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
 nav button,.btn{background:none;border:1px solid var(--gold);color:var(--gold);border-radius:20px;padding:8px 14px;font:inherit;white-space:nowrap;cursor:pointer}
 nav button.on,.btn.p{background:var(--gold);color:#10281c;font-weight:bold}
+.btn:disabled,.btn[disabled]{opacity:.4;cursor:not-allowed}
 main{max-width:720px;margin:0 auto;padding:0 12px}
 .item{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid #2c5a45;border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
 .item img{width:64px;height:64px;object-fit:cover;border-radius:8px}.item .t{flex:1}.item b{display:block}
@@ -31,6 +32,7 @@ input[type=checkbox],input[type=radio]{width:auto}
 <div class="sheet" id="sh"><div id="shc"></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+<script>window.__jsQRFailed=false;window.addEventListener('error',function(e){if(e.target&&e.target.src&&/jsQR/i.test(e.target.src))window.__jsQRFailed=true;},true);</script>
 <script>
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const eur=n=>'€'+Number(n).toFixed(2).replace('.',',');
@@ -99,7 +101,7 @@ function cliente(){const list=items().filter(i=>i.cat===cat);
  ${ST.L('ult',null)?'<div class="row" style="justify-content:center"><button class="btn" id="ul">Rivedi il QR del tuo ultimo ordine</button></div>':''}
  ${cat==='Gin Premium'?'<p class="note">Tutti i gin vengono serviti con toniche premium.</p>':''}
  ${list.length?list.map(i=>`<div class="item ${i.out?'out':''}" data-i="${i.id}">${i.img?`<img src="${i.img}" alt="">`:''}<div class="t"><b>${esc(i.name)}</b><span>${esc(i.desc)}</span></div><div class="pr">${i.out?'Terminato':fmtP(i)}</div></div>`).join(''):'<p class="note">Nessun piatto in questa categoria, per ora.</p>'}
- </main><div class="bar"><span>${n} articoli · <b class="pr">${eur(tot)}</b></span><button class="btn p" id="go" ${n?'':'disabled'}>Vedi ordine</button></div>`;
+ </main><div class="bar"><span>${n} ${n===1?'articolo':'articoli'} · <b class="pr">${eur(tot)}</b></span><button class="btn p" id="go" ${n?'':'disabled'}>Vedi ordine</button></div>`;
  document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{cat=b.dataset.c;render()});
  document.querySelectorAll('.item').forEach(e=>e.onclick=()=>{const i=ST.menu[e.dataset.i];if(!i.out)pick(i)});
  $('#go').onclick=checkout;if($('#ul'))$('#ul').onclick=()=>showOrdQR(ST.L('ult',null));}
@@ -137,14 +139,16 @@ function stopScan(){cancelAnimationFrame(raf);if(cam){cam.getTracks().forEach(t=
 function cameriera(){
  if(!authC){$('#app').innerHTML='<main><h2 style="color:var(--gold)">Cameriera</h2><div class="item" style="display:block;cursor:default"><input id="pwc" type="password" placeholder="Password"><div class="row"><button class="btn p" id="pkc">Entra</button></div></div></main>';$('#pkc').onclick=()=>{if($('#pwc').value===PWC){authC=true;render()}else alert('Password errata.')};return}
  $('#app').innerHTML='<main><h2 style="color:var(--gold)">Lettura ordine</h2><div class="item" style="display:block;cursor:default"><p class="note" id="cm">Inquadra il QR del cliente.</p><video id="vd" playsinline muted style="width:100%;border-radius:10px;background:#000"></video><div class="row"><button class="btn p" id="cs">Scansiona di nuovo</button><label class="btn">📷 Leggi da foto<input type="file" id="cf" accept="image/*" capture="environment" style="display:none"></label></div></div><h3 style="color:var(--gold)">Ordini ricevuti</h3><div id="lst"></div><div class="item" style="display:block;cursor:default"><span>Se la fotocamera non parte, incolla qui il testo:</span><textarea id="mt" rows="3"></textarea><div class="row"><button class="btn" id="ma">Aggiungi testo</button></div></div></main>';
- $('#cs').onclick=startScan;$('#cf').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,1600/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,c.width,c.height);const d=x.getImageData(0,0,c.width,c.height),r=typeof jsQR!=='undefined'?jsQR(d.data,d.width,d.height):null;if(r&&r.data){addOrd(r.data)}else $('#cm').textContent='QR non trovato: riprova avvicinandoti e tenendolo ben inquadrato.';URL.revokeObjectURL(im.src);e.target.value=''};im.src=URL.createObjectURL(f)};$('#ma').onclick=()=>{const v=$('#mt').value.trim();if(v){addOrd(v);$('#mt').value=''}};drawLst();startScan()}
+ $('#cs').onclick=startScan;$('#cf').onchange=e=>{const f=e.target.files[0];if(!f)return;const m=$('#cm');m.textContent='Lettura in corso…';const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,1200/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,c.width,c.height);const d=x.getImageData(0,0,c.width,c.height),r=typeof jsQR!=='undefined'?jsQR(d.data,c.width,c.height,{inversionAttempts:'attemptBoth'}):null;if(r&&r.data){addOrd(r.data)}else{m.textContent='QR non trovato: riprova avvicinandoti, tenendo il QR ben dritto e ben illuminato (senza riflessi).';const ta=$('#mt');if(ta){ta.value='';ta.placeholder='Incolla qui il testo dell\'ordine come fallback…'}}URL.revokeObjectURL(im.src);e.target.value=''};im.onerror=()=>{m.textContent='Impossibile leggere la foto. Riprova o incolla il testo qui sotto.'};im.src=URL.createObjectURL(f)};$('#ma').onclick=()=>{const v=$('#mt').value.trim();if(v){addOrd(v);$('#mt').value=''}};drawLst();startScan()}
 function startScan(){stopScan();const m=$('#cm');
- if(!navigator.mediaDevices){m.textContent='Errore: fotocamera non supportata o pagina non sicura (https). Usa il campo qui sotto.';return}if(typeof jsQR==='undefined'){m.textContent='Errore: lettore QR non caricato (connessione). Ricarica la pagina o usa il campo qui sotto.';return}
- navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(s=>{const v=$('#vd');if(!v){s.getTracks().forEach(t=>t.stop());return}cam=s;v.srcObject=s;v.play().catch(()=>{});m.textContent='Inquadra il QR del cliente.';
+ if(!navigator.mediaDevices){m.textContent='Errore: fotocamera non supportata. Apri l\'app su HTTPS (non su file://) e usa il campo testo qui sotto.';return}if(typeof jsQR==='undefined'||window.__jsQRFailed){m.textContent='Errore: lettore QR (jsQR) non caricato. Verifica la connessione internet, ricarica la pagina, oppure usa il campo testo qui sotto.';return}
+ if(location.protocol!=='https:'&&location.hostname!=='localhost'&&location.hostname!=='127.0.0.1'){m.textContent='Attenzione: la fotocamera richiede HTTPS. Apri l\'app dall\'indirizzo pubblico https://… ; nel frattempo puoi leggere da foto o incollare il testo qui sotto.';return}
+ navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(s=>{const v=$('#vd');if(!v){s.getTracks().forEach(t=>t.stop());return}cam=s;v.srcObject=s;v.play().catch(()=>{});m.textContent='Inquadra il QR del cliente (anche da vicino).';
   const c=document.createElement('canvas'),x=c.getContext('2d',{willReadFrequently:true});
-  (function loop(){if(!cam)return;if(v.videoWidth){c.width=v.videoWidth;c.height=v.videoHeight;x.drawImage(v,0,0);const d=x.getImageData(0,0,c.width,c.height),r=jsQR(d.data,d.width,d.height);
+  const SW=480; // scansione a risoluzione ridotta: jsQR è molto più veloce e basta per QR di un telefono
+  (function loop(){if(!cam)return;if(v.videoWidth){const sc=SW/Math.max(v.videoWidth,v.videoHeight);c.width=Math.round(v.videoWidth*sc);c.height=Math.round(v.videoHeight*sc);x.drawImage(v,0,0,c.width,c.height);const d=x.getImageData(0,0,c.width,c.height),r=jsQR(d.data,c.width,c.height,{inversionAttempts:'attemptBoth'});
    if(r&&r.data){addOrd(r.data);if(navigator.vibrate)navigator.vibrate(150);stopScan();setTimeout(()=>{if($('#vd'))startScan()},1800);return}}
-   raf=requestAnimationFrame(loop)})()}).catch(er=>{m.textContent='Errore fotocamera: '+(er&&er.name||'?')+(er&&er.message?' – '+er.message:'')+'. Usa il campo qui sotto.'})}
+   raf=requestAnimationFrame(loop)})()}).catch(er=>{m.textContent='Errore fotocamera: '+(er&&er.name||'?')+(er&&er.message?' – '+er.message:'')+'. Usa il campo testo qui sotto.'})}
 
 
 // ---- Editor foto: riquadro quadrato fisso, tutte le foto escono 480x480
@@ -182,7 +186,7 @@ function admin(){
 function drawQR(){const box=$('#qrs');if(!box)return;box.innerHTML='';
  if(!/^https?:\/\//.test(ST.url)){box.innerHTML='<p class="note">Inserisci e salva l’indirizzo dell’app (deve iniziare con https://).</p>';return}
  box.innerHTML='<div id="qq1" style="background:#fff;padding:10px;display:inline-block"></div><p class="note">Un solo QR per tutti i tavoli: stampalo o fai uno screenshot.</p>';
- new QRCode($('#qq1'),{text:ST.url.split('#')[0],width:220,height:220})}
+ try{new QRCode($('#qq1'),{text:ST.url.split('#')[0],width:220,height:220,correctLevel:QRCode.CorrectLevel.M})}catch(e){box.innerHTML='<p class="note">Indirizzo troppo lungo per il QR. Usa un URL breve.</p>'}}
 function manuale(){openSh(`<h3 style="margin-top:0;color:var(--gold)">Ordine a mano</h3><input id="mt1" placeholder="Tavolo"><textarea id="mt2" rows="5" placeholder="Una riga per articolo, es. 2x Guinness 0,40 lt"></textarea><div class="row"><button class="btn p" id="mo" style="flex:1">Genera ordine</button><button class="btn" id="mx">Chiudi</button></div>`);
  $('#mx').onclick=closeSh;$('#mo').onclick=()=>{const t=$('#mt1').value.trim()||'?',r=$('#mt2').value.split('\n').map(x=>x.trim()).filter(Boolean);if(!r.length)return;
   showOrdQR({id:'m'+Date.now(),t,nm:'',lines:r.map(x=>{const m=/^(\d+)\s*x?\s*(.+)$/i.exec(x);return{q:m?+m[1]:1,n:m?m[2]:x,unit:0,rem:[],add:[],note:''}})})}}
@@ -203,5 +207,5 @@ function edit(i){let img=i.img;const cs=[...new Set([...CATS,...items().map(x=>x
   const add=$('#ea').value.split('\n').map(x=>x.trim()).filter(Boolean).map(x=>{const k=x.lastIndexOf('=');return [x.slice(0,k).trim(),num(x.slice(k+1))]});
   saveItem({id:i.id,cat:$('#ec').value==='_'?($('#ecn').value.trim()||'Altro'):$('#ec').value,name:nm,desc:$('#ed').value.trim(),prices:prices.length?prices:[['',0]],out:$('#eo').checked,img,rem:$('#er').value.split(',').map(x=>x.trim()).filter(Boolean),add});closeSh()};
  $('#ex').onclick=closeSh;if($('#edl'))$('#edl').onclick=()=>{if(confirm('Eliminare?')){delItem(i.id);closeSh()}}}
-render();initStore();
+initStore();render();
 </script></body></html>
