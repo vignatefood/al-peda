@@ -415,7 +415,7 @@ function drawQR(){const box=$('#qrs');if(!box)return;box.innerHTML='';
 function manuale(){openSh(`<h3 style="margin-top:0;color:var(--gold)">Ordine a mano</h3><input id="mt1" placeholder="Tavolo"><textarea id="mt2" rows="5" placeholder="Una riga per articolo, es. 2x Guinness 0,40 lt"></textarea><div class="row"><button class="btn p" id="mo" style="flex:1">Genera ordine</button><button class="btn" id="mx">Chiudi</button></div>`);
  $('#mx').onclick=closeSh;$('#mo').onclick=()=>{const t=$('#mt1').value.trim()||'?',r=$('#mt2').value.split('\n').map(x=>x.trim()).filter(Boolean);if(!r.length)return;
   showOrdQR({id:'m'+Date.now(),t,nm:'',lines:r.map(x=>{const m=/^(\d+)\s*x?\s*(.+)$/i.exec(x);return{q:m?+m[1]:1,n:m?m[2]:x,unit:0,rem:[],add:[],note:''}})})}}
-function edit(i){let img=i.img;const cs=[...new Set([...CATS,...items().map(x=>x.cat)])];
+function edit(i){let img=i.img;const cs=[...new Set([...CATS.filter(c=>items().some(x=>x.cat===c)),...items().map(x=>x.cat)])];
  openSh(`<h3 style="margin-top:0;color:var(--gold)">${i.name?'Modifica':'Nuovo'}</h3>
  <select id="ec">${cs.map(c=>`<option ${c===i.cat?'selected':''}>${esc(c)}</option>`).join('')}<option value="_">+ Nuova categoria…</option></select><input id="ecn" placeholder="Nome nuova categoria" style="display:none">
  <select id="esec"><option value="bar" ${itemSec(i)==='bar'?'selected':''}>${SECS[0].label}</option><option value="rist" ${itemSec(i)==='rist'?'selected':''}>${SECS[1].label}</option><option value="entrambi" ${itemSec(i)==='entrambi'?'selected':''}>🔁 Entrambi</option></select>
@@ -440,13 +440,17 @@ function edit(i){let img=i.img;const cs=[...new Set([...CATS,...items().map(x=>x
 function categorie(){
  if(!auth){$('#app').innerHTML='<main><h2 style="color:var(--gold)">Categorie</h2><div class="item" style="display:block;cursor:default"><input id="pw" type="password" placeholder="Password"><div class="row"><button class="btn p" id="pk">Entra</button></div></div><p class="note"><a class="btn" href="#admin">← Torna a Gestione</a></p></main>';
   $('#pk').onclick=()=>{if($('#pw').value===PWD){auth=true;render()}else alert('Password errata.')};return}
- const allCats=[...new Set([...CATS,...items().map(x=>x.cat)])];
+ const allCats=[...new Set([...items().map(x=>x.cat)])];
+ // Aggiungi le CATS iniziali solo se hanno piatti (se sono state rinominate/eliminate, non le mostriamo più)
+ // Mantieni l'ordine di CATS seguito dalle categorie utente
+ const catsOrdered=[...CATS.filter(c=>items().some(i=>i.cat===c)), ...items().map(i=>i.cat).filter(c=>!CATS.includes(c))];
+ const allCatsOrdered=[...new Set(catsOrdered)];
  const catSec=c=>{const ps=items().filter(i=>i.cat===c);if(!ps.length)return CAT_SECS[c]||'entrambi';const secs=new Set(ps.map(itemSec));if(secs.size===1)return [...secs][0];return 'misto'};
  const secLabel=sec=>SECS.find(s=>s.id===sec)?.label||(sec==='entrambi'?'🔁 Entrambi':sec==='misto'?'🔀 Misto':'?');
  $('#app').innerHTML=`<main><h2 style="color:var(--gold)">Gestione categorie</h2>
  <p class="note">Qui puoi aggiungere, rinominare, cambiare sezione o eliminare qualsiasi categoria. Tutte le modifiche sono locali finché non fai "⬆ Salva online" dalla <a href="#admin">Gestione menù</a>.</p>
  <button class="btn p" id="addcat" style="width:100%;margin-bottom:10px">+ Aggiungi nuova categoria</button>
- ${allCats.length?allCats.map(c=>{const count=items().filter(i=>i.cat===c).length;const sec=catSec(c);const isDefault=CATS.includes(c);return `<div class="item" style="cursor:default;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+ ${allCatsOrdered.length?allCatsOrdered.map(c=>{const count=items().filter(i=>i.cat===c).length;const sec=catSec(c);const isDefault=CATS.includes(c);return `<div class="item" style="cursor:default;display:flex;align-items:center;gap:6px;flex-wrap:wrap">
   <div style="flex:1;min-width:120px"><b class="catname" data-cat="${esc(c)}">${esc(c)}</b>${isDefault?' <small class="note">(iniziale)</small>':''}<br><span>${count} piatti · ${secLabel(sec)}</span></div>
   <select class="catsel" data-cat="${esc(c)}" style="width:auto;padding:4px 8px">
    ${SECS.map(s=>`<option value="${s.id}" ${sec===s.id?'selected':''}>${s.label}</option>`).join('')}
@@ -478,7 +482,7 @@ function categorie(){
   const n=prompt('Rinomina categoria "'+c+'" in:',c);
   if(!n||n.trim()===c)return;
   const nn=n.trim();
-  if(allCats.includes(nn)&&nn!==c)return alert('Esiste già una categoria con questo nome.');
+  if(allCatsOrdered.includes(nn)&&nn!==c)return alert('Esiste già una categoria con questo nome.');
   if(!confirm('Rinominare "'+c+'" in "'+nn+'"? Verranno aggiornati '+items().filter(i=>i.cat===c).length+' piatti.'))return;
   items().filter(i=>i.cat===c).forEach(i=>{saveItem(Object.assign({},i,{cat:nn}))});
   if(cat===c)cat=nn;
@@ -496,7 +500,7 @@ function categorie(){
    alert('Categoria "'+c+'" eliminata.');
    render();return;
   }
-  const otherCats=allCats.filter(x=>x!==c);
+  const otherCats=allCatsOrdered.filter(x=>x!==c);
   if(otherCats.length===0){
    if(!confirm('Eliminare la categoria "'+c+'" con tutti i suoi '+toMove.length+' piatti? Non ci sono altre categorie dove spostarli. I piatti verranno eliminati definitivamente.'))return;
    toMove.forEach(i=>delItem(i.id));
@@ -560,7 +564,7 @@ function categorie(){
   $('#oknewcat').onclick=()=>{
    const n=$('#newcat').value.trim();
    if(!n){alert('Inserisci un nome.');return}
-   if(allCats.includes(n)){alert('Categoria già esistente.');return}
+   if(allCatsOrdered.includes(n)){alert('Categoria già esistente.');return}
    const s=$('#newcatsec').value;
    // Crea un segnaposto invisibile che definisce la categoria (con sezione)
    saveItem({id:'cat_'+Date.now(),cat:n,sec:s||'entrambi',name:'(categoria nuova)',desc:'',prices:[['',0]],out:true,img:'',rem:[],add:[]});
