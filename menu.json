@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "ts": 1794352608583,
-  "generated": "2026-11-10T23:16:48.583Z",
+  "ts": 1794352978646,
+  "generated": "2026-11-10T23:22:58.646Z",
   "nt": 100,
   "items": {
     "s0": {
@@ -1005,17 +1005,22 @@
       "id": "cat_1794352591253",
       "cat": "Primi",
       "sec": "rist",
-      "name": "(categoria nuova)",
+      "name": "Pizzocheri",
       "desc": "",
       "prices": [
         [
           "",
-          0
+          13.5
         ]
       ],
       "out": true,
       "img": "",
-      "rem": [],
+      "rem": [
+        "patate",
+        "coste",
+        "verze",
+        "formaggio"
+      ],
       "add": []
     }
   }
