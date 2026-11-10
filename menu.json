@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "ts": 1794351022441,
-  "generated": "2026-11-10T22:50:22.441Z",
-  "nt": 25,
+  "ts": 1794351301247,
+  "generated": "2026-11-10T22:55:01.247Z",
+  "nt": 100,
   "items": {
     "s0": {
       "id": "s0",
@@ -977,22 +977,6 @@
         [
           "",
           20
-        ]
-      ],
-      "out": false,
-      "img": "",
-      "rem": [],
-      "add": []
-    },
-    "s_test": {
-      "id": "s_test",
-      "cat": "Altro",
-      "name": "Push browser test",
-      "desc": "",
-      "prices": [
-        [
-          "",
-          1
         ]
       ],
       "out": false,
