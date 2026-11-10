@@ -425,11 +425,22 @@ function edit(i){let img=i.img;const cs=[...new Set([...CATS,...items().map(x=>x
   const sec=$('#esec')?$('#esec').value:(i.sec||'entrambi');
   saveItem({id:i.id,cat:$('#ec').value==='_'?($('#ecn').value.trim()||'Altro'):$('#ec').value,sec,name:nm,desc:$('#ed').value.trim(),prices:prices.length?prices:[['',0]],out:$('#eo').checked,img,rem:$('#er').value.split(',').map(x=>x.trim()).filter(Boolean),add});closeSh()};
  $('#ex').onclick=closeSh;if($('#edl'))$('#edl').onclick=()=>{if(confirm('Eliminare?')){delItem(i.id);closeSh()}}}
-// ---- Gestione categorie (aggiungi/rimuovi) ----
+// ---- Gestione categorie (aggiungi/rimuovi/cambia sezione) ----
 function editCats(){
  const allCats=[...new Set([...CATS,...items().map(x=>x.cat)])];
+ // Calcola la sezione "effettiva" di una categoria: se tutti i piatti hanno stessa sec, è quella; se misto, 'misto'
+ const catSec=c=>{const ps=items().filter(i=>i.cat===c);if(!ps.length)return 'entrambi';const secs=new Set(ps.map(itemSec));if(secs.size===1)return [...secs][0];return 'misto'};
+ const secLabel=sec=>SECS.find(s=>s.id===sec)?.label||(sec==='entrambi'?'🔁 Entrambi':sec==='misto'?'🔀 Misto':'?');
  openSh(`<h3 style="margin-top:0;color:var(--gold)">Gestisci categorie</h3>
- ${allCats.map(c=>{const count=items().filter(i=>i.cat===c).length;const sec=itemSec({cat:c});const secLabel=SECS.find(s=>s.id===sec)?.label||(sec==='entrambi'?'🔁 Entrambi':'?');return `<div class="item" style="cursor:default;display:flex;align-items:center;gap:8px"><div style="flex:1"><b>${esc(c)}</b><br><span>${count} piatti · ${secLabel}</span></div><button class="btn" data-rmcat="${esc(c)}" style="color:var(--red);border-color:var(--red)">🗑</button></div>`}).join('')}
+ <p class="note" style="text-align:left">Per rimuovere una categoria, scegli dove spostare i piatti. La categoria sarà eliminata (se non è una categoria predefinita del menù) o svuotata.</p>
+ ${allCats.map(c=>{const count=items().filter(i=>i.cat===c).length;const isDefault=CATS.includes(c);const sec=catSec(c);return `<div class="item" style="cursor:default;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+  <div style="flex:1;min-width:140px"><b>${esc(c)}</b>${isDefault?'<small class="note"> (predefinita)</small>':''}<br><span>${count} piatti · ${secLabel(sec)}</span></div>
+  <select class="catsel" data-cat="${esc(c)}" style="width:auto;padding:4px 8px">
+   ${SECS.map(s=>`<option value="${s.id}" ${sec===s.id?'selected':''}>${s.label}</option>`).join('')}
+   <option value="entrambi" ${sec==='entrambi'||sec==='misto'?'selected':''}>🔁 Entrambi</option>
+  </select>
+  <button class="btn" data-rmcat="${esc(c)}" style="color:var(--red);border-color:var(--red)" ${count>0?'':'disabled title=\"Nessun piatto\"'}>🗑</button>
+ </div>`}).join('')}
  <h4 style="color:var(--gold);margin-top:16px">Aggiungi nuova categoria</h4>
  <input id="newcat" placeholder="Nome categoria (es. Panini, Dolci)">
  <select id="newcatsec">
@@ -437,18 +448,72 @@ function editCats(){
   <option value="entrambi">🔁 Entrambi</option>
  </select>
  <div class="row"><button class="btn p" id="addcat" style="flex:1">+ Aggiungi categoria</button><button class="btn" id="ccats">Chiudi</button></div>`);
- document.querySelectorAll('[data-rmcat]').forEach(b=>b.onclick=()=>{const c=b.dataset.rmcat;const count=items().filter(i=>i.cat===c).length;if(!confirm('Rimuovere la categoria "'+c+'"? I '+count+' piatti presenti verranno spostati nella categoria "Altro".'))return;
-  // Sposta i piatti in 'Altro' e rimuovi la categoria dall'elenco
-  items().filter(i=>i.cat===c).forEach(i=>{saveItem(Object.assign({},i,{cat:'Altro'}))});
-  // Se la cat corrente è quella rimossa, torna alla prima
-  if(cat===c)cat='Altro';
-  alert('Categoria "'+c+'" rimossa. I piatti sono ora in "Altro".');
-  closeSh();render();
-  // Apri di nuovo per mostrare la lista aggiornata
-  setTimeout(editCats,100);
+ // Cambia sezione di una categoria (cambia sec a tutti i piatti di quella categoria)
+ document.querySelectorAll('.catsel').forEach(sel=>sel.onchange=()=>{
+  const c=sel.dataset.cat;const newSec=sel.value;
+  const affected=items().filter(i=>i.cat===c);
+  affected.forEach(i=>{saveItem(Object.assign({},i,{sec:newSec}))});
+  // Non chiudere: aggiorna solo lo span della sezione
+  const span=sel.parentElement.querySelector('span');
+  if(span)span.textContent=affected.length+' piatti · '+(SECS.find(s=>s.id===newSec)?.label||(newSec==='entrambi'?'🔁 Entrambi':'?'));
+ });
+ // Rimuovi categoria: chiedi dove spostare
+ document.querySelectorAll('[data-rmcat]').forEach(b=>b.onclick=()=>{
+  const c=b.dataset.rmcat;
+  const toMove=items().filter(i=>i.cat===c);
+  if(toMove.length===0){
+   // Nessun piatto: se è una categoria utente (non nel SEED), sparirà automaticamente
+   if(!CATS.includes(c)){
+    // Elimina eventuali segnaposto
+    toMove.forEach(i=>delItem(i.id));
+   }
+   alert('Categoria "'+c+'" rimossa (era vuota).');
+   closeSh();render();setTimeout(editCats,100);
+   return;
+  }
+  // Scegli categoria destinazione: qualsiasi categoria esistente tranne quella corrente
+  const otherCats=allCats.filter(x=>x!==c);
+  if(otherCats.length===0){
+   alert('Impossibile rimuovere l\'unica categoria. Crea prima un\'altra categoria.');
+   return;
+  }
+  // Mostra sheet con scelta
+  openSh(`<h3 style="margin-top:0;color:var(--gold)">Rimuovi "${esc(c)}"</h3>
+  <p class="note" style="text-align:left">${toMove.length} piatti sono in questa categoria. Scegli dove spostarli:</p>
+  <select id="mvdest">
+   ${otherCats.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('')}
+   <option value="__new__">+ Crea nuova categoria…</option>
+  </select>
+  <input id="mvnew" placeholder="Nome nuova categoria" style="display:none">
+  <p class="note" style="text-align:left;margin-top:10px">Vuoi anche cambiare la sezione dei piatti spostati?</p>
+  <select id="mvsec">
+   <option value="__keep__">🔁 Mantieni sezione attuale</option>
+   ${SECS.map(s=>`<option value="${s.id}">Forza ${s.label}</option>`).join('')}
+   <option value="entrambi">Forza 🔁 Entrambi</option>
+  </select>
+  <div class="row"><button class="btn p" id="mvok" style="flex:1">Sposta e rimuovi</button><button class="btn" id="mvcancel">Annulla</button></div>`);
+  $('#mvdest').onchange=e=>$('#mvnew').style.display=e.target.value==='__new__'?'block':'none';
+  $('#mvcancel').onclick=closeSh;
+  $('#mvok').onclick=()=>{
+   let dest=$('#mvdest').value;
+   if(dest==='__new__'){
+    dest=$('#mvnew').value.trim();
+    if(!dest){alert('Inserisci il nome della nuova categoria.');return}
+   }
+   const newSec=$('#mvsec').value;
+   toMove.forEach(i=>{
+    const upd=Object.assign({},i,{cat:dest});
+    if(newSec!=='__keep__')upd.sec=newSec;
+    saveItem(upd);
+   });
+   // Se era una categoria utente con segnaposto (out:true e nome tra parentesi), eliminala
+   items().filter(i=>i.cat===c&&i.out&&i.name.startsWith('(categoria')).forEach(i=>delItem(i.id));
+   if(cat===c)cat=dest;
+   alert('Categoria "'+c+'" rimossa. I '+toMove.length+' piatti sono ora in "'+dest+'".');
+   closeSh();render();setTimeout(editCats,100);
+  };
  });
  $('#addcat').onclick=()=>{const n=$('#newcat').value.trim();if(!n)return alert('Inserisci un nome.');if(allCats.includes(n))return alert('Categoria già esistente.');const s=$('#newcatsec').value;
-  // Crea un piatto segnaposto invisibile con la nuova categoria
   const ph={id:'cat_'+Date.now(),cat:n,sec:s||'entrambi',name:'(categoria nuova — aggiungi qui i piatti)',desc:'',prices:[['',0]],out:true,img:'',rem:[],add:[]};
   saveItem(ph);alert('Categoria "'+n+'" aggiunta. Ora puoi usarla quando modifichi un piatto.');closeSh();render();setTimeout(editCats,100);
  };
