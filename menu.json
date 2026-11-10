@@ -1,7 +1,988 @@
 {
   "version": 1,
-  "ts": 1794345076738,
+  "ts": 1794345278236,
+  "generated": "2026-11-10T21:14:38.236Z",
   "items": {
+    "s0": {
+      "id": "s0",
+      "cat": "Gin Premium",
+      "name": "Tanqueray",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s1": {
+      "id": "s1",
+      "cat": "Gin Premium",
+      "name": "Mare",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s2": {
+      "id": "s2",
+      "cat": "Gin Premium",
+      "name": "Hendrick's",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s3": {
+      "id": "s3",
+      "cat": "Gin Premium",
+      "name": "Nordes",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s4": {
+      "id": "s4",
+      "cat": "Gin Premium",
+      "name": "Malfy Pompelmo Rosa",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s5": {
+      "id": "s5",
+      "cat": "Birre alla spina",
+      "name": "1897 Non Filtrata",
+      "desc": "5,8%",
+      "prices": [
+        [
+          "0,20 lt",
+          3.5
+        ],
+        [
+          "0,40 lt",
+          6
+        ],
+        [
+          "1 lt",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s6": {
+      "id": "s6",
+      "cat": "Birre alla spina",
+      "name": "Dolomiti 8°",
+      "desc": "8,0%",
+      "prices": [
+        [
+          "0,20 lt",
+          4
+        ],
+        [
+          "0,40 lt",
+          6.5
+        ],
+        [
+          "1 lt",
+          12
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s7": {
+      "id": "s7",
+      "cat": "Birre alla spina",
+      "name": "Pedavena Tradizionale",
+      "desc": "5,0%",
+      "prices": [
+        [
+          "0,20 lt",
+          3.5
+        ],
+        [
+          "0,40 lt",
+          6.5
+        ],
+        [
+          "1 lt",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s8": {
+      "id": "s8",
+      "cat": "Birre alla spina",
+      "name": "AMA IPA",
+      "desc": "6,0%",
+      "prices": [
+        [
+          "0,20 lt",
+          4
+        ],
+        [
+          "0,40 lt",
+          6.5
+        ],
+        [
+          "1 lt",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s9": {
+      "id": "s9",
+      "cat": "Birre alla spina",
+      "name": "Maisel's Weisse",
+      "desc": "5,2%",
+      "prices": [
+        [
+          "0,20 lt",
+          4
+        ],
+        [
+          "0,40 lt",
+          7
+        ],
+        [
+          "1 lt",
+          13
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s10": {
+      "id": "s10",
+      "cat": "Birre alla spina",
+      "name": "Guinness",
+      "desc": "4,2%",
+      "prices": [
+        [
+          "0,20 lt",
+          4
+        ],
+        [
+          "0,40 lt",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s11": {
+      "id": "s11",
+      "cat": "Birre alla spina",
+      "name": "Leffe Rouge",
+      "desc": "6,6%",
+      "prices": [
+        [
+          "0,20 lt",
+          4
+        ],
+        [
+          "0,40 lt",
+          7
+        ],
+        [
+          "1 lt",
+          13
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s12": {
+      "id": "s12",
+      "cat": "Birre in bottiglia",
+      "name": "Superior senza glutine",
+      "desc": "33cl 5,2%",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s13": {
+      "id": "s13",
+      "cat": "Birre in bottiglia",
+      "name": "Pedavena Tradizionale",
+      "desc": "33cl 5,0%",
+      "prices": [
+        [
+          "",
+          4
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s14": {
+      "id": "s14",
+      "cat": "Birre in bottiglia",
+      "name": "Pedavena Ambrata",
+      "desc": "33cl 5,9%",
+      "prices": [
+        [
+          "",
+          4.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s15": {
+      "id": "s15",
+      "cat": "Birre in bottiglia",
+      "name": "Dolomiti Non Filtrata",
+      "desc": "33cl 5,8%",
+      "prices": [
+        [
+          "",
+          4.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s16": {
+      "id": "s16",
+      "cat": "Birre in bottiglia",
+      "name": "Superior Analcolica",
+      "desc": "33cl <0,5%",
+      "prices": [
+        [
+          "",
+          4
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s17": {
+      "id": "s17",
+      "cat": "Birre in bottiglia",
+      "name": "Dolomiti 8°",
+      "desc": "33cl 8%",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s18": {
+      "id": "s18",
+      "cat": "Birre in bottiglia",
+      "name": "Dolomiti Rossa",
+      "desc": "75cl 6,7%",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s19": {
+      "id": "s19",
+      "cat": "Birre in bottiglia",
+      "name": "Dolomiti La Speciale",
+      "desc": "75cl 5,9%",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s20": {
+      "id": "s20",
+      "cat": "Cocktail",
+      "name": "Campari Spritz",
+      "desc": "Bitter rosso, prosecco, soda",
+      "prices": [
+        [
+          "",
+          6
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s21": {
+      "id": "s21",
+      "cat": "Cocktail",
+      "name": "Negroni",
+      "desc": "Bitter rosso, vermouth rosso, gin",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s22": {
+      "id": "s22",
+      "cat": "Cocktail",
+      "name": "Negroni Sbagliato",
+      "desc": "Bitter rosso, vermouth rosso, spumante brut",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s23": {
+      "id": "s23",
+      "cat": "Cocktail",
+      "name": "Americano",
+      "desc": "Bitter rosso, vermouth rosso, soda",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s24": {
+      "id": "s24",
+      "cat": "Cocktail",
+      "name": "Whisky Sour",
+      "desc": "Whisky, sweet and sour",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s25": {
+      "id": "s25",
+      "cat": "Cocktail",
+      "name": "Capiroska",
+      "desc": "Vodka dry, lime, zucchero",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s26": {
+      "id": "s26",
+      "cat": "Cocktail",
+      "name": "Caipiriña",
+      "desc": "Cachaça, lime, zucchero",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s27": {
+      "id": "s27",
+      "cat": "Cocktail",
+      "name": "Moscow Mule",
+      "desc": "Vodka, ginger beer, succo di lime",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s28": {
+      "id": "s28",
+      "cat": "Cocktail",
+      "name": "Mojito",
+      "desc": "Rum, lime, zucchero, foglie di menta",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s29": {
+      "id": "s29",
+      "cat": "Cocktail",
+      "name": "Sex on the beach",
+      "desc": "Vodka, liquore alla pesca, succo d’arancia, cranberry",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s30": {
+      "id": "s30",
+      "cat": "Cocktail",
+      "name": "Cosmopolitan",
+      "desc": "Vodka, triple sec, cranberry, succo di lime",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s31": {
+      "id": "s31",
+      "cat": "Cocktail",
+      "name": "Daiquiri",
+      "desc": "Rum chiaro, succo di limone, zucchero",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s32": {
+      "id": "s32",
+      "cat": "Cocktail",
+      "name": "Old Fashioned",
+      "desc": "Bourbon, zolletta di zucchero con angostura",
+      "prices": [
+        [
+          "",
+          10
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s33": {
+      "id": "s33",
+      "cat": "Cocktail",
+      "name": "Vodka Sour",
+      "desc": "Vodka, succo di limone, zucchero",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s34": {
+      "id": "s34",
+      "cat": "Cocktail",
+      "name": "Tequila Sunrise",
+      "desc": "Tequila, succo d’arancia, granatina",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s35": {
+      "id": "s35",
+      "cat": "Cocktail",
+      "name": "Cuba Libre",
+      "desc": "Rum scuro, lime",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s36": {
+      "id": "s36",
+      "cat": "Cocktail",
+      "name": "Vodka tonic lemon",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s37": {
+      "id": "s37",
+      "cat": "Cocktail",
+      "name": "Vodka Red Bull",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s38": {
+      "id": "s38",
+      "cat": "Cocktail",
+      "name": "Gin Bosford tonic lemon",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s39": {
+      "id": "s39",
+      "cat": "Vini",
+      "name": "Falanghina",
+      "desc": "Bianco",
+      "prices": [
+        [
+          "Calice",
+          4
+        ],
+        [
+          "Bottiglia",
+          20
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s40": {
+      "id": "s40",
+      "cat": "Vini",
+      "name": "Greco",
+      "desc": "Bianco",
+      "prices": [
+        [
+          "Calice",
+          6
+        ],
+        [
+          "Bottiglia",
+          30
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s41": {
+      "id": "s41",
+      "cat": "Vini",
+      "name": "Gewurztraminer",
+      "desc": "Bianco",
+      "prices": [
+        [
+          "Calice",
+          6
+        ],
+        [
+          "Bottiglia",
+          29
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s42": {
+      "id": "s42",
+      "cat": "Vini",
+      "name": "Lugana",
+      "desc": "Bianco",
+      "prices": [
+        [
+          "Calice",
+          6
+        ],
+        [
+          "Bottiglia",
+          29
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s43": {
+      "id": "s43",
+      "cat": "Vini",
+      "name": "Primitivo",
+      "desc": "Rosso",
+      "prices": [
+        [
+          "Calice",
+          4
+        ],
+        [
+          "Bottiglia",
+          24
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s44": {
+      "id": "s44",
+      "cat": "Vini",
+      "name": "Ripasso",
+      "desc": "Rosso",
+      "prices": [
+        [
+          "Calice",
+          6
+        ],
+        [
+          "Bottiglia",
+          30
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s45": {
+      "id": "s45",
+      "cat": "Vini",
+      "name": "Chianti",
+      "desc": "Rosso",
+      "prices": [
+        [
+          "Calice",
+          5
+        ],
+        [
+          "Bottiglia",
+          29
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s46": {
+      "id": "s46",
+      "cat": "Vini",
+      "name": "Prosecco",
+      "desc": "",
+      "prices": [
+        [
+          "Calice",
+          5
+        ],
+        [
+          "Bottiglia",
+          22
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s47": {
+      "id": "s47",
+      "cat": "Stuzzichini",
+      "name": "Patate fritte con buccia",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          5.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s48": {
+      "id": "s48",
+      "cat": "Stuzzichini",
+      "name": "Anelli di cipolla in pastella",
+      "desc": "Allergeni: 1",
+      "prices": [
+        [
+          "",
+          6
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s49": {
+      "id": "s49",
+      "cat": "Stuzzichini",
+      "name": "Mozzarella stick 7pz",
+      "desc": "Allergeni: 1,7",
+      "prices": [
+        [
+          "",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s50": {
+      "id": "s50",
+      "cat": "Stuzzichini",
+      "name": "Tender di pollo 7pz",
+      "desc": "Allergeni: 3",
+      "prices": [
+        [
+          "",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s51": {
+      "id": "s51",
+      "cat": "Stuzzichini",
+      "name": "Olive all’ascolana 7pz",
+      "desc": "Allergeni: 1,2,3,4,6,7,10,14",
+      "prices": [
+        [
+          "",
+          5.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s52": {
+      "id": "s52",
+      "cat": "Stuzzichini",
+      "name": "Bouquet di arrosticini di pecora pz10",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          10
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s53": {
+      "id": "s53",
+      "cat": "Stuzzichini",
+      "name": "Assaggio di salumi con sottoli e uva",
+      "desc": "Allergeni: 7,8",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s54": {
+      "id": "s54",
+      "cat": "Stuzzichini",
+      "name": "Assaggio di formaggi con marmellata, noci e uva",
+      "desc": "Allergeni: 7,8",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s55": {
+      "id": "s55",
+      "cat": "Stuzzichini",
+      "name": "Peda Bucket 2/4 pers.",
+      "desc": "Mix dei nostri stuzzichini · Allergeni: 1,2,3,4,6,7,10,14",
+      "prices": [
+        [
+          "",
+          20
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
     "s_test": {
       "id": "s_test",
       "cat": "Test",
