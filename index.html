@@ -73,7 +73,7 @@ const SEED=[
 const ST={menu:{},url:'',L:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},S:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const subs=[];const fire=()=>subs.forEach(f=>f());
 const PWD='peda2027'; // password provvisoria: da cambiare prima della pubblicazione
-let auth=false,authC=false;const PWC='peda2026'; // password provvisoria della cameriera: da cambiare prima della pubblicazione
+let auth=false,authC=true; // cameriera senza password; admin con password
 function initStore(){ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));Object.assign(ST.menu,ST.L('pm',{}));Object.keys(ST.menu).forEach(k=>ST.menu[k].deleted&&delete ST.menu[k]);ST.url=ST.L('pu','');$('#sub').textContent='Ordina dal tuo tavolo';fire()}
 function saveItem(it){ST.menu[it.id]=it;const m=ST.L('pm',{});m[it.id]=it;ST.S('pm',m);fire()}
 function delItem(id){delete ST.menu[id];const m=ST.L('pm',{});m[id]={deleted:true};ST.S('pm',m);fire()}
@@ -82,7 +82,7 @@ function saveUrl(u){ST.url=u;ST.S('pu',u);fire()}
 // ---- Router
 let cart=[],cat=CATS[1];const tavolo=()=>{const m=/^tavolo-(\d+)$/.exec(location.hash.slice(1));return m?m[1]:''};
 const view=()=>{const h=(location.hash||'#cliente').slice(1);return h.startsWith('tavolo-')?'cliente':h};
-function render(){stopScan();const v=view();if(v!=='admin')auth=false;if(v!=='cameriera')authC=false;$('#app').innerHTML='';
+function render(){stopScan();const v=view();if(v!=='admin')auth=false;$('#app').innerHTML='';
  const nav=`<div class="note" style="margin:8px"><a class="btn" href="#cliente">Menù</a> <a class="btn" href="#cameriera">Cameriera</a> <a class="btn" href="#admin">Gestione</a></div>`;
  if(v==='admin')admin();else if(v==='cameriera')cameriera();else cliente();
  $('#app').insertAdjacentHTML('beforeend',nav);}
@@ -137,7 +137,6 @@ function drawLst(){const b=$('#lst');if(!b)return;const l=lista();b.innerHTML=l.
 let cam=null,raf=0,scanBusy=false,scanTm=0;
 function stopScan(){cancelAnimationFrame(raf);raf=0;clearTimeout(scanTm);if(cam){cam.getTracks().forEach(t=>t.stop());cam=null}const v=$('#vd');if(v){try{v.srcObject=null}catch(e){}}}
 function cameriera(){
- if(!authC){$('#app').innerHTML='<main><h2 style="color:var(--gold)">Cameriera</h2><div class="item" style="display:block;cursor:default"><input id="pwc" type="password" placeholder="Password"><div class="row"><button class="btn p" id="pkc">Entra</button></div></div></main>';$('#pkc').onclick=()=>{if($('#pwc').value===PWC){authC=true;render()}else alert('Password errata.')};return}
  $('#app').innerHTML='<main><h2 style="color:var(--gold)">Lettura ordine</h2><div class="item" style="display:block;cursor:default"><p class="note" id="cm">Inquadra il QR del cliente.</p><video id="vd" playsinline muted autoplay style="width:100%;border-radius:10px;background:#000"></video><div class="row"><button class="btn p" id="cs">Scansiona di nuovo</button><label class="btn">📷 Leggi da foto<input type="file" id="cf" accept="image/*" capture="environment" style="display:none"></label></div></div><h3 style="color:var(--gold)">Ordini ricevuti</h3><div id="lst"></div><div class="item" style="display:block;cursor:default"><span>Se la fotocamera non parte, incolla qui il testo:</span><textarea id="mt" rows="3"></textarea><div class="row"><button class="btn" id="ma">Aggiungi testo</button></div></div></main>';
  $('#cs').onclick=startScan;$('#cf').onchange=e=>{const f=e.target.files[0];if(!f)return;const m=$('#cm');m.textContent='Lettura in corso…';const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,1200/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,c.width,c.height);const d=x.getImageData(0,0,c.width,c.height),r=typeof jsQR!=='undefined'?jsQR(d.data,c.width,c.height,{inversionAttempts:'attemptBoth'}):null;if(r&&r.data){addOrd(r.data)}else{m.textContent='QR non trovato: riprova avvicinandoti, tenendo il QR ben dritto e ben illuminato (senza riflessi).';const ta=$('#mt');if(ta){ta.value='';ta.placeholder='Incolla qui il testo dell\'ordine come fallback…'}}URL.revokeObjectURL(im.src);e.target.value=''};im.onerror=()=>{m.textContent='Impossibile leggere la foto. Riprova o incolla il testo qui sotto.'};im.src=URL.createObjectURL(f)};$('#ma').onclick=()=>{const v=$('#mt').value.trim();if(v){addOrd(v);$('#mt').value=''}};drawLst();startScan()}
 function startScan(){
