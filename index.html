@@ -89,12 +89,17 @@ const GH_OWNER='vignatefood';
 const GH_REPO='al-peda';
 const GH_BRANCH='main';
 const GH_PATH='menu.json';
+// URL predefinito del menu.json: così i clienti lo scaricano in automatico all'apertura dell'app
+// (non serve più configurarlo in Gestione, resta solo come override locale se serve)
+const DEFAULT_MENU_JSON_URL='https://vignatefood.github.io/al-peda/menu.json';
 function initStore(){
  ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));
  Object.assign(ST.menu,ST.L('pm',{}));
  Object.keys(ST.menu).forEach(k=>ST.menu[k].deleted&&delete ST.menu[k]);
  ST.url=ST.L('pu','');
- ST.rurl=ST.L('rm','');
+ // URL del menu.json remoto: predefinito hardcoded (configurato), ma l'utente può cambiarlo in Gestione
+ // Se 'rm' non è mai stato salvato, usa il default (così i clienti lo scaricano in automatico)
+ ST.rurl=ST.L('rm','')||DEFAULT_MENU_JSON_URL;
  $('#sub').textContent='Ordina dal tuo tavolo';
  // Se c'è un menu.json remoto configurato, lo carica (async, non blocca il render)
  if(ST.rurl){loadRemoteMenu(false)}else{fire()}
