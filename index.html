@@ -69,15 +69,70 @@ const SEED=[
 ].map((r,i)=>({id:'s'+i,cat:r[0],name:r[1],desc:r[2],prices:r[3],out:false,img:'',rem:[],add:[]}));
 
 
-// ---- Archivio: menù salvato sul dispositivo (in attesa di GitHub)
-const ST={menu:{},url:'',L:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},S:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+// ---- Archivio: menù locale + sync remoto (GitHub Pages)
+// 'pm' = piatti modificati dal gestore (localStorage)
+// 'rm' = URL remoto del menu.json (GitHub Pages)
+// 'rv' = timestamp ultimo menu.json remoto scaricato
+const ST={menu:{},url:'',rurl:'',L:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},S:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){return false}}};
 const subs=[];const fire=()=>subs.forEach(f=>f());
 const PWD='peda2027'; // password provvisoria: da cambiare prima della pubblicazione
 let auth=false,authC=true; // cameriera senza password; admin con password
-function initStore(){ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));Object.assign(ST.menu,ST.L('pm',{}));Object.keys(ST.menu).forEach(k=>ST.menu[k].deleted&&delete ST.menu[k]);ST.url=ST.L('pu','');$('#sub').textContent='Ordina dal tuo tavolo';fire()}
+function initStore(){
+ ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));
+ Object.assign(ST.menu,ST.L('pm',{}));
+ Object.keys(ST.menu).forEach(k=>ST.menu[k].deleted&&delete ST.menu[k]);
+ ST.url=ST.L('pu','');
+ ST.rurl=ST.L('rm','');
+ $('#sub').textContent='Ordina dal tuo tavolo';
+ // Se c'è un menu.json remoto configurato, lo carica (async, non blocca il render)
+ if(ST.rurl){loadRemoteMenu(false)}else{fire()}
+}
 function saveItem(it){ST.menu[it.id]=it;const m=ST.L('pm',{});m[it.id]=it;ST.S('pm',m);fire()}
 function delItem(id){delete ST.menu[id];const m=ST.L('pm',{});m[id]={deleted:true};ST.S('pm',m);fire()}
 function saveUrl(u){ST.url=u;ST.S('pu',u);fire()}
+function saveRUrl(u){ST.rurl=u;ST.S('rm',u);fire()}
+// Scarica menu.json dall'URL remoto e lo fonde col menù locale (SEED + override remoto + override locale)
+async function loadRemoteMenu(force){
+ if(!ST.rurl)return;
+ const sub=$('#sub');
+ const ts=ST.L('rv',0);
+ // Cache-buster per beccare sempre l'ultima versione (GitHub Pages ha cache aggressiva)
+ const u=ST.rurl.replace(/\?.*$/,'')+(ST.rurl.includes('?')?'&':'?')+'t='+Date.now();
+ try{
+  const r=await fetch(u,{cache:'no-store'});
+  if(!r.ok){if(sub)sub.textContent='Menù remoto non raggiungibile ('+r.status+').';return false}
+  const data=await r.json();
+  if(!data||!data.items){if(sub)sub.textContent='Menu.json non valido.';return false}
+  // Salva timestamp remoto
+  ST.S('rv',data.ts||Date.now());
+  // Fonde: SEED → remoto → locale (locale vince, così le modifiche fatte sul dispositivo non vengono perse)
+  ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));
+  Object.assign(ST.menu,data.items||{});
+  Object.assign(ST.menu,ST.L('pm',{}));
+  Object.keys(ST.menu).forEach(k=>ST.menu[k].deleted&&delete ST.menu[k]);
+  if(sub)sub.textContent='Ordina dal tuo tavolo';
+  fire();
+  return true;
+ }catch(e){if(sub)sub.textContent='Errore di rete nel caricare il menù: '+e.message;return false}
+}
+// Esporta il menù corrente (SEED + override locale) come oggetto JSON pronto per il commit
+function exportMenu(){
+ const m={};
+ Object.values(ST.menu).forEach(it=>{m[it.id]=it});
+ return {version:1,ts:Date.now(),generated:new Date().toISOString(),items:m};
+}
+// Importa un menu.json (sostituisce le modifiche locali)
+function importMenu(data){
+ if(!data||!data.items){alert('File non valido: manca items.');return false}
+ const m={};
+ Object.entries(data.items).forEach(([id,it])=>{if(it&&it.id)m[id]=it});
+ ST.S('pm',m);
+ ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));
+ Object.assign(ST.menu,m);
+ Object.keys(ST.menu).forEach(k=>ST.menu[k].deleted&&delete ST.menu[k]);
+ fire();
+ return true;
+}
 
 // ---- Router
 let cart=[],cat=CATS[1];const tavolo=()=>{const m=/^tavolo-(\d+)$/.exec(location.hash.slice(1));return m?m[1]:''};
@@ -220,14 +275,28 @@ function admin(){
  if(!auth){$('#app').innerHTML='<main><h2 style="color:var(--gold)">Gestione</h2><div class="item" style="display:block;cursor:default"><input id="pw" type="password" placeholder="Password"><div class="row"><button class="btn p" id="pk">Entra</button></div></div></main>';
   $('#pk').onclick=()=>{if($('#pw').value===PWD){auth=true;render()}else alert('Password errata.')};return}
  const l=items().sort((a,b)=>a.cat.localeCompare(b.cat));
+ const rv=ST.L('rv',0),rvTxt=rv?new Date(rv).toLocaleString('it-IT'):'mai';
+ const pmCount=Object.keys(ST.L('pm',{})).length;
  $('#app').innerHTML=`<main><h2 style="color:var(--gold)">Gestione menù</h2>
  <div class="item" style="display:block;cursor:default"><b>QR unico del locale</b><span>Indirizzo dell'app (quello definitivo, online)</span>
  <input id="au" placeholder="https://..." value="${esc(ST.url)}"><div class="row"><button class="btn" id="aus">Salva e mostra QR</button><button class="btn" id="aom">Ordine a mano</button></div><div id="qrs" style="text-align:center;margin-top:10px"></div></div>
+ <div class="item" style="display:block;cursor:default"><b>Sincronizza menù online (GitHub Pages)</b><span>Indirizzo pubblico del file menu.json</span>
+ <input id="rm" placeholder="https://tuoutente.github.io/tuorepo/menu.json" value="${esc(ST.rurl)}">
+ <div class="row"><button class="btn" id="rms">Salva URL</button><button class="btn" id="rml">Scarica da online</button><button class="btn p" id="rme">Esporta menù (file)</button><button class="btn" id="rmi">Importa menù (file)</button></div>
+ <small class="note">Ultimo aggiornamento remoto: ${rvTxt} · modifiche locali: ${pmCount} piatti</small>
+ <input type="file" id="rmi_f" accept="application/json,.json" style="display:none"></div>
  <button class="btn p" id="new">+ Nuovo piatto / prodotto</button>
  ${l.map(i=>`<div class="item" data-e="${i.id}"><div class="t"><b>${esc(i.name)}</b><span>${esc(i.cat)}</span></div><div class="pr">${i.out?'Terminato':fmtP(i)}</div></div>`).join('')}</main>`;
  $('#new').onclick=()=>edit({id:'n'+Date.now(),cat:'Piatti',name:'',desc:'',prices:[['',0]],out:false,img:'',rem:[],add:[]});
  document.querySelectorAll('[data-e]').forEach(e=>e.onclick=()=>edit(ST.menu[e.dataset.e]));
- $('#aus').onclick=()=>{saveUrl($('#au').value.trim());drawQR()};$('#aom').onclick=manuale;drawQR();}
+ $('#aus').onclick=()=>{saveUrl($('#au').value.trim());drawQR()};$('#aom').onclick=manuale;drawQR();
+ // Sync GitHub
+ $('#rms').onclick=()=>{saveRUrl($('#rm').value.trim());alert('URL salvato. Ora premi "Scarica da online" per caricare il menù.')};
+ $('#rml').onclick=async()=>{const ok=await loadRemoteMenu(true);alert(ok?'Menù scaricato da online.':'Impossibile scaricare il menù. Controlla l\'URL e la connessione.');render()};
+ $('#rme').onclick=()=>{const data=exportMenu();const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='menu.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);alert('menu.json scaricato. Ora caricalo nel tuo repo GitHub (replace se esiste già).')};
+ $('#rmi').onclick=()=>$('#rmi_f').click();
+ $('#rmi_f').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);if(importMenu(data)){alert('Menù importato: '+(Object.keys(data.items).length)+' piatti.');render()}}catch(err){alert('File non valido: '+err.message)}};r.readAsText(f);e.target.value=''};
+}
 function drawQR(){const box=$('#qrs');if(!box)return;box.innerHTML='';
  if(!/^https?:\/\//.test(ST.url)){box.innerHTML='<p class="note">Inserisci e salva l’indirizzo dell’app (deve iniziare con https://).</p>';return}
  box.innerHTML='<div id="qq1" style="background:#fff;padding:10px;display:inline-block"></div><p class="note">Un solo QR per tutti i tavoli: stampalo o fai uno screenshot.</p>';
