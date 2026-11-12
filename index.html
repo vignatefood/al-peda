@@ -329,7 +329,7 @@ function render(){stopScan();const v=view();
  if(v!=='admin'&&v!=='categorie'){auth=false;authView=''}
  else if(authView!==v){auth=false;authView=v}
  $('#app').innerHTML='';
- const nav=`<div class="bottom-nav" data-barra><a class="btn" href="#cliente">Menù</a><a class="btn" href="#cameriera">Cameriera</a><a class="btn" href="#admin">Gestione</a><a class="btn" href="#categorie">Categorie</a></div>`;
+ const nav=`<div class="bottom-nav" data-barra><a class="btn" href="#cliente">Menù</a><a class="btn" href="#cameriera">Cameriera</a><a class="btn" href="#admin">Gestione</a></div>`;
  if(v==='admin')admin();else if(v==='categorie')categorie();else if(v==='cameriera')cameriera();else cliente();
  $('#app').insertAdjacentHTML('beforeend',nav);
  creaBarre();}
