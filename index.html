@@ -387,6 +387,7 @@ function admin(){
  <input id="rm" placeholder="https://tuoutente.github.io/tuorepo/menu.json" value="${esc(ST.rurl)}">
  <div class="row"><button class="btn" id="rms">Salva URL</button><button class="btn" id="rml">Scarica da online</button><button class="btn p" id="rmp">⬆ Salva online</button><button class="btn" id="rme">Esporta menù (file)</button><button class="btn" id="rmi">Importa menù (file)</button></div>
  <small class="note">Ultimo aggiornamento remoto: ${rvTxt} · modifiche locali: ${pmCount} piatti</small>
+ ${(function(){const pm=ST.L('pm',{});const withImg=Object.values(pm).filter(i=>i.img&&i.img.length>100).length;return withImg>0?'<div class="warn" style="margin-top:8px">⚠️ Hai <b>'+withImg+'</b> foto salvate solo su questo dispositivo. Clicca <b>"⬆ Salva online"</b> per pubblicarle.</div>':'';})()}
  <div id="rmp_status" class="note" style="margin-top:6px;min-height:1em">${getGHToken()?'':'⚠️ Token GitHub non configurato: il pulsante "Salva online" non funziona. Inseriscilo qui sotto.'}</div>
  <input id="ght" type="password" placeholder="Token GitHub (github_pat_...)" value="${esc(getGHToken())}" style="margin-top:6px">
  <div class="row"><button class="btn" id="ghts">Salva token</button><button class="btn" id="ghtc" style="color:var(--red);border-color:var(--red)">Cancella token</button></div>
@@ -434,7 +435,22 @@ function edit(i){let img=i.img;const cs=[...new Set([...CATS.filter(c=>items().s
   const prices=$('#ep').value.split('\n').map(x=>x.trim()).filter(Boolean).map(x=>{const k=x.lastIndexOf('=');return k<0?['',num(x)]:[x.slice(0,k).trim(),num(x.slice(k+1))]});
   const add=$('#ea').value.split('\n').map(x=>x.trim()).filter(Boolean).map(x=>{const k=x.lastIndexOf('=');return [x.slice(0,k).trim(),num(x.slice(k+1))]});
   const sec=$('#esec')?$('#esec').value:(i.sec||'entrambi');
-  saveItem({id:i.id,cat:$('#ec').value==='_'?($('#ecn').value.trim()||'Altro'):$('#ec').value,sec,name:nm,desc:$('#ed').value.trim(),prices:prices.length?prices:[['',0]],out:$('#eo').checked,img,rem:$('#er').value.split(',').map(x=>x.trim()).filter(Boolean),add});closeSh()};
+  const savedItem={id:i.id,cat:$('#ec').value==='_'?($('#ecn').value.trim()||'Altro'):$('#ec').value,sec,name:nm,desc:$('#ed').value.trim(),prices:prices.length?prices:[['',0]],out:$('#eo').checked,img,rem:$('#er').value.split(',').map(x=>x.trim()).filter(Boolean),add};
+  saveItem(savedItem);closeSh();
+  // Se il piatto ha una foto e c'è il token, chiedi se pubblicare subito online
+  if(img&&img.length>100&&getGHToken()){
+   setTimeout(()=>{
+    if(confirm('Piatto salvato localmente. ⚠️ La foto è visibile SOLO su questo dispositivo.\\n\\nPubblicare subito online per farla vedere a tutti i clienti?')){
+     location.hash='#admin';
+     setTimeout(()=>{
+      const btn=document.querySelector('#rmp');
+      if(btn)btn.click();
+     },300);
+    }else{
+     alert('OK. Ricordati di cliccare "⬆ Salva online" dalla Gestione per pubblicare le foto.');
+    }
+   },200);
+  }};
  $('#ex').onclick=closeSh;if($('#edl'))$('#edl').onclick=()=>{if(confirm('Eliminare?')){delItem(i.id);closeSh()}}}
 // ---- Vista Gestione Categorie (separata, con rinomina ed eliminazione) ----
 function categorie(){
