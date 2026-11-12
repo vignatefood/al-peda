@@ -329,8 +329,8 @@ function render(){stopScan();const v=view();
  if(v!=='admin'&&v!=='categorie'){auth=false;authView=''}
  else if(authView!==v){auth=false;authView=v}
  $('#app').innerHTML='';
- const nav=`<div class="bottom-nav" data-barra><a class="btn" href="#cliente">Menù</a><a class="btn" href="#cameriera">Cameriera</a><a class="btn" href="#admin">Gestione</a></div>`;
- if(v==='admin')admin();else if(v==='categorie')categorie();else if(v==='cameriera')cameriera();else cliente();
+ const nav=`<div class="bottom-nav" data-barra><a class="btn" href="#cliente">Menù</a><a class="btn" href="#cameriera">Cameriera</a><a class="btn" href="#admin">Gestione</a><a class="btn" href="#allergeni">⚠️ Allergeni</a></div>`;
+ if(v==='admin')admin();else if(v==='categorie')categorie();else if(v==='allergeni')allergeni();else if(v==='cameriera')cameriera();else cliente();
  $('#app').insertAdjacentHTML('beforeend',nav);
  creaBarre();}
 subs.push(render);addEventListener('hashchange',render);
@@ -625,6 +625,45 @@ function edit(i){let img=i.img;const cs=[...new Set([...CATS.filter(c=>items().s
    },200);
   }};
  $('#ex').onclick=closeSh;if($('#edl'))$('#edl').onclick=()=>{if(confirm('Eliminare?')){delItem(i.id);closeSh()}}}
+// ---- Vista Allergeni: tabella completa (14 allergeni del Reg. UE 1169/2011) ----
+const ALLERG={'1':'Glutine','2':'Crostacei','3':'Uova','4':'Pesce','5':'Arachidi','6':'Soia','7':'Latte','8':'Frutta a guscio','9':'Sedano','10':'Senape','11':'Semi di sesamo','12':'Solfiti','13':'Lupini','14':'Molluschi'};
+const ALLERG_DESC={'1':'Cereali contenenti glutine e prodotti derivati (grano, segale, orzo, avena, farro)','2':'Crostacei e prodotti a base di crostacei','3':'Uova e prodotti a base di uova','4':'Pesce e prodotti a base di pesce','5':'Arachidi e prodotti a base di arachidi','6':'Soia e prodotti a base di soia','7':'Latte e prodotti a base di latte','8':'Frutta a guscio (mandorle, nocciole, noci, pistacchi, anacardi, noci pecan, del Brasile, macadamia)','9':'Sedano e prodotti a base di sedano','10':'Senape e prodotti a base di senape','11':'Semi di sesamo e prodotti a base di sesamo','12':'Anidride solforosa e solfiti oltre 10 mg/kg','13':'Lupini e prodotti a base di lupini','14':'Molluschi e prodotti a base di molluschi'};
+// Estrae i numeri degli allergeni dalla descrizione di un piatto ("Allergeni: 1, 7, 10")
+function allergDi(it){
+ const m=/allergeni?\s*:?\s*([0-9][0-9,\s]*)/i.exec(it.desc||'');
+ if(!m)return [];
+ return [...new Set(m[1].split(/[,\s]+/).map(x=>x.trim()).filter(Boolean))].filter(n=>ALLERG[n]);
+}
+function allergeni(){
+ const its=items();
+ const conAllerg=its.filter(i=>allergDi(i).length);
+ const senzaAllerg=its.filter(i=>!allergDi(i).length);
+ // piatti per allergene (per la ricerca "posso mangiarlo io?")
+ const perAllerg=k=>its.filter(i=>allergDi(i).includes(k));
+ $('#app').innerHTML=`<main><h2 style="color:var(--gold)">⚠️ Tabella allergeni</h2>
+ <p class="note">Elenco dei 14 allergeni del Reg. UE 1169/2011 e i piatti del menù che li contengono. Tieni il telefono al tavolo: il cliente legge qui cosa può mangiare.</p>
+ <h3 style="color:var(--gold);font-size:16px;margin:16px 0 6px">Gli allergeni</h3>
+ <div class="item" style="display:block;cursor:default;padding:8px 10px">
+ ${Object.entries(ALLERG).map(([k,n])=>`<div style="display:flex;gap:8px;padding:5px 0;border-bottom:1px solid #1c1c1c"><b style="color:var(--gold);min-width:26px">${k}</b><span style="flex:1">${n}<br><small class="note">${ALLERG_DESC[k]}</small></span></div>`).join('')}
+ </div>
+ <h3 style="color:var(--gold);font-size:16px;margin:18px 0 6px">Piatti per allergene</h3>
+ <p class="note">Tocca un allergene per vedere cosa contengono i piatti che lo riportano.</p>
+ <div class="row" style="flex-wrap:wrap;justify-content:flex-start">
+ ${Object.entries(ALLERG).map(([k,n])=>`<button class="btn" data-al="${k}" style="flex-shrink:0">${k} · ${n}</button>`).join('')}
+ </div>
+ <div id="alout"></div>
+ <p class="note" style="margin-top:16px">I prodotti contrassegnati SENZA GLUTINE possono comunque contenere tracce di contaminazione. In caso di allergia grave chiedi sempre al personale.</p>
+ </main>`;
+ const mostra=k=>{
+  const lista=perAllerg(k);
+  $('#alout').innerHTML=`<h3 style="color:var(--gold);font-size:16px;margin:16px 0 6px">${k} · ${ALLERG[k]}</h3>
+  <p class="note">${ALLERG_DESC[k]}</p>
+  ${lista.length?lista.map(i=>`<div class="item" style="cursor:default;display:block;padding:8px 10px"><b>${esc(i.name)}</b> <small class="note">· ${esc(i.cat)}</small><br><small class="note">${esc(i.desc)}</small></div>`).join(''):'<p class="note">Nessun piatto riporta questo allergene.</p>'}`;
+  $('#alout').scrollIntoView({block:'start',behavior:'smooth'});
+ };
+ document.querySelectorAll('[data-al]').forEach(b=>b.onclick=()=>mostra(b.dataset.al));
+}
+
 // ---- Vista Gestione Categorie (separata, con rinomina ed eliminazione) ----
 function categorie(){
  if(!auth){loginForm('Categorie');return}
