@@ -415,7 +415,7 @@ function admin(){
  $('#new').onclick=()=>edit({id:'n'+Date.now(),cat:curSec==='rist'?'Ristorante':'Stuzzichini',sec:curSec,name:'',desc:'',prices:[['',0]],out:false,img:'',rem:[],add:[]});
  $('#nts').onclick=()=>{const n=parseInt($('#nt').value,10);if(!n||n<1)return alert('Inserisci un numero valido (1 o maggiore).');if(n>200)return alert('Massimo 200 tavoli.');ST.S('nt',n);alert('Numero tavoli salvato: '+n+'. Ora i clienti vedranno i tavoli da 1 a '+n+'.');render()};
  $('#clearCache').onclick=async()=>{
-  if(!confirm('Svuotare la cache del browser e ricaricare l\\'app?\\n\\nNon verranno cancellati:\\n- Token GitHub\\n- Lista ordini cameriera\\n- Modifiche locali ai piatti (pm)\\n\\nVerrà ricaricata la pagina con i file freschi da GitHub.'))return;
+  if(!confirm('Svuotare la cache del browser e ricaricare l\'app?\n\nNon verranno cancellati:\n- Token GitHub\n- Lista ordini cameriera\n- Modifiche locali ai piatti (pm)\n\nVerrà ricaricata la pagina con i file freschi da GitHub.'))return;
   // Svuota caches API (service worker)
   if('caches' in window){
    try{
