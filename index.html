@@ -14,6 +14,8 @@ nav button.on,.btn.p{background:var(--gold);color:#10281c;font-weight:bold}
 .sec-toggle .sec-btn{font-size:17px;padding:10px;border-radius:14px}
 .sec-toggle{display:flex;gap:6px;overflow-x:auto;padding:10px;justify-content:center;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
 .sec-toggle .sec-btn{flex-shrink:0}
+.bottom-nav{display:flex;gap:6px;overflow-x:auto;padding:10px;justify-content:center;-webkit-overflow-scrolling:touch;scrollbar-width:thin;margin:8px 0}
+.bottom-nav .btn{flex-shrink:0;text-decoration:none}
 main{max-width:720px;margin:0 auto;padding:0 12px}
 .item{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid #2c5a45;border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
 .item img{width:64px;height:64px;object-fit:cover;border-radius:8px}.item .t{flex:1}.item b{display:block}
@@ -239,7 +241,7 @@ let cart=[],cat='',curSec='bar';const tavolo=()=>{const m=/^tavolo-(\d+)$/.exec(
 const itemSec=i=>i.sec||(CAT_SECS[i.cat]||'entrambi');
 const view=()=>{const h=(location.hash||'#cliente').slice(1);return h.startsWith('tavolo-')?'cliente':h};
 function render(){stopScan();const v=view();if(v!=='admin'&&v!=='categorie')auth=false;$('#app').innerHTML='';
- const nav=`<div class="note" style="margin:8px"><a class="btn" href="#cliente">Menù</a> <a class="btn" href="#cameriera">Cameriera</a> <a class="btn" href="#admin">Gestione</a> <a class="btn" href="#categorie">Categorie</a></div>`;
+ const nav=`<div class="bottom-nav"><a class="btn" href="#cliente">Menù</a><a class="btn" href="#cameriera">Cameriera</a><a class="btn" href="#admin">Gestione</a><a class="btn" href="#categorie">Categorie</a></div>`;
  if(v==='admin')admin();else if(v==='categorie')categorie();else if(v==='cameriera')cameriera();else cliente();
  $('#app').insertAdjacentHTML('beforeend',nav);}
 subs.push(render);addEventListener('hashchange',render);
