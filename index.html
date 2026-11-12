@@ -7,11 +7,13 @@
 *{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--cream);font:16px Georgia,'Times New Roman',serif;padding-bottom:84px}
 header{text-align:center;padding:16px 12px 8px;border-bottom:2px solid var(--gold)}
 header h1{margin:0;color:var(--gold);font-size:22px;letter-spacing:1px}header small{color:var(--mut)}
-nav{display:flex;gap:6px;overflow-x:auto;padding:10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
-nav button,.btn{background:none;border:1px solid var(--gold);color:var(--gold);border-radius:20px;padding:8px 14px;font:inherit;white-space:nowrap;cursor:pointer}
+nav{display:flex;gap:6px;overflow-x:auto;padding:10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;justify-content:center;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+nav button,.btn{background:none;border:1px solid var(--gold);color:var(--gold);border-radius:20px;padding:8px 14px;font:inherit;white-space:nowrap;cursor:pointer;flex-shrink:0}
 nav button.on,.btn.p{background:var(--gold);color:#10281c;font-weight:bold}
 .btn:disabled,.btn[disabled]{opacity:.4;cursor:not-allowed}
 .sec-toggle .sec-btn{font-size:17px;padding:10px;border-radius:14px}
+.sec-toggle{display:flex;gap:6px;overflow-x:auto;padding:10px;justify-content:center;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.sec-toggle .sec-btn{flex-shrink:0}
 main{max-width:720px;margin:0 auto;padding:0 12px}
 .item{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid #2c5a45;border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
 .item img{width:64px;height:64px;object-fit:cover;border-radius:8px}.item .t{flex:1}.item b{display:block}
@@ -257,8 +259,8 @@ function cliente(){
  if(!cats.includes(cat)&&cats.length)cat=cats[0];
  const list=inSec.filter(i=>i.cat===cat);
  const tot=cart.reduce((s,c)=>s+c.unit*c.q,0),n=cart.reduce((s,c)=>s+c.q,0);
- $('#app').innerHTML=`<div class="sec-toggle" style="display:flex;gap:6px;padding:10px;justify-content:center;background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:6">
-  ${SECS.map(s=>`<button class="btn sec-btn ${s.id===curSec?'p':''}" data-sec="${s.id}" style="flex:1;max-width:200px">${s.label}</button>`).join('')}
+ $('#app').innerHTML=`<div class="sec-toggle" style="background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:6">
+  ${SECS.map(s=>`<button class="btn sec-btn ${s.id===curSec?'p':''}" data-sec="${s.id}">${s.label}</button>`).join('')}
  </div>
  <nav>${cats.map(c=>`<button class="${c===cat?'on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</nav><main>
  ${tavolo()?'<p class="note">Sei al tavolo '+esc(tavolo())+'</p>':''}
@@ -390,8 +392,8 @@ function admin(){
  const rv=ST.L('rv',0),rvTxt=rv?new Date(rv).toLocaleString('it-IT'):'mai';
  const pmCount=Object.keys(ST.L('pm',{})).length;
  $('#app').innerHTML=`<main><h2 style="color:var(--gold)">Gestione menù</h2>
- <div class="sec-toggle" style="display:flex;gap:6px;padding:8px;justify-content:center;background:var(--card);border-radius:10px;margin-bottom:10px">
-  ${SECS.map(s=>`<button class="btn sec-btn ${s.id===curSec?'p':''}" data-sec="${s.id}" style="flex:1;max-width:200px">${s.label}</button>`).join('')}
+ <div class="sec-toggle" style="background:var(--card);border-radius:10px;margin-bottom:10px">
+  ${SECS.map(s=>`<button class="btn sec-btn ${s.id===curSec?'p':''}" data-sec="${s.id}">${s.label}</button>`).join('')}
  </div>
  <div class="item" style="display:block;cursor:default"><b>Numero tavoli del locale</b><span>Quanti tavoli ha il locale? Il cliente vedrà una lista da 1 a questo numero</span>
  <input id="nt" type="number" min="1" max="200" value="${esc(ST.L('nt',30))}" style="margin-top:6px"><div class="row"><button class="btn" id="nts">Salva numero tavoli</button></div></div>
