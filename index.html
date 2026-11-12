@@ -3,13 +3,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Birreria Al Peda – Ordina</title><link rel="icon" href="data:,">
 <style>
-:root{--bg:#0e2619;--card:#16382a;--gold:#d9b36c;--cream:#f3e6c4;--mut:#a9b8a5;--red:#d96c6c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+:root{--bg:#000;--card:#111;--card2:#0a0a0a;--gold:#d9b36c;--gold-dark:#0f0d09;--line:#3a3122;--cream:#fff;--mut:#b3b3b3;--red:#e06c6c;--green:#8fd19e;--warn:#241d0e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
 *{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--cream);font:16px Georgia,'Times New Roman',serif;padding-bottom:84px}
 header{text-align:center;padding:16px 12px 8px;border-bottom:2px solid var(--gold)}
 header h1{margin:0;color:var(--gold);font-size:22px;letter-spacing:1px}header small{color:var(--mut)}
 nav{display:flex;gap:6px;overflow-x:auto;padding:10px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;justify-content:center;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
 nav button,.btn{background:none;border:1px solid var(--gold);color:var(--gold);border-radius:20px;padding:8px 14px;font:inherit;white-space:nowrap;cursor:pointer;flex-shrink:0}
-nav button.on,.btn.p{background:var(--gold);color:#10281c;font-weight:bold}
+nav button.on,.btn.p{background:var(--gold);color:var(--gold-dark);font-weight:bold}
 .btn:disabled,.btn[disabled]{opacity:.4;cursor:not-allowed}
 .sec-toggle .sec-btn{font-size:17px;padding:10px;border-radius:14px}
 .sec-toggle{display:flex;gap:6px;overflow-x:auto;padding:10px;justify-content:center;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
@@ -17,20 +17,20 @@ nav button.on,.btn.p{background:var(--gold);color:#10281c;font-weight:bold}
 .bottom-nav{display:flex;gap:6px;overflow-x:auto;padding:10px;justify-content:center;-webkit-overflow-scrolling:touch;scrollbar-width:thin;margin:8px 0}
 .bottom-nav .btn{flex-shrink:0;text-decoration:none}
 main{max-width:720px;margin:0 auto;padding:0 12px}
-.item{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid #2c5a45;border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
+.item{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
 .item img{width:64px;height:64px;object-fit:cover;border-radius:8px}.item .t{flex:1}.item b{display:block}
 .item span{color:var(--mut);font-size:13px}.pr{color:var(--gold);font-weight:bold;white-space:nowrap}.out{opacity:.45}
 .note{color:var(--mut);font-style:italic;text-align:center}
 .sheet{position:fixed;inset:0;background:#000a;display:none;align-items:flex-end;z-index:20}.sheet.show{display:flex}
 .sheet>div{background:var(--bg);border-top:2px solid var(--gold);width:100%;max-width:720px;margin:0 auto;max-height:88%;overflow:auto;padding:16px;border-radius:16px 16px 0 0}
-label.o{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dotted #2c5a45}
-input,select,textarea{width:100%;background:#0b1d14;color:var(--cream);border:1px solid #2c5a45;border-radius:8px;padding:10px;font:inherit;margin:4px 0}
+label.o{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dotted var(--line)}
+input,select,textarea{width:100%;background:var(--card2);color:var(--cream);border:1px solid var(--line);border-radius:8px;padding:10px;font:inherit;margin:4px 0}
 input[type=checkbox],input[type=radio]{width:auto}
-.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:#0b1d14;border-top:2px solid var(--gold);display:flex;justify-content:space-between;align-items:center;z-index:10}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--card2);border-top:2px solid var(--gold);display:flex;justify-content:space-between;align-items:center;z-index:10}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
 .ord{background:var(--card);border:1px solid var(--gold);border-radius:10px;padding:12px}.ord h3{margin:0 0 6px;color:var(--gold)}
-.ord.n{border-color:var(--red);border-width:2px}.ord li{margin:4px 0}.rm{color:var(--red)}.ad{color:#8fd19e}
-.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.warn{background:#3a2a10;border:1px solid var(--gold);padding:8px;border-radius:8px;font-size:13px;margin:8px 0}
+.ord.n{border-color:var(--red);border-width:2px}.ord li{margin:4px 0}.rm{color:var(--red)}.ad{color:var(--green)}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.warn{background:var(--warn);border:1px solid var(--gold);padding:8px;border-radius:8px;font-size:13px;margin:8px 0}
 </style></head><body>
 <header><h1>🍺 BIRRERIA DI VIGNATE · AL PEDA</h1><small id="sub"></small></header>
 <div id="app"></div>
