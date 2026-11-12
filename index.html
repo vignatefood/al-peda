@@ -29,6 +29,23 @@ nav button.on,.btn.p{background:var(--gold);color:var(--gold-dark);font-weight:b
 .bottom-nav::-webkit-scrollbar{display:none;height:0}
 .bottom-nav .btn{flex-shrink:0;text-decoration:none}
 main{max-width:720px;margin:0 auto;padding:0 12px}
+/* ---- Adattamento mobile / desktop: la classe .desk la mette il JS sul <html> ----
+   Telefono: tutto com'è ora (una colonna, max 720px, nav in basso fissa).
+   Desktop: contenuto più largo, piatti in griglia a 2 colonne, nav in basso centrata e più stretta,
+   carrello in basso a destra invece che a tutta larghezza. */
+html.desk main{max-width:1080px;padding:0 24px}
+html.desk .cols{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+html.desk .item{transition:border-color .15s,background .15s}
+html.desk .item:hover{border-color:var(--gold);background:#161310}
+html.desk nav{justify-content:flex-start;padding:10px 24px 2px}
+html.desk .barra{margin:0 24px 8px}
+html.desk .bottom-nav{max-width:640px;margin:10px auto;padding:10px 0;gap:10px}
+html.desk .sheet>div{max-width:760px;border-radius:16px 16px 0 0}
+html.desk .bar{left:auto;right:24px;bottom:96px;border:1px solid var(--gold);border-radius:12px;min-width:340px;box-shadow:0 8px 24px #000a}
+html.desk body{padding-bottom:140px}
+html.desk .sec-toggle{justify-content:center}
+/* Griglia a 2 colonne solo se c'è spazio: evita righe con un piatto largo e uno corto */
+@media (min-width:1000px){html.desk .ord{break-inside:avoid}}
 .item{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;cursor:pointer}
 .item img{width:64px;height:64px;object-fit:cover;border-radius:8px}.item .t{flex:1}.item b{display:block}
 .item span{color:var(--mut);font-size:13px}.pr{color:var(--gold);font-weight:bold;white-space:nowrap}.out{opacity:.45}
@@ -317,6 +334,29 @@ async function pushMenuToGitHub(){
   }
  }catch(e){setStatus('Errore upload: '+e.message);alert('Errore upload: '+e.message);return false}
 }
+
+// ---- Rilevamento mobile / desktop ----
+// Decide come disporre la pagina: telefono/tablet in verticale -> una colonna; schermo largo con mouse -> desktop.
+// Non guarda solo la larghezza: un telefono grande in orizzontale resta "mobile", un iPad in orizzontale pure,
+// un portatile con finestra stretta torna mobile. Il puntatore fine (mouse) è il segnale più affidabile.
+const mqDesk=window.matchMedia('(min-width:900px) and (pointer:fine)');
+const isDesk=()=>mqDesk.matches;
+function applicaLayout(){
+ const d=isDesk();
+ document.documentElement.classList.toggle('desk',d);
+ document.documentElement.classList.toggle('mob',!d);
+ document.querySelector('meta[name=viewport]')?.setAttribute('content',
+   d?'width=device-width, initial-scale=1':'width=device-width, initial-scale=1, viewport-fit=cover');
+}
+applicaLayout();
+// Cambio di schermo o rotazione: riadatta e ridisegna (le barre di scorrimento vanno ricalcolate)
+let layoutTm=null;
+const onLayoutChange=()=>{clearTimeout(layoutTm);layoutTm=setTimeout(()=>{applicaLayout();if(typeof creaBarre==='function')creaBarre();},120)};
+// matchMedia moderno ha addEventListener; i browser vecchi hanno solo addListener
+if(mqDesk.addEventListener)mqDesk.addEventListener('change',onLayoutChange);
+else if(mqDesk.addListener)mqDesk.addListener(onLayoutChange);
+addEventListener('orientationchange',onLayoutChange);
+addEventListener('resize',onLayoutChange);
 
 // ---- Router
 let cart=[],cat='',curSec='bar';const tavolo=()=>{const m=/^tavolo-(\d+)$/.exec(location.hash.slice(1));return m?m[1]:''};
