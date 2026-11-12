@@ -84,8 +84,45 @@ const SEED=[
 // 'rv' = timestamp ultimo menu.json remoto scaricato
 const ST={menu:{},url:'',rurl:'',L:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},S:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){return false}}};
 const subs=[];const fire=()=>subs.forEach(f=>f());
-const PWD='peda2027'; // password provvisoria: da cambiare prima della pubblicazione
+// Password del Gestione: NON sta nel codice. Al primo accesso viene impostata dal gestore e
+// salvata come hash SHA-256 con salt nel localStorage di questo dispositivo ('pwh').
+// Non è autenticazione vera (il menù è pubblico e gira tutto nel browser): serve solo a
+// impedire che chi apre il sorgente legga la password in chiaro.
+const PWH_KEY='pwh';
+async function sha256hex(str){
+ const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+ return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function getPWH(){return ST.L(PWH_KEY,null)}
+async function setPWH(pw){
+ const salt=[...crypto.getRandomValues(new Uint8Array(16))].map(b=>b.toString(16).padStart(2,'0')).join('');
+ ST.S(PWH_KEY,{salt,hash:await sha256hex(salt+':'+pw)});
+}
+async function checkPWH(pw){
+ const rec=getPWH();
+ if(!rec||!rec.hash)return false;
+ return await sha256hex(rec.salt+':'+pw)===rec.hash;
+}
+// Form di accesso condiviso da Gestione e Categorie.
+// Primo accesso (nessuna password salvata) = la si imposta; altrimenti la si verifica.
+function loginForm(title){
+ const has=!!getPWH();
+ $('#app').innerHTML='<main><h2 style="color:var(--gold)">'+esc(title)+'</h2><div class="item" style="display:block;cursor:default">'
+  +(has?'<input id="pw" type="password" placeholder="Password">'
+        :'<p class="note" style="text-align:left">Primo accesso: scegli la password del Gestione. Resta salvata solo su questo dispositivo.</p><input id="pw" type="password" placeholder="Nuova password"><input id="pw2" type="password" placeholder="Ripeti la password">')
+  +'<div class="row"><button class="btn p" id="pk">'+(has?'Entra':'Imposta password')+'</button></div></div></main>';
+ $('#pk').onclick=async()=>{
+  const pw=$('#pw').value;
+  if(!getPWH()){
+   if(!pw||pw.length<6)return alert('La password deve avere almeno 6 caratteri.');
+   if(pw!==$('#pw2').value)return alert('Le due password non coincidono.');
+   await setPWH(pw);auth=true;render();return;
+  }
+  if(await checkPWH(pw)){auth=true;render()}else alert('Password errata.');
+ };
+}
 let auth=false,authC=true; // cameriera senza password; admin con password
+let authView=''; // vista in cui è stata fatta l'autenticazione: l'accesso vale finché si resta lì
 
 // ---- Configurazione GitHub (per caricare menu.json automaticamente) ----
 // Il token NON sta nel codice (GitHub lo bloccherebbe col secret scanner).
@@ -240,12 +277,21 @@ let cart=[],cat='',curSec='bar';const tavolo=()=>{const m=/^tavolo-(\d+)$/.exec(
 // Restituisce la sezione di un piatto: 'bar', 'rist' o 'entrambi'. Retrocompatibile (usa CAT_SECS se manca .sec).
 const itemSec=i=>i.sec||(CAT_SECS[i.cat]||'entrambi');
 const view=()=>{const h=(location.hash||'#cliente').slice(1);return h.startsWith('tavolo-')?'cliente':h};
-function render(){stopScan();const v=view();if(v!=='admin'&&v!=='categorie')auth=false;$('#app').innerHTML='';
+function render(){stopScan();const v=view();
+ // L'accesso al Gestione dura finché si resta in una vista protetta: fire()/render() ridisegnano
+ // la stessa vista e non devono buttare fuori (prima ogni salvataggio faceva auth=false).
+ if(v!=='admin'&&v!=='categorie'){auth=false;authView=''}
+ else if(authView!==v){auth=false;authView=v}
+ $('#app').innerHTML='';
  const nav=`<div class="bottom-nav"><a class="btn" href="#cliente">Menù</a><a class="btn" href="#cameriera">Cameriera</a><a class="btn" href="#admin">Gestione</a><a class="btn" href="#categorie">Categorie</a></div>`;
  if(v==='admin')admin();else if(v==='categorie')categorie();else if(v==='cameriera')cameriera();else cliente();
  $('#app').insertAdjacentHTML('beforeend',nav);}
 subs.push(render);addEventListener('hashchange',render);
-const items=()=>Object.values(ST.menu).filter(i=>!i.deleted);
+// I segnaposto servono solo a ricordare la sezione di una categoria senza piatti:
+// non sono piatti, non si contano e non si vedono.
+const PLACEHOLDER_NAME='(segnaposto)';
+const isPlaceholder=i=>!!i&&typeof i.name==='string'&&(i.name.startsWith('(segnaposto')||i.name.startsWith('(categoria'));
+const items=()=>Object.values(ST.menu).filter(i=>!i.deleted&&!isPlaceholder(i));
 const fmtP=i=>i.prices.length>1?'da '+eur(Math.min(...i.prices.map(p=>p[1]))):eur(i.prices[0][1]);
 function closeSh(){$('#sh').classList.remove('show')}$('#sh').onclick=e=>{if(e.target.id==='sh')closeSh()};
 function openSh(h){$('#shc').innerHTML=h;$('#sh').classList.add('show')}
@@ -386,8 +432,7 @@ function cropFoto(im,done){const V=280;let z=1,ox=0,oy=0;
 
 // ---- Gestione (con password)
 function admin(){
- if(!auth){$('#app').innerHTML='<main><h2 style="color:var(--gold)">Gestione</h2><div class="item" style="display:block;cursor:default"><input id="pw" type="password" placeholder="Password"><div class="row"><button class="btn p" id="pk">Entra</button></div></div></main>';
-  $('#pk').onclick=()=>{if($('#pw').value===PWD){auth=true;render()}else alert('Password errata.')};return}
+ if(!auth){loginForm('Gestione');return}
  const l=items().sort((a,b)=>a.cat.localeCompare(b.cat));
  // Filtra per sezione corrente (curSec, come nel cliente). 'entrambi' appare in entrambe.
  const lSec=l.filter(i=>{const s=itemSec(i);return s===curSec||s==='entrambi'});
@@ -427,7 +472,6 @@ function admin(){
   }
   // Ricarica con cache-buster per scavalcare cache HTTP
   location.href=location.pathname+'?nocache='+Date.now()+'#admin';
-  location.reload(true);
  };
  document.querySelectorAll('.sec-btn').forEach(b=>b.onclick=()=>{curSec=b.dataset.sec;render()});
  document.querySelectorAll('[data-e]').forEach(e=>e.onclick=()=>edit(ST.menu[e.dataset.e]));
@@ -487,8 +531,7 @@ function edit(i){let img=i.img;const cs=[...new Set([...CATS.filter(c=>items().s
  $('#ex').onclick=closeSh;if($('#edl'))$('#edl').onclick=()=>{if(confirm('Eliminare?')){delItem(i.id);closeSh()}}}
 // ---- Vista Gestione Categorie (separata, con rinomina ed eliminazione) ----
 function categorie(){
- if(!auth){$('#app').innerHTML='<main><h2 style="color:var(--gold)">Categorie</h2><div class="item" style="display:block;cursor:default"><input id="pw" type="password" placeholder="Password"><div class="row"><button class="btn p" id="pk">Entra</button></div></div><p class="note"><a class="btn" href="#admin">← Torna a Gestione</a></p></main>';
-  $('#pk').onclick=()=>{if($('#pw').value===PWD){auth=true;render()}else alert('Password errata.')};return}
+ if(!auth){loginForm('Categorie');return}
  const allCats=[...new Set([...items().map(x=>x.cat)])];
  // Aggiungi le CATS iniziali solo se hanno piatti (se sono state rinominate/eliminate, non le mostriamo più)
  // Mantieni l'ordine di CATS seguito dalle categorie utente
@@ -517,7 +560,8 @@ function categorie(){
    // Nessun piatto: aggiorna CAT_SECS locale per quando verranno aggiunti
    // (non c'è modo di salvare CAT_SECS, ma il nuovo piatto erediterà la sec della categoria solo se ha piatti)
    // Quindi creiamo un segnaposto se la categoria è vuota e vogliamo forzare la sezione
-   saveItem({id:'catsec_'+c+'_'+Date.now(),cat:c,sec:newSec,name:'(segnaposto sezione)',desc:'',prices:[['',0]],out:true,img:'',rem:[],add:[]});
+   items().filter(i=>i.cat===c&&isPlaceholder(i)).forEach(i=>delItem(i.id));
+   saveItem({id:'catsec_'+c+'_'+Date.now(),cat:c,sec:newSec,name:PLACEHOLDER_NAME,desc:'',prices:[['',0]],out:true,img:'',rem:[],add:[]});
    alert('Sezione di "'+c+'" impostata a '+secLabel(newSec)+'. La categoria era vuota: è stato creato un segnaposto (nascosto) per ricordare la sezione.');
    render();return;
   }
@@ -593,7 +637,7 @@ function categorie(){
      saveItem(upd);
     });
     // Elimina segnaposto se la categoria era vuota + segnaposto
-    items().filter(i=>i.cat===c&&i.out&&i.name.startsWith('(categoria')).forEach(i=>delItem(i.id));
+    items().filter(i=>i.cat===c&&isPlaceholder(i)).forEach(i=>delItem(i.id));
     if(cat===c)cat=d;
     alert('Categoria "'+c+'" eliminata. I '+toMove.length+' piatti sono ora in "'+d+'".');
    }
