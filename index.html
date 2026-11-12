@@ -633,5 +633,18 @@ addEventListener('pagehide',()=>{
   // localStorage.removeItem('ult');
  }
 });
-initStore();render();
+// ---- Refresh automatico con cache-buster (una volta per sessione browser) ----
+// Obbliga il browser a scaricare la versione fresca di index.html da GitHub Pages,
+// ignorando la cache HTTP (max 10 min). sessionStorage si resetta chiudendo il tab,
+// così al prossimo accesso rifà il refresh. Niente loop infiniti.
+if(!sessionStorage.getItem('_freshLoaded') && !location.search.includes('nocache=')){
+ sessionStorage.setItem('_freshLoaded','1');
+ // location.replace NON aggiunge una voce alla cronologia: l'utente non se ne accorge
+ const freshUrl=location.pathname+'?nocache='+Date.now()+location.hash;
+ location.replace(freshUrl);
+}else{
+ // Marca la sessione come "fresca" anche se l'URL aveva già nocache (es. dal pulsante Svuota cache)
+ sessionStorage.setItem('_freshLoaded','1');
+ initStore();render();
+}
 </script></body></html>
