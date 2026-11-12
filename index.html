@@ -408,10 +408,25 @@ function admin(){
  <input id="ght" type="password" placeholder="Token GitHub (github_pat_...)" value="${esc(getGHToken())}" style="margin-top:6px">
  <div class="row"><button class="btn" id="ghts">Salva token</button><button class="btn" id="ghtc" style="color:var(--red);border-color:var(--red)">Cancella token</button></div>
  <input type="file" id="rmi_f" accept="application/json,.json" style="display:none"></div>
+ <div class="item" style="display:block;cursor:default"><b>Manutenzione</b><span>Svuota la cache del browser e ricarica l'app (utile per vedere subito le modifiche dopo "Salva online")</span>
+ <div class="row"><button class="btn" id="clearCache" style="color:var(--red);border-color:var(--red)">🗑 Svuota cache e ricarica</button></div></div>
  <div class="row"><button class="btn p" id="new">+ Nuovo piatto / prodotto</button><a class="btn" href="#categorie">📂 Gestisci categorie</a></div>
  ${lSec.length?lSec.map(i=>`<div class="item" data-e="${i.id}"><div class="t"><b>${esc(i.name)}</b><span>${esc(i.cat)} · ${SECS.find(s=>s.id===itemSec(i))?.label||'🔁 Entrambi'}${i.out?' · 🔴 terminato':''}</span></div><div class="pr">${i.out?'Terminato':fmtP(i)}</div></div>`).join(''):'<p class="note">Nessun piatto in questa sezione.</p>'}</main>`;
  $('#new').onclick=()=>edit({id:'n'+Date.now(),cat:curSec==='rist'?'Ristorante':'Stuzzichini',sec:curSec,name:'',desc:'',prices:[['',0]],out:false,img:'',rem:[],add:[]});
  $('#nts').onclick=()=>{const n=parseInt($('#nt').value,10);if(!n||n<1)return alert('Inserisci un numero valido (1 o maggiore).');if(n>200)return alert('Massimo 200 tavoli.');ST.S('nt',n);alert('Numero tavoli salvato: '+n+'. Ora i clienti vedranno i tavoli da 1 a '+n+'.');render()};
+ $('#clearCache').onclick=async()=>{
+  if(!confirm('Svuotare la cache del browser e ricaricare l\\'app?\\n\\nNon verranno cancellati:\\n- Token GitHub\\n- Lista ordini cameriera\\n- Modifiche locali ai piatti (pm)\\n\\nVerrà ricaricata la pagina con i file freschi da GitHub.'))return;
+  // Svuota caches API (service worker)
+  if('caches' in window){
+   try{
+    const keys=await caches.keys();
+    await Promise.all(keys.map(k=>caches.delete(k)));
+   }catch(e){console.warn('Errore caches API:',e)}
+  }
+  // Ricarica con cache-buster per scavalcare cache HTTP
+  location.href=location.pathname+'?nocache='+Date.now()+'#admin';
+  location.reload(true);
+ };
  document.querySelectorAll('.sec-btn').forEach(b=>b.onclick=()=>{curSec=b.dataset.sec;render()});
  document.querySelectorAll('[data-e]').forEach(e=>e.onclick=()=>edit(ST.menu[e.dataset.e]));
  $('#aus').onclick=()=>{saveUrl($('#au').value.trim());drawQR()};$('#aom').onclick=manuale;drawQR();
@@ -607,5 +622,16 @@ function categorie(){
 }
 // Vecchia funzione editCats (deprecata, ora si usa categorie())
 function editCats(){location.hash='#categorie'}
+// Auto-pulizia quando il cliente chiude il tab (pagehide): cancella l'ultimo ordine salvato
+// per privacy. Il carrello (cart) è in memoria e si perde già chiudendo.
+// NON tocchiamo: token GitHub, lista ordini cameriera, pm (modifiche admin), configurazione.
+addEventListener('pagehide',()=>{
+ if(view()==='cliente'){
+  // Solo se è la vista cliente: pulisce l'ultimo ordine mostrato
+  // (lo mantiene invece se è admin o cameriera)
+  // Disabilitato di default — scommenta le righe sotto per attivare la pulizia automatica
+  // localStorage.removeItem('ult');
+ }
+});
 initStore();render();
 </script></body></html>
