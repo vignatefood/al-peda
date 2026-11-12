@@ -100,35 +100,66 @@ const subs=[];const fire=()=>subs.forEach(f=>f());
 // salvata come hash SHA-256 con salt nel localStorage di questo dispositivo ('pwh').
 // Non è autenticazione vera (il menù è pubblico e gira tutto nel browser): serve solo a
 // impedire che chi apre il sorgente legga la password in chiaro.
-const PWH_KEY='pwh';
+// ---- Password del Gestione ----
+// Il valore di riferimento dell'hash è in menu.json (campo "pwh"). Chi la conosce la imposta
+// una volta dal Gestione; da lì in poi vale per TUTTI i dispositivi che scaricano il menù:
+// un telefono nuovo non deve reimpostarla, gli si chiede solo di inserirla.
+// Nel dispositivo resta solo la sessione aperta (auth), non la password.
+let REMOTE_PWH=null; // {salt,hash} come su menu.json (fonte di verità)
+const PWH_KEY='pwh'; // copia locale: serve solo quando il menù remoto non è raggiungibile
 async function sha256hex(str){
  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
 }
-function getPWH(){return ST.L(PWH_KEY,null)}
-async function setPWH(pw){
+function getPWH(){return REMOTE_PWH||ST.L(PWH_KEY,null)}
+async function makePWH(pw){
  const salt=[...crypto.getRandomValues(new Uint8Array(16))].map(b=>b.toString(16).padStart(2,'0')).join('');
- ST.S(PWH_KEY,{salt,hash:await sha256hex(salt+':'+pw)});
+ return {salt,hash:await sha256hex(salt+':'+pw)};
 }
 async function checkPWH(pw){
  const rec=getPWH();
  if(!rec||!rec.hash)return false;
  return await sha256hex(rec.salt+':'+pw)===rec.hash;
 }
+// Imposta la password e la pubblica su menu.json (una volta sola, dal dispositivo del gestore)
+async function impostaPassword(pw){
+ const rec=await makePWH(pw);
+ REMOTE_PWH=rec;ST.S(PWH_KEY,rec); // subito sul dispositivo
+ if(!getGHToken()){
+  alert('Password attiva su questo dispositivo.\n\nPer farla valere su tutti i telefoni serve il token GitHub (campo in Gestione), altrimenti ogni altro dispositivo la chiederà di nuovo.');
+  return;
+ }
+ const ok=await pushMenuToGitHub();
+ if(!ok)alert('Password attiva qui, ma non è stato possibile pubblicarla online: riprova con "⬆ Salva online".');
+}
 // Form di accesso condiviso da Gestione e Categorie.
-// Primo accesso (nessuna password salvata) = la si imposta; altrimenti la si verifica.
+// Con una password già impostata (qui o su menu.json) chiede solo di inserirla.
 function loginForm(title){
  const has=!!getPWH();
  $('#app').innerHTML='<main><h2 style="color:var(--gold)">'+esc(title)+'</h2><div class="item" style="display:block;cursor:default">'
   +(has?'<input id="pw" type="password" placeholder="Password">'
-        :'<p class="note" style="text-align:left">Primo accesso: scegli la password del Gestione. Resta salvata solo su questo dispositivo.</p><input id="pw" type="password" placeholder="Nuova password"><input id="pw2" type="password" placeholder="Ripeti la password">')
-  +'<div class="row"><button class="btn p" id="pk">'+(has?'Entra':'Imposta password')+'</button></div></div></main>';
+        :'<p class="note" style="text-align:left">Prima volta: imposta la password del Gestione. Verrà salvata nel menù online, così varrà su tutti i dispositivi.</p><input id="pw" type="password" placeholder="Nuova password"><input id="pw2" type="password" placeholder="Ripeti la password">')
+  +'<div class="row"><button class="btn p" id="pk">'+(has?'Entra':'Imposta password')+'</button>'
+  +(has?'':'<button class="btn" id="pwreset" title="Ho dimenticato la password">Ho dimenticato la password</button>')
+  +'</div></div></main>';
+ $('#pwreset')&&($('#pwreset').onclick=()=>{
+  if(!getGHToken())return alert('Serve il token GitHub in Gestione per reimpostare la password online.');
+  if(!confirm('Reimpostare la password? Quella vecchia smetterà di funzionare su tutti i dispositivi.'))return;
+  const n1=prompt('Nuova password (minimo 6 caratteri):'),n2=prompt('Ripeti la nuova password:');
+  if(!n1||n1.length<6)return alert('La password deve avere almeno 6 caratteri.');
+  if(n1!==n2)return alert('Le due password non coincidono.');
+  impostaPassword(n1).then(()=>{auth=true;render()});
+ });
  $('#pk').onclick=async()=>{
   const pw=$('#pw').value;
   if(!getPWH()){
    if(!pw||pw.length<6)return alert('La password deve avere almeno 6 caratteri.');
    if(pw!==$('#pw2').value)return alert('Le due password non coincidono.');
-   await setPWH(pw);auth=true;render();return;
+   await impostaPassword(pw);
+   // attende il push (impostaPassword lo fa) prima di entrare
+   if(getPWH()&&await checkPWH(pw)){auth=true;render()}
+   else alert('Password impostata, ma non è stato possibile verificarla online. Riprova tra poco.');
+   return;
   }
   if(await checkPWH(pw)){auth=true;render()}else alert('Password errata.');
  };
@@ -181,6 +212,9 @@ async function loadRemoteMenu(force){
   // Salva timestamp remoto e numero tavoli (se presente nel file remoto)
   ST.S('rv',data.ts||Date.now());
   if(data.nt)ST.S('nt',data.nt);
+ if(data.pwh&&data.pwh.hash){REMOTE_PWH=data.pwh;ST.S(PWH_KEY,data.pwh)}
+  // la password di riferimento viaggia col menù: così un dispositivo nuovo non la reimposta
+  if(data.pwh&&data.pwh.hash){REMOTE_PWH=data.pwh;ST.S(PWH_KEY,data.pwh)}
   // Fonde: SEED → remoto → locale (locale vince, così le modifiche fatte sul dispositivo non vengono perse)
   ST.menu=Object.fromEntries(SEED.map(i=>[i.id,i]));
   Object.assign(ST.menu,data.items||{});
@@ -195,7 +229,7 @@ async function loadRemoteMenu(force){
 function exportMenu(){
  const m={};
  Object.values(ST.menu).forEach(it=>{m[it.id]=it});
- return {version:2,ts:Date.now(),generated:new Date().toISOString(),nt:ST.L('nt',30),items:m};
+ return {version:2,ts:Date.now(),generated:new Date().toISOString(),nt:ST.L('nt',30),pwh:getPWH()||undefined,items:m};
 }
 // Importa un menu.json (sostituisce le modifiche locali)
 function importMenu(data){
