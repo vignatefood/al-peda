@@ -1,2800 +1,2748 @@
 {
- "version": 2,
- "ts": 1794503957839,
- "generated": "2026-11-12T18:19:17.000Z",
- "nt": 100,
- "pwh": {
-  "salt": "a1b2c3d4e5f60718293a4b5c6d7e8f90",
-  "hash": "aeffe081a176f0cc66f10ef8a985c9286cdd20ff97e617685d0de5f3cf2ecea7"
- },
- "items": {
-  "s0": {
-   "id": "s0",
-   "cat": "Gin Premium",
-   "name": "Tanqueray",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     8
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s1": {
-   "id": "s1",
-   "cat": "Gin Premium",
-   "name": "Mare",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     11
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s2": {
-   "id": "s2",
-   "cat": "Gin Premium",
-   "name": "Hendrick's",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     11
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s3": {
-   "id": "s3",
-   "cat": "Gin Premium",
-   "name": "Nordes",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     11
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s4": {
-   "id": "s4",
-   "cat": "Gin Premium",
-   "name": "Malfy Pompelmo Rosa",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     11
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s5": {
-   "id": "s5",
-   "cat": "Birre alla spina",
-   "sec": "bar",
-   "name": "1897 Non Filtrata",
-   "desc": "5,8%",
-   "prices": [
-    [
-     "0,20 lt",
-     3.5
-    ],
-    [
-     "0,40 lt",
-     6
-    ],
-    [
-     "1 lt",
-     11
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s6": {
-   "id": "s6",
-   "cat": "Birre alla spina",
-   "name": "Dolomiti 8°",
-   "desc": "8,0%",
-   "prices": [
-    [
-     "0,20 lt",
-     4
-    ],
-    [
-     "0,40 lt",
-     6.5
-    ],
-    [
-     "1 lt",
-     12
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s7": {
-   "id": "s7",
-   "cat": "Birre alla spina",
-   "name": "Pedavena Tradizionale",
-   "desc": "5,0%",
-   "prices": [
-    [
-     "0,20 lt",
-     3.5
-    ],
-    [
-     "0,40 lt",
-     6.5
-    ],
-    [
-     "1 lt",
-     11
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s8": {
-   "id": "s8",
-   "cat": "Birre alla spina",
-   "name": "AMA IPA",
-   "desc": "6,0%",
-   "prices": [
-    [
-     "0,20 lt",
-     4
-    ],
-    [
-     "0,40 lt",
-     6.5
-    ],
-    [
-     "1 lt",
-     11
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s9": {
-   "id": "s9",
-   "cat": "Birre alla spina",
-   "name": "Maisel's Weisse",
-   "desc": "5,2%",
-   "prices": [
-    [
-     "0,20 lt",
-     4
-    ],
-    [
-     "0,40 lt",
-     7
-    ],
-    [
-     "1 lt",
-     13
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s10": {
-   "id": "s10",
-   "cat": "Birre alla spina",
-   "name": "Guinness",
-   "desc": "4,2%",
-   "prices": [
-    [
-     "0,20 lt",
-     4
-    ],
-    [
-     "0,40 lt",
-     6.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s11": {
-   "id": "s11",
-   "cat": "Birre alla spina",
-   "name": "Leffe Rouge",
-   "desc": "6,6%",
-   "prices": [
-    [
-     "0,20 lt",
-     4
-    ],
-    [
-     "0,40 lt",
-     7
-    ],
-    [
-     "1 lt",
-     13
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s12": {
-   "id": "s12",
-   "cat": "Birre in bottiglia",
-   "name": "Superior senza glutine",
-   "desc": "33cl 5,2%",
-   "prices": [
-    [
-     "",
-     5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s13": {
-   "id": "s13",
-   "cat": "Birre in bottiglia",
-   "name": "Pedavena Tradizionale",
-   "desc": "33cl 5,0%",
-   "prices": [
-    [
-     "",
-     4
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s14": {
-   "id": "s14",
-   "cat": "Birre in bottiglia",
-   "name": "Pedavena Ambrata",
-   "desc": "33cl 5,9%",
-   "prices": [
-    [
-     "",
-     4.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s15": {
-   "id": "s15",
-   "cat": "Birre in bottiglia",
-   "name": "Dolomiti Non Filtrata",
-   "desc": "33cl 5,8%",
-   "prices": [
-    [
-     "",
-     4.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s16": {
-   "id": "s16",
-   "cat": "Birre in bottiglia",
-   "name": "Superior Analcolica",
-   "desc": "33cl <0,5%",
-   "prices": [
-    [
-     "",
-     4
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s17": {
-   "id": "s17",
-   "cat": "Birre in bottiglia",
-   "name": "Dolomiti 8°",
-   "desc": "33cl 8%",
-   "prices": [
-    [
-     "",
-     5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s18": {
-   "id": "s18",
-   "cat": "Birre in bottiglia",
-   "name": "Dolomiti Rossa",
-   "desc": "75cl 6,7%",
-   "prices": [
-    [
-     "",
-     9
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s19": {
-   "id": "s19",
-   "cat": "Birre in bottiglia",
-   "name": "Dolomiti La Speciale",
-   "desc": "75cl 5,9%",
-   "prices": [
-    [
-     "",
-     9
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s20": {
-   "id": "s20",
-   "cat": "Cocktail",
-   "name": "Campari Spritz",
-   "desc": "Bitter rosso, prosecco, soda",
-   "prices": [
-    [
-     "",
-     6
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s21": {
-   "id": "s21",
-   "cat": "Cocktail",
-   "name": "Negroni",
-   "desc": "Bitter rosso, vermouth rosso, gin",
-   "prices": [
-    [
-     "",
-     7
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s22": {
-   "id": "s22",
-   "cat": "Cocktail",
-   "name": "Negroni Sbagliato",
-   "desc": "Bitter rosso, vermouth rosso, spumante brut",
-   "prices": [
-    [
-     "",
-     7
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s23": {
-   "id": "s23",
-   "cat": "Cocktail",
-   "name": "Americano",
-   "desc": "Bitter rosso, vermouth rosso, soda",
-   "prices": [
-    [
-     "",
-     7
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s24": {
-   "id": "s24",
-   "cat": "Cocktail",
-   "name": "Whisky Sour",
-   "desc": "Whisky, sweet and sour",
-   "prices": [
-    [
-     "",
-     9
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s25": {
-   "id": "s25",
-   "cat": "Cocktail",
-   "name": "Capiroska",
-   "desc": "Vodka dry, lime, zucchero",
-   "prices": [
-    [
-     "",
-     8
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s26": {
-   "id": "s26",
-   "cat": "Cocktail",
-   "name": "Caipiriña",
-   "desc": "Cachaça, lime, zucchero",
-   "prices": [
-    [
-     "",
-     8
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s27": {
-   "id": "s27",
-   "cat": "Cocktail",
-   "name": "Moscow Mule",
-   "desc": "Vodka, ginger beer, succo di lime",
-   "prices": [
-    [
-     "",
-     8
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s28": {
-   "id": "s28",
-   "cat": "Cocktail",
-   "name": "Mojito",
-   "desc": "Rum, lime, zucchero, foglie di menta",
-   "prices": [
-    [
-     "",
-     8
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s29": {
-   "id": "s29",
-   "cat": "Cocktail",
-   "name": "Sex on the beach",
-   "desc": "Vodka, liquore alla pesca, succo d’arancia, cranberry",
-   "prices": [
-    [
-     "",
-     7
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s30": {
-   "id": "s30",
-   "cat": "Cocktail",
-   "name": "Cosmopolitan",
-   "desc": "Vodka, triple sec, cranberry, succo di lime",
-   "prices": [
-    [
-     "",
-     9
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s31": {
-   "id": "s31",
-   "cat": "Cocktail",
-   "name": "Daiquiri",
-   "desc": "Rum chiaro, succo di limone, zucchero",
-   "prices": [
-    [
-     "",
-     9
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s32": {
-   "id": "s32",
-   "cat": "Cocktail",
-   "name": "Old Fashioned",
-   "desc": "Bourbon, zolletta di zucchero con angostura",
-   "prices": [
-    [
-     "",
-     10
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s33": {
-   "id": "s33",
-   "cat": "Cocktail",
-   "name": "Vodka Sour",
-   "desc": "Vodka, succo di limone, zucchero",
-   "prices": [
-    [
-     "",
-     8
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s34": {
-   "id": "s34",
-   "cat": "Cocktail",
-   "name": "Tequila Sunrise",
-   "desc": "Tequila, succo d’arancia, granatina",
-   "prices": [
-    [
-     "",
-     8
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s35": {
-   "id": "s35",
-   "cat": "Cocktail",
-   "name": "Cuba Libre",
-   "desc": "Rum scuro, lime",
-   "prices": [
-    [
-     "",
-     8
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s36": {
-   "id": "s36",
-   "cat": "Cocktail",
-   "name": "Vodka tonic lemon",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     7
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s37": {
-   "id": "s37",
-   "cat": "Cocktail",
-   "name": "Vodka Red Bull",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     8
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s38": {
-   "id": "s38",
-   "cat": "Cocktail",
-   "name": "Gin Bosford tonic lemon",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     8
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s39": {
-   "id": "s39",
-   "cat": "Vini",
-   "name": "Falanghina",
-   "desc": "Bianco",
-   "prices": [
-    [
-     "Calice",
-     4
-    ],
-    [
-     "Bottiglia",
-     20
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s40": {
-   "id": "s40",
-   "cat": "Vini",
-   "name": "Greco",
-   "desc": "Bianco",
-   "prices": [
-    [
-     "Calice",
-     6
-    ],
-    [
-     "Bottiglia",
-     30
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s41": {
-   "id": "s41",
-   "cat": "Vini",
-   "name": "Gewurztraminer",
-   "desc": "Bianco",
-   "prices": [
-    [
-     "Calice",
-     6
-    ],
-    [
-     "Bottiglia",
-     29
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s42": {
-   "id": "s42",
-   "cat": "Vini",
-   "name": "Lugana",
-   "desc": "Bianco",
-   "prices": [
-    [
-     "Calice",
-     6
-    ],
-    [
-     "Bottiglia",
-     29
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s43": {
-   "id": "s43",
-   "cat": "Vini",
-   "name": "Primitivo",
-   "desc": "Rosso",
-   "prices": [
-    [
-     "Calice",
-     4
-    ],
-    [
-     "Bottiglia",
-     24
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s44": {
-   "id": "s44",
-   "cat": "Vini",
-   "name": "Ripasso",
-   "desc": "Rosso",
-   "prices": [
-    [
-     "Calice",
-     6
-    ],
-    [
-     "Bottiglia",
-     30
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s45": {
-   "id": "s45",
-   "cat": "Vini",
-   "name": "Chianti",
-   "desc": "Rosso",
-   "prices": [
-    [
-     "Calice",
-     5
-    ],
-    [
-     "Bottiglia",
-     29
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s46": {
-   "id": "s46",
-   "cat": "Vini",
-   "name": "Prosecco",
-   "desc": "",
-   "prices": [
-    [
-     "Calice",
-     5
-    ],
-    [
-     "Bottiglia",
-     22
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s47": {
-   "id": "s47",
-   "cat": "Stuzzichini",
-   "name": "Patate fritte con buccia",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     5.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s48": {
-   "id": "s48",
-   "cat": "Stuzzichini",
-   "name": "Anelli di cipolla in pastella",
-   "desc": "Allergeni: 1",
-   "prices": [
-    [
-     "",
-     6
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s49": {
-   "id": "s49",
-   "cat": "Stuzzichini",
-   "name": "Mozzarella stick 7pz",
-   "desc": "Allergeni: 1,7",
-   "prices": [
-    [
-     "",
-     6.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s50": {
-   "id": "s50",
-   "cat": "Stuzzichini",
-   "name": "Tender di pollo 7pz",
-   "desc": "Allergeni: 3",
-   "prices": [
-    [
-     "",
-     6.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s51": {
-   "id": "s51",
-   "cat": "Stuzzichini",
-   "name": "Olive all’ascolana 7pz",
-   "desc": "Allergeni: 1,2,3,4,6,7,10,14",
-   "prices": [
-    [
-     "",
-     5.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s52": {
-   "id": "s52",
-   "cat": "Stuzzichini",
-   "name": "Bouquet di arrosticini di pecora pz10",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     10
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s53": {
-   "id": "s53",
-   "cat": "Stuzzichini",
-   "name": "Assaggio di salumi con sottoli e uva",
-   "desc": "Allergeni: 7,8",
-   "prices": [
-    [
-     "",
-     5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s54": {
-   "id": "s54",
-   "cat": "Stuzzichini",
-   "name": "Assaggio di formaggi con marmellata, noci e uva",
-   "desc": "Allergeni: 7,8",
-   "prices": [
-    [
-     "",
-     5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "s55": {
-   "id": "s55",
-   "cat": "Stuzzichini",
-   "name": "Peda Bucket 2/4 pers.",
-   "desc": "Mix dei nostri stuzzichini · Allergeni: 1,2,3,4,6,7,10,14",
-   "prices": [
-    [
-     "",
-     20
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": [],
-   "sec": "bar"
-  },
-  "cat_1794352250036": {
-   "id": "cat_1794352250036",
-   "cat": "Antipasti",
-   "sec": "rist",
-   "name": "Salumi Misti",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     8.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "cat_1794352591253": {
-   "id": "cat_1794352591253",
-   "cat": "Primi",
-   "sec": "rist",
-   "name": "Pizzocheri",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     13.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [
-    "patate",
-    "coste",
-    "verze",
-    "formaggio"
-   ],
-   "add": [
-    [
-     "zola",
-     2
-    ],
-    [
-     "verza",
-     1.5
-    ],
-    [
-     "patate",
-     3
-    ]
-   ]
-  },
-  "s56": {
-   "id": "s56",
-   "cat": "Stuzzichini",
-   "sec": "bar",
-   "name": "Nachos con formaggio cheddar, guacamole e salsa messicana",
-   "desc": "Vegetariano · Allergeni: 1, 7",
-   "prices": [
-    [
-     "",
-     7.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s57": {
-   "id": "s57",
-   "cat": "Stuzzichini",
-   "sec": "bar",
-   "name": "Gnocco fritto",
-   "desc": "Vegano · Allergeni: 1, 6, 10",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s58": {
-   "id": "s58",
-   "cat": "Stuzzichini",
-   "sec": "bar",
-   "name": "Brezel",
-   "desc": "Allergeni: 1, 6, 10",
-   "prices": [
-    [
-     "",
-     3.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s59": {
-   "id": "s59",
-   "cat": "Stuzzichini",
-   "sec": "bar",
-   "name": "Anelli di cipolla",
-   "desc": "Vegano · Allergeni: 1",
-   "prices": [
-    [
-     "",
-     6.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s60": {
-   "id": "s60",
-   "cat": "Stuzzichini",
-   "sec": "bar",
-   "name": "Chili cheese bites",
-   "desc": "Piccante · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     6.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s61": {
-   "id": "s61",
-   "cat": "Stuzzichini",
-   "sec": "bar",
-   "name": "Assaggio salumi",
-   "desc": "Con sottoli e uva",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s62": {
-   "id": "s62",
-   "cat": "Stuzzichini",
-   "sec": "bar",
-   "name": "Assaggio formaggi",
-   "desc": "Con marmellata, noci e uva. Vegetariano · Allergeni: 7, 8",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s63": {
-   "id": "s63",
-   "cat": "Antipasti",
-   "sec": "rist",
-   "name": "Selezione salumi",
-   "desc": "Con sottoli. Senza glutine",
-   "prices": [
-    [
-     "",
-     15.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s64": {
-   "id": "s64",
-   "cat": "Antipasti",
-   "sec": "rist",
-   "name": "Selezione formaggi",
-   "desc": "Con marmellata e noci. Senza glutine, vegetariano · Allergeni: 7, 8",
-   "prices": [
-    [
-     "",
-     16.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s65": {
-   "id": "s65",
-   "cat": "Antipasti",
-   "sec": "rist",
-   "name": "Selezione salumi e formaggi, per due persone",
-   "desc": "Con sottoli, marmellata e noci. Senza glutine · Allergeni: 7, 8",
-   "prices": [
-    [
-     "",
-     27.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s66": {
-   "id": "s66",
-   "cat": "Antipasti",
-   "sec": "rist",
-   "name": "Aggiunta di Brezel al tuo tagliere, 1 pz",
-   "desc": "Allergeni: 1, 6, 10",
-   "prices": [
-    [
-     "",
-     3.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s67": {
-   "id": "s67",
-   "cat": "Antipasti",
-   "sec": "rist",
-   "name": "Battuta di controfiletto Pimontese alla piastra",
-   "desc": "Leggermente scottata con fonduta di pecorino, cipolla caramellata, anelli di peperoncino e cavolo nero · Allergeni: 1, 7",
-   "prices": [
-    [
-     "",
-     16.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s68": {
-   "id": "s68",
-   "cat": "Antipasti",
-   "sec": "rist",
-   "name": "Battuta di controfiletto",
-   "desc": "Battuta di manzo condita con sale, pepe, olio, tuorlo d'uovo, fiore del cappero, senape al miele, cipolla rossa e acciuga del Cantabrico · Allergeni: 1, 3, 4, 10",
-   "prices": [
-    [
-     "",
-     16.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s69": {
-   "id": "s69",
-   "cat": "Antipasti",
-   "sec": "rist",
-   "name": "Jamon Iberico Patanegra con gnocco fritto",
-   "desc": "Allergeni: 1, 6, 10",
-   "prices": [
-    [
-     "",
-     16.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s70": {
-   "id": "s70",
-   "cat": "Primi",
-   "sec": "rist",
-   "name": "Risotto ossobuco",
-   "desc": "Risotto Carnaroli, zafferano con tartarina di verdure, ossobuco con farina di riso e gremolada · Allergeni: 7, 9",
-   "prices": [
-    [
-     "",
-     24.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s71": {
-   "id": "s71",
-   "cat": "Primi",
-   "sec": "rist",
-   "name": "Casoncelli alla bergamasca",
-   "desc": "Pasta ripiena di carne mista con burro e salvia, pancetta croccante · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     16.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s72": {
-   "id": "s72",
-   "cat": "Primi",
-   "sec": "rist",
-   "name": "Tagliolini crema di tartufo e funghi",
-   "desc": "Panna, crema di tartufo e funghi · Allergeni: 1, 3, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     17.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s73": {
-   "id": "s73",
-   "cat": "Secondi",
-   "sec": "rist",
-   "name": "Orecchia d'Elefante",
-   "desc": "Costata di vitello con doppia panatura: pan grattato e panko, servita con patatine fritte · Allergeni: 1, 3, 6, 10",
-   "prices": [
-    [
-     "",
-     19.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s74": {
-   "id": "s74",
-   "cat": "Secondi",
-   "sec": "rist",
-   "name": "Stinco di maiale alla birra Pedavena",
-   "desc": "A scelta con patate al forno o polenta · Allergeni: 1",
-   "prices": [
-    [
-     "",
-     16.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s75": {
-   "id": "s75",
-   "cat": "Secondi",
-   "sec": "rist",
-   "name": "Trinità",
-   "desc": "Salsiccia, fagioli al sugo con crostoni di pane · Allergeni: 1, 6, 10",
-   "prices": [
-    [
-     "",
-     14.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s76": {
-   "id": "s76",
-   "cat": "Contorni",
-   "sec": "rist",
-   "name": "Verdure spadellate",
-   "desc": "Vegano",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s77": {
-   "id": "s77",
-   "cat": "Contorni",
-   "sec": "rist",
-   "name": "Patate al forno",
-   "desc": "Vegano",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s78": {
-   "id": "s78",
-   "cat": "Contorni",
-   "sec": "rist",
-   "name": "Patate al cartoccio con burro",
-   "desc": "Allergeni: 7",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s79": {
-   "id": "s79",
-   "cat": "Contorni",
-   "sec": "rist",
-   "name": "Insalata mista",
-   "desc": "Misticanza, pomodorini, olive nere. Vegano",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s80": {
-   "id": "s80",
-   "cat": "Contorni",
-   "sec": "rist",
-   "name": "Pannocchia alla brace",
-   "desc": "Al burro · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s81": {
-   "id": "s81",
-   "cat": "Polenta",
-   "sec": "rist",
-   "name": "Polenta rustica bergamasca",
-   "desc": "Farina di granoturco e grano saraceno · Allergeni: 1, 7",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s82": {
-   "id": "s82",
-   "cat": "Polenta",
-   "sec": "rist",
-   "name": "Polenta con Guancia di manzo al cioccolato",
-   "desc": "Allergeni: 7, 9",
-   "prices": [
-    [
-     "",
-     16.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s83": {
-   "id": "s83",
-   "cat": "Polenta",
-   "sec": "rist",
-   "name": "Polenta e Ossobuco",
-   "desc": "Allergeni: 7",
-   "prices": [
-    [
-     "",
-     16.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s84": {
-   "id": "s84",
-   "cat": "Polenta",
-   "sec": "rist",
-   "name": "Polenta e Gorgonzola novarese dolce e porcini",
-   "desc": "Allergeni: 7, 9",
-   "prices": [
-    [
-     "",
-     12.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s85": {
-   "id": "s85",
-   "cat": "Polenta",
-   "sec": "rist",
-   "name": "Polenta Taragna",
-   "desc": "Con Branzi e Formai de Mut fusi, burro e salvia · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     12.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s86": {
-   "id": "s86",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Tagliata di manzo 250 gr",
-   "desc": "Con rucola e grana · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     19.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s87": {
-   "id": "s87",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Tagliata di manzo 250 gr",
-   "desc": "Con porcini e fonduta di pecorino · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     20.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s88": {
-   "id": "s88",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Tagliata di wagyu",
-   "desc": "Con patate al forno o verdure grigliate · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     26.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s89": {
-   "id": "s89",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Galletto “Vallespluga” sfumato alla nostra Dolomiti rossa",
-   "desc": "Galletto con patate al cartoccio e burro, anche in versione piccante · Allergeni: 1, 7",
-   "prices": [
-    [
-     "",
-     17.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s90": {
-   "id": "s90",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Le Costine di maialino italiano",
-   "desc": "Cottura verticale, accompagnate da patata al cartoccio e burro · Allergeni: 7, 10",
-   "prices": [
-    [
-     "",
-     16.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s91": {
-   "id": "s91",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Picanha alla brace scaloppata",
-   "desc": "Con patata al cartoccio al burro o patate al forno · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     24.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s92": {
-   "id": "s92",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Filetto di manzo 300 gr",
-   "desc": "Con patata al cartoccio al burro o patate al forno · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     26.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s93": {
-   "id": "s93",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Grigliata del Peda *, per due persone",
-   "desc": "Costine, salsiccia, petto di pollo, lucanica, tagliata di manzo, arrosticini, pannocchia e polenta · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     40.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s94": {
-   "id": "s94",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Petto di pollo alla brace",
-   "desc": "Con patate al forno o verdure grigliate · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     12.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s95": {
-   "id": "s95",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Tour della birreria, per due persone",
-   "desc": "Filetto 300 g, controfiletto 250 g, picanha 250 g con polenta, misticanza e pomodori · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     55.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s96": {
-   "id": "s96",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Tomahawk",
-   "desc": "Con assaggio di polenta, pannocchia al burro, pomodorini e misticanza · Prezzo all'etto · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     6.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s97": {
-   "id": "s97",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Fiorentina",
-   "desc": "Con assaggio di polenta, pannocchia al burro, pomodorini e misticanza · Prezzo all'etto · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     6.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s98": {
-   "id": "s98",
-   "cat": "Brace",
-   "sec": "rist",
-   "name": "Entrecotte di black angus",
-   "desc": "Con polenta, rucola, pomodorini e scaglie di grana · Allergeni: 7",
-   "prices": [
-    [
-     "",
-     28.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s99": {
-   "id": "s99",
-   "cat": "Hamburger",
-   "sec": "rist",
-   "name": "Peda Cheese burger",
-   "desc": "Burger, insalata, pomodoro, cheddar, cetriolini, bacon, salsa Peda · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     14.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s100": {
-   "id": "s100",
-   "cat": "Hamburger",
-   "sec": "rist",
-   "name": "Tirolese",
-   "desc": "Burger, gorgonzola dolce DOP, speck, funghi alla piastra, crema di noci · Allergeni: 1, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     15.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s101": {
-   "id": "s101",
-   "cat": "Hamburger",
-   "sec": "rist",
-   "name": "Peda XXL",
-   "desc": "Doppio burger, doppio cheddar, doppio bacon e salsa wanted burger · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     20.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s102": {
-   "id": "s102",
-   "cat": "Hamburger",
-   "sec": "rist",
-   "name": "Double grilled chicken burger",
-   "desc": "Doppio petto di pollo, scamorza, bacon, verdure grigliate e salsa boscaiola · Allergeni: 1, 3, 6, 7, 10, 11",
-   "prices": [
-    [
-     "",
-     14.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s103": {
-   "id": "s103",
-   "cat": "Hamburger",
-   "sec": "rist",
-   "name": "Cotoletta burger",
-   "desc": "Petto di pollo impanato, pomodoro, soncino, maionese · Allergeni: 1, 3, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     14.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s104": {
-   "id": "s104",
-   "cat": "Hamburger",
-   "sec": "rist",
-   "name": "Salsiccia burger",
-   "desc": "Salsiccia luganica, rucola, pancetta arrotolata, uovo, scamorza, cipolla caramellata, salsa Peda · Allergeni: 1, 3, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     15.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s105": {
-   "id": "s105",
-   "cat": "Hamburger",
-   "sec": "rist",
-   "name": "Pulled pork",
-   "desc": "Sfilacciato di maiale con porri stufati, scamorza, bacon, anelli di cipolla in pastella e salsa bbq · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     14.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s106": {
-   "id": "s106",
-   "cat": "Hamburger",
-   "sec": "rist",
-   "name": "Black angus burger",
-   "desc": "Burger di black angus, soncino, mozzarella di bufala affumicata, salsa con pomodorini essiccati e menta · Allergeni: 1, 3, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     15.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s107": {
-   "id": "s107",
-   "cat": "Hamburger",
-   "sec": "rist",
-   "name": "Parmigianburger",
-   "desc": "Burger, spinacino, melanzana impanata con panko, ricotta al basilico, pomodoro confit · Allergeni: 1, 3, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     14.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s108": {
-   "id": "s108",
-   "cat": "Hamburger",
-   "sec": "rist",
-   "name": "Veggy burger",
-   "desc": "Hamburger vegetale, lattuga, pomodoro, bacon vegetale e maionese vegana. Vegetariano · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     12.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s109": {
-   "id": "s109",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Margherita",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, basilico fresco. Vegetariano · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     7.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s110": {
-   "id": "s110",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Marinara",
-   "desc": "Salsa di pomodoro, aglio, olio EVO, origano. Vegana · Allergeni: 1, 6, 10",
-   "prices": [
-    [
-     "",
-     6.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s111": {
-   "id": "s111",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Prosciutto e funghi",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, prosciutto cotto, funghi champignon · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     9.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s112": {
-   "id": "s112",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Quattro stagioni",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, prosciutto cotto, carciofi, funghi champignon, olive nere · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     10.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s113": {
-   "id": "s113",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Quattro formaggi",
-   "desc": "Mozzarella fiordilatte, gorgonzola, scamorza, brie. Vegetariana · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     9.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s114": {
-   "id": "s114",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Diavola",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, salame piccante. Piccante · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     9.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s115": {
-   "id": "s115",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Americana",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, wurstel, patatine · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     8.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s116": {
-   "id": "s116",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Ortolana grill",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, zucchine, melanzane, peperoni. Vegetariana · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     9.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s117": {
-   "id": "s117",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Bufalina",
-   "desc": "Salsa di pomodoro, mozzarella di bufala dopo cottura, basilico fresco. Vegetariana · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     9.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s118": {
-   "id": "s118",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Romana",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, acciughe, capperi, olive nere, origano · Allergeni: 1, 4, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     9.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s119": {
-   "id": "s119",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Dolomiti 2.0",
-   "desc": "Mozzarella fiordilatte, mortadella, burrata e pesto di pistacchio · Allergeni: 1, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     11.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s120": {
-   "id": "s120",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Chicken Pulled",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, chicken pulled, salsa wanted burger · Allergeni: 1, 6, 7, 10, 14",
-   "prices": [
-    [
-     "",
-     11.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s121": {
-   "id": "s121",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Rustichella",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, speck, brie e funghi porcini · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     10.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s122": {
-   "id": "s122",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Tonno e cipolle plus",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, tonno, cipolle e gorgonzola · Allergeni: 1, 4, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     10.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s123": {
-   "id": "s123",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Sfiziosa",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, salame piccante, mozzarella di bufala dopo cottura, rucola. Piccante · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     11.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s124": {
-   "id": "s124",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Inferno 2.0",
-   "desc": "Salsa di pomodoro, nduja, salame piccante, jalapeños, mozzarella di bufala dopo cottura. Piccante · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     11.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s125": {
-   "id": "s125",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Boscaiola",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, salsiccia, porcini e zola · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     11.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s126": {
-   "id": "s126",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Salsiccia e friarielli Plus",
-   "desc": "Mozzarella fiordilatte, salsiccia, friarielli, scamorza · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     10.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s127": {
-   "id": "s127",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Monte Civetta",
-   "desc": "Salsa di pomodoro, mozzarella fiordilatte, porcini, peperoni, salame piccante. Piccante · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     10.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s128": {
-   "id": "s128",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Iberica",
-   "desc": "Mozzarella, patanegra, mozzarella di bufala affumicata dopo cottura, miele e noci · Allergeni: 1, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     13.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s129": {
-   "id": "s129",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Tirolese",
-   "desc": "Mozzarella, crema di noci, gorgonzola, speck e noci · Allergeni: 1, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     11.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s130": {
-   "id": "s130",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Parmigiana",
-   "desc": "Salsa di pomodoro, mozzarella, melanzana fritta, ricotta e basilico. Vegetariana · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     11.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s131": {
-   "id": "s131",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Focaccia Tricolore",
-   "desc": "Mozzarella di bufala dopo cottura, rucola, pomodorini. Vegetariana · Allergeni: 1, 6, 7, 10",
-   "prices": [
-    [
-     "",
-     11.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s132": {
-   "id": "s132",
-   "cat": "Pizze",
-   "sec": "rist",
-   "name": "Focaccia IBERICA",
-   "desc": "Prosciutto crudo Iberico Patanegra, mozzarella di bufala affumicata, miele e noci · Allergeni: 1, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     13.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s133": {
-   "id": "s133",
-   "cat": "Menù bambini",
-   "sec": "rist",
-   "name": "Pasta al pomodoro o al pesto",
-   "desc": "Vegetariano · Allergeni: 1, 6, 7, 8",
-   "prices": [
-    [
-     "",
-     7.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s134": {
-   "id": "s134",
-   "cat": "Menù bambini",
-   "sec": "rist",
-   "name": "Risotto allo zafferano",
-   "desc": "Vegetariano · Allergeni: 6, 7",
-   "prices": [
-    [
-     "",
-     8.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s135": {
-   "id": "s135",
-   "cat": "Menù bambini",
-   "sec": "rist",
-   "name": "Risotto al parmigiano",
-   "desc": "Vegetariano · Allergeni: 6, 7",
-   "prices": [
-    [
-     "",
-     8.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s136": {
-   "id": "s136",
-   "cat": "Menù bambini",
-   "sec": "rist",
-   "name": "Hot dog baby",
-   "desc": "Con patatine fritte · Allergeni: 1",
-   "prices": [
-    [
-     "",
-     8.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s137": {
-   "id": "s137",
-   "cat": "Menù bambini",
-   "sec": "rist",
-   "name": "Cotoletta impanata",
-   "desc": "Con patatine fritte o insalata · Allergeni: 1, 3, 7",
-   "prices": [
-    [
-     "",
-     9.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s138": {
-   "id": "s138",
-   "cat": "Menù bambini",
-   "sec": "rist",
-   "name": "Peda Cheeseburger baby",
-   "desc": "Con patatine fritte o insalata · Allergeni: 1, 7",
-   "prices": [
-    [
-     "",
-     9.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s139": {
-   "id": "s139",
-   "cat": "Dolci",
-   "sec": "rist",
-   "name": "Cheesecake",
-   "desc": "Allergeni: 1, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     6.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s140": {
-   "id": "s140",
-   "cat": "Dolci",
-   "sec": "rist",
-   "name": "Panna cotta",
-   "desc": "Allergeni: 1, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     6.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s141": {
-   "id": "s141",
-   "cat": "Dolci",
-   "sec": "rist",
-   "name": "Crema catalana",
-   "desc": "Allergeni: 1, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     6.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s142": {
-   "id": "s142",
-   "cat": "Dolci",
-   "sec": "rist",
-   "name": "Tiramisù",
-   "desc": "Allergeni: 1, 3, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     6.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s143": {
-   "id": "s143",
-   "cat": "Dolci",
-   "sec": "rist",
-   "name": "Birramisu",
-   "desc": "Allergeni: 1, 3, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     6.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s144": {
-   "id": "s144",
-   "cat": "Dolci",
-   "sec": "rist",
-   "name": "Calzone alla nutella",
-   "desc": "Allergeni: 1, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     7.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s145": {
-   "id": "s145",
-   "cat": "Dolci",
-   "sec": "rist",
-   "name": "Torte assortite (giornaliere)",
-   "desc": "Torte del giorno",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s146": {
-   "id": "s146",
-   "cat": "Dolci",
-   "sec": "rist",
-   "name": "Polenta e nutella",
-   "desc": "Allergeni: 1, 6, 7, 8, 10",
-   "prices": [
-    [
-     "",
-     5.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s147": {
-   "id": "s147",
-   "cat": "Bevande",
-   "sec": "bar",
-   "name": "Bibita alla spina 0,4 lt",
-   "desc": "Pepsi, 7up, Schweppes orange",
-   "prices": [
-    [
-     "",
-     4.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s148": {
-   "id": "s148",
-   "cat": "Bevande",
-   "sec": "bar",
-   "name": "Bibita in lattina",
-   "desc": "Coca cola, Coca cola zero, Lemon soda, Schweppes tonica, Estathe, Aranciata amara",
-   "prices": [
-    [
-     "",
-     3.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s149": {
-   "id": "s149",
-   "cat": "Birre alla spina",
-   "sec": "bar",
-   "name": "Ama Bianca",
-   "desc": "4,2% vol. · Allergeni: 1",
-   "prices": [
-    [
-     "",
-     3.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s150": {
-   "id": "s150",
-   "cat": "Birre in bottiglia",
-   "sec": "bar",
-   "name": "Birra del Borgo Reale (IPA)",
-   "desc": "33 cl · 6,4 vol. · Allergeni: 1",
-   "prices": [
-    [
-     "",
-     6.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s151": {
-   "id": "s151",
-   "cat": "Caffetteria",
-   "sec": "bar",
-   "name": "Caffè, decaffeinato",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     2.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s152": {
-   "id": "s152",
-   "cat": "Caffetteria",
-   "sec": "bar",
-   "name": "Caffè corretto, ginseng, orzo",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     2.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s153": {
-   "id": "s153",
-   "cat": "Dopo cena",
-   "sec": "bar",
-   "name": "Amari",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     3.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s154": {
-   "id": "s154",
-   "cat": "Dopo cena",
-   "sec": "bar",
-   "name": "Grappe",
-   "desc": "",
-   "prices": [
-    [
-     "",
-     4.5
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
-  },
-  "s155": {
-   "id": "s155",
-   "cat": "Dopo cena",
-   "sec": "bar",
-   "name": "Rum, Whisky e liquori premium",
-   "desc": "Richiedi la lista al personale di servizio · Prezzo da",
-   "prices": [
-    [
-     "",
-     6.0
-    ]
-   ],
-   "out": false,
-   "img": "",
-   "rem": [],
-   "add": []
+  "version": 2,
+  "ts": 1794507772124,
+  "generated": "2026-11-12T18:22:52.124Z",
+  "nt": 100,
+  "pwh": {
+    "salt": "a1b2c3d4e5f60718293a4b5c6d7e8f90",
+    "hash": "aeffe081a176f0cc66f10ef8a985c9286cdd20ff97e617685d0de5f3cf2ecea7"
+  },
+  "items": {
+    "s0": {
+      "id": "s0",
+      "cat": "Gin Premium",
+      "name": "Tanqueray",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s1": {
+      "id": "s1",
+      "cat": "Gin Premium",
+      "name": "Mare",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s2": {
+      "id": "s2",
+      "cat": "Gin Premium",
+      "name": "Hendrick's",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s3": {
+      "id": "s3",
+      "cat": "Gin Premium",
+      "name": "Nordes",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s4": {
+      "id": "s4",
+      "cat": "Gin Premium",
+      "name": "Malfy Pompelmo Rosa",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s5": {
+      "id": "s5",
+      "cat": "Birre alla spina",
+      "sec": "bar",
+      "name": "1897 Non Filtrata",
+      "desc": "5,8%",
+      "prices": [
+        [
+          "0,20 lt",
+          3.5
+        ],
+        [
+          "0,40 lt",
+          6
+        ],
+        [
+          "1 lt",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s6": {
+      "id": "s6",
+      "cat": "Birre alla spina",
+      "name": "Dolomiti 8°",
+      "desc": "8,0%",
+      "prices": [
+        [
+          "0,20 lt",
+          4
+        ],
+        [
+          "0,40 lt",
+          6.5
+        ],
+        [
+          "1 lt",
+          12
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s7": {
+      "id": "s7",
+      "cat": "Birre alla spina",
+      "name": "Pedavena Tradizionale",
+      "desc": "5,0%",
+      "prices": [
+        [
+          "0,20 lt",
+          3.5
+        ],
+        [
+          "0,40 lt",
+          6.5
+        ],
+        [
+          "1 lt",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s8": {
+      "id": "s8",
+      "cat": "Birre alla spina",
+      "name": "AMA IPA",
+      "desc": "6,0%",
+      "prices": [
+        [
+          "0,20 lt",
+          4
+        ],
+        [
+          "0,40 lt",
+          6.5
+        ],
+        [
+          "1 lt",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s9": {
+      "id": "s9",
+      "cat": "Birre alla spina",
+      "name": "Maisel's Weisse",
+      "desc": "5,2%",
+      "prices": [
+        [
+          "0,20 lt",
+          4
+        ],
+        [
+          "0,40 lt",
+          7
+        ],
+        [
+          "1 lt",
+          13
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s10": {
+      "id": "s10",
+      "cat": "Birre alla spina",
+      "name": "Guinness",
+      "desc": "4,2%",
+      "prices": [
+        [
+          "0,20 lt",
+          4
+        ],
+        [
+          "0,40 lt",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s11": {
+      "id": "s11",
+      "cat": "Birre alla spina",
+      "name": "Leffe Rouge",
+      "desc": "6,6%",
+      "prices": [
+        [
+          "0,20 lt",
+          4
+        ],
+        [
+          "0,40 lt",
+          7
+        ],
+        [
+          "1 lt",
+          13
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s12": {
+      "id": "s12",
+      "cat": "Birre in bottiglia",
+      "name": "Superior senza glutine",
+      "desc": "33cl 5,2%",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s13": {
+      "id": "s13",
+      "cat": "Birre in bottiglia",
+      "name": "Pedavena Tradizionale",
+      "desc": "33cl 5,0%",
+      "prices": [
+        [
+          "",
+          4
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s14": {
+      "id": "s14",
+      "cat": "Birre in bottiglia",
+      "name": "Pedavena Ambrata",
+      "desc": "33cl 5,9%",
+      "prices": [
+        [
+          "",
+          4.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s15": {
+      "id": "s15",
+      "cat": "Birre in bottiglia",
+      "name": "Dolomiti Non Filtrata",
+      "desc": "33cl 5,8%",
+      "prices": [
+        [
+          "",
+          4.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s16": {
+      "id": "s16",
+      "cat": "Birre in bottiglia",
+      "name": "Superior Analcolica",
+      "desc": "33cl <0,5%",
+      "prices": [
+        [
+          "",
+          4
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s17": {
+      "id": "s17",
+      "cat": "Birre in bottiglia",
+      "name": "Dolomiti 8°",
+      "desc": "33cl 8%",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s18": {
+      "id": "s18",
+      "cat": "Birre in bottiglia",
+      "name": "Dolomiti Rossa",
+      "desc": "75cl 6,7%",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s19": {
+      "id": "s19",
+      "cat": "Birre in bottiglia",
+      "name": "Dolomiti La Speciale",
+      "desc": "75cl 5,9%",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s20": {
+      "id": "s20",
+      "cat": "Cocktail",
+      "name": "Campari Spritz",
+      "desc": "Bitter rosso, prosecco, soda",
+      "prices": [
+        [
+          "",
+          6
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s21": {
+      "id": "s21",
+      "cat": "Cocktail",
+      "name": "Negroni",
+      "desc": "Bitter rosso, vermouth rosso, gin",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s22": {
+      "id": "s22",
+      "cat": "Cocktail",
+      "name": "Negroni Sbagliato",
+      "desc": "Bitter rosso, vermouth rosso, spumante brut",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s23": {
+      "id": "s23",
+      "cat": "Cocktail",
+      "name": "Americano",
+      "desc": "Bitter rosso, vermouth rosso, soda",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s24": {
+      "id": "s24",
+      "cat": "Cocktail",
+      "name": "Whisky Sour",
+      "desc": "Whisky, sweet and sour",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s25": {
+      "id": "s25",
+      "cat": "Cocktail",
+      "name": "Capiroska",
+      "desc": "Vodka dry, lime, zucchero",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s26": {
+      "id": "s26",
+      "cat": "Cocktail",
+      "name": "Caipiriña",
+      "desc": "Cachaça, lime, zucchero",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s27": {
+      "id": "s27",
+      "cat": "Cocktail",
+      "name": "Moscow Mule",
+      "desc": "Vodka, ginger beer, succo di lime",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s28": {
+      "id": "s28",
+      "cat": "Cocktail",
+      "name": "Mojito",
+      "desc": "Rum, lime, zucchero, foglie di menta",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s29": {
+      "id": "s29",
+      "cat": "Cocktail",
+      "name": "Sex on the beach",
+      "desc": "Vodka, liquore alla pesca, succo d’arancia, cranberry",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s30": {
+      "id": "s30",
+      "cat": "Cocktail",
+      "name": "Cosmopolitan",
+      "desc": "Vodka, triple sec, cranberry, succo di lime",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s31": {
+      "id": "s31",
+      "cat": "Cocktail",
+      "name": "Daiquiri",
+      "desc": "Rum chiaro, succo di limone, zucchero",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s32": {
+      "id": "s32",
+      "cat": "Cocktail",
+      "name": "Old Fashioned",
+      "desc": "Bourbon, zolletta di zucchero con angostura",
+      "prices": [
+        [
+          "",
+          10
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s33": {
+      "id": "s33",
+      "cat": "Cocktail",
+      "name": "Vodka Sour",
+      "desc": "Vodka, succo di limone, zucchero",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s34": {
+      "id": "s34",
+      "cat": "Cocktail",
+      "name": "Tequila Sunrise",
+      "desc": "Tequila, succo d’arancia, granatina",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s35": {
+      "id": "s35",
+      "cat": "Cocktail",
+      "name": "Cuba Libre",
+      "desc": "Rum scuro, lime",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s36": {
+      "id": "s36",
+      "cat": "Cocktail",
+      "name": "Vodka tonic lemon",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s37": {
+      "id": "s37",
+      "cat": "Cocktail",
+      "name": "Vodka Red Bull",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s38": {
+      "id": "s38",
+      "cat": "Cocktail",
+      "name": "Gin Bosford tonic lemon",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s39": {
+      "id": "s39",
+      "cat": "Vini",
+      "name": "Falanghina",
+      "desc": "Bianco",
+      "prices": [
+        [
+          "Calice",
+          4
+        ],
+        [
+          "Bottiglia",
+          20
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s40": {
+      "id": "s40",
+      "cat": "Vini",
+      "name": "Greco",
+      "desc": "Bianco",
+      "prices": [
+        [
+          "Calice",
+          6
+        ],
+        [
+          "Bottiglia",
+          30
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s41": {
+      "id": "s41",
+      "cat": "Vini",
+      "name": "Gewurztraminer",
+      "desc": "Bianco",
+      "prices": [
+        [
+          "Calice",
+          6
+        ],
+        [
+          "Bottiglia",
+          29
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s42": {
+      "id": "s42",
+      "cat": "Vini",
+      "name": "Lugana",
+      "desc": "Bianco",
+      "prices": [
+        [
+          "Calice",
+          6
+        ],
+        [
+          "Bottiglia",
+          29
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s43": {
+      "id": "s43",
+      "cat": "Vini",
+      "name": "Primitivo",
+      "desc": "Rosso",
+      "prices": [
+        [
+          "Calice",
+          4
+        ],
+        [
+          "Bottiglia",
+          24
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s44": {
+      "id": "s44",
+      "cat": "Vini",
+      "name": "Ripasso",
+      "desc": "Rosso",
+      "prices": [
+        [
+          "Calice",
+          6
+        ],
+        [
+          "Bottiglia",
+          30
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s45": {
+      "id": "s45",
+      "cat": "Vini",
+      "name": "Chianti",
+      "desc": "Rosso",
+      "prices": [
+        [
+          "Calice",
+          5
+        ],
+        [
+          "Bottiglia",
+          29
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s46": {
+      "id": "s46",
+      "cat": "Vini",
+      "name": "Prosecco",
+      "desc": "",
+      "prices": [
+        [
+          "Calice",
+          5
+        ],
+        [
+          "Bottiglia",
+          22
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s47": {
+      "id": "s47",
+      "cat": "Stuzzichini",
+      "name": "Patate fritte con buccia",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          5.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s48": {
+      "id": "s48",
+      "cat": "Stuzzichini",
+      "name": "Anelli di cipolla in pastella",
+      "desc": "Allergeni: 1",
+      "prices": [
+        [
+          "",
+          6
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s49": {
+      "id": "s49",
+      "cat": "Stuzzichini",
+      "name": "Mozzarella stick 7pz",
+      "desc": "Allergeni: 1,7",
+      "prices": [
+        [
+          "",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s50": {
+      "id": "s50",
+      "cat": "Stuzzichini",
+      "name": "Tender di pollo 7pz",
+      "desc": "Allergeni: 3",
+      "prices": [
+        [
+          "",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s51": {
+      "id": "s51",
+      "cat": "Stuzzichini",
+      "name": "Olive all’ascolana 7pz",
+      "desc": "Allergeni: 1,2,3,4,6,7,10,14",
+      "prices": [
+        [
+          "",
+          5.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s52": {
+      "id": "s52",
+      "cat": "Stuzzichini",
+      "name": "Bouquet di arrosticini di pecora pz10",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          10
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s53": {
+      "id": "s53",
+      "cat": "Stuzzichini",
+      "name": "Assaggio di salumi con sottoli e uva",
+      "desc": "Allergeni: 7,8",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s54": {
+      "id": "s54",
+      "cat": "Stuzzichini",
+      "name": "Assaggio di formaggi con marmellata, noci e uva",
+      "desc": "Allergeni: 7,8",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s55": {
+      "id": "s55",
+      "cat": "Stuzzichini",
+      "name": "Peda Bucket 2/4 pers.",
+      "desc": "Mix dei nostri stuzzichini · Allergeni: 1,2,3,4,6,7,10,14",
+      "prices": [
+        [
+          "",
+          20
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": [],
+      "sec": "bar"
+    },
+    "s56": {
+      "id": "s56",
+      "cat": "Stuzzichini",
+      "sec": "bar",
+      "name": "Nachos con formaggio cheddar, guacamole e salsa messicana",
+      "desc": "Vegetariano · Allergeni: 1, 7",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s57": {
+      "id": "s57",
+      "cat": "Stuzzichini",
+      "sec": "bar",
+      "name": "Gnocco fritto",
+      "desc": "Vegano · Allergeni: 1, 6, 10",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s58": {
+      "id": "s58",
+      "cat": "Stuzzichini",
+      "sec": "bar",
+      "name": "Brezel",
+      "desc": "Allergeni: 1, 6, 10",
+      "prices": [
+        [
+          "",
+          3.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s59": {
+      "id": "s59",
+      "cat": "Stuzzichini",
+      "sec": "bar",
+      "name": "Anelli di cipolla",
+      "desc": "Vegano · Allergeni: 1",
+      "prices": [
+        [
+          "",
+          6
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s60": {
+      "id": "s60",
+      "cat": "Stuzzichini",
+      "sec": "bar",
+      "name": "Chili cheese bites",
+      "desc": "Piccante · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s61": {
+      "id": "s61",
+      "cat": "Stuzzichini",
+      "sec": "bar",
+      "name": "Assaggio salumi",
+      "desc": "Con sottoli e uva",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s62": {
+      "id": "s62",
+      "cat": "Stuzzichini",
+      "sec": "bar",
+      "name": "Assaggio formaggi",
+      "desc": "Con marmellata, noci e uva. Vegetariano · Allergeni: 7, 8",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s63": {
+      "id": "s63",
+      "cat": "Antipasti",
+      "sec": "rist",
+      "name": "Selezione salumi",
+      "desc": "Con sottoli. Senza glutine",
+      "prices": [
+        [
+          "",
+          15
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s64": {
+      "id": "s64",
+      "cat": "Antipasti",
+      "sec": "rist",
+      "name": "Selezione formaggi",
+      "desc": "Con marmellata e noci. Senza glutine, vegetariano · Allergeni: 7, 8",
+      "prices": [
+        [
+          "",
+          16
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s65": {
+      "id": "s65",
+      "cat": "Antipasti",
+      "sec": "rist",
+      "name": "Selezione salumi e formaggi, per due persone",
+      "desc": "Con sottoli, marmellata e noci. Senza glutine · Allergeni: 7, 8",
+      "prices": [
+        [
+          "",
+          27
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s66": {
+      "id": "s66",
+      "cat": "Antipasti",
+      "sec": "rist",
+      "name": "Aggiunta di Brezel al tuo tagliere, 1 pz",
+      "desc": "Allergeni: 1, 6, 10",
+      "prices": [
+        [
+          "",
+          3.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s67": {
+      "id": "s67",
+      "cat": "Antipasti",
+      "sec": "rist",
+      "name": "Battuta di controfiletto Pimontese alla piastra",
+      "desc": "Leggermente scottata con fonduta di pecorino, cipolla caramellata, anelli di peperoncino e cavolo nero · Allergeni: 1, 7",
+      "prices": [
+        [
+          "",
+          16
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s68": {
+      "id": "s68",
+      "cat": "Antipasti",
+      "sec": "rist",
+      "name": "Battuta di controfiletto",
+      "desc": "Battuta di manzo condita con sale, pepe, olio, tuorlo d'uovo, fiore del cappero, senape al miele, cipolla rossa e acciuga del Cantabrico · Allergeni: 1, 3, 4, 10",
+      "prices": [
+        [
+          "",
+          16
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s69": {
+      "id": "s69",
+      "cat": "Antipasti",
+      "sec": "rist",
+      "name": "Jamon Iberico Patanegra con gnocco fritto",
+      "desc": "Allergeni: 1, 6, 10",
+      "prices": [
+        [
+          "",
+          16
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s70": {
+      "id": "s70",
+      "cat": "Primi",
+      "sec": "rist",
+      "name": "Risotto ossobuco",
+      "desc": "Risotto Carnaroli, zafferano con tartarina di verdure, ossobuco con farina di riso e gremolada · Allergeni: 7, 9",
+      "prices": [
+        [
+          "",
+          24
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s71": {
+      "id": "s71",
+      "cat": "Primi",
+      "sec": "rist",
+      "name": "Casoncelli alla bergamasca",
+      "desc": "Pasta ripiena di carne mista con burro e salvia, pancetta croccante · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          16
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s72": {
+      "id": "s72",
+      "cat": "Primi",
+      "sec": "rist",
+      "name": "Tagliolini crema di tartufo e funghi",
+      "desc": "Panna, crema di tartufo e funghi · Allergeni: 1, 3, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          17
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s73": {
+      "id": "s73",
+      "cat": "Secondi",
+      "sec": "rist",
+      "name": "Orecchia d'Elefante",
+      "desc": "Costata di vitello con doppia panatura: pan grattato e panko, servita con patatine fritte · Allergeni: 1, 3, 6, 10",
+      "prices": [
+        [
+          "",
+          19
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s74": {
+      "id": "s74",
+      "cat": "Secondi",
+      "sec": "rist",
+      "name": "Stinco di maiale alla birra Pedavena",
+      "desc": "A scelta con patate al forno o polenta · Allergeni: 1",
+      "prices": [
+        [
+          "",
+          16
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s75": {
+      "id": "s75",
+      "cat": "Secondi",
+      "sec": "rist",
+      "name": "Trinità",
+      "desc": "Salsiccia, fagioli al sugo con crostoni di pane · Allergeni: 1, 6, 10",
+      "prices": [
+        [
+          "",
+          14
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s76": {
+      "id": "s76",
+      "cat": "Contorni",
+      "sec": "rist",
+      "name": "Verdure spadellate",
+      "desc": "Vegano",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s77": {
+      "id": "s77",
+      "cat": "Contorni",
+      "sec": "rist",
+      "name": "Patate al forno",
+      "desc": "Vegano",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s78": {
+      "id": "s78",
+      "cat": "Contorni",
+      "sec": "rist",
+      "name": "Patate al cartoccio con burro",
+      "desc": "Allergeni: 7",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s79": {
+      "id": "s79",
+      "cat": "Contorni",
+      "sec": "rist",
+      "name": "Insalata mista",
+      "desc": "Misticanza, pomodorini, olive nere. Vegano",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s80": {
+      "id": "s80",
+      "cat": "Contorni",
+      "sec": "rist",
+      "name": "Pannocchia alla brace",
+      "desc": "Al burro · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s81": {
+      "id": "s81",
+      "cat": "Polenta",
+      "sec": "rist",
+      "name": "Polenta rustica bergamasca",
+      "desc": "Farina di granoturco e grano saraceno · Allergeni: 1, 7",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s82": {
+      "id": "s82",
+      "cat": "Polenta",
+      "sec": "rist",
+      "name": "Polenta con Guancia di manzo al cioccolato",
+      "desc": "Allergeni: 7, 9",
+      "prices": [
+        [
+          "",
+          16
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s83": {
+      "id": "s83",
+      "cat": "Polenta",
+      "sec": "rist",
+      "name": "Polenta e Ossobuco",
+      "desc": "Allergeni: 7",
+      "prices": [
+        [
+          "",
+          16
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s84": {
+      "id": "s84",
+      "cat": "Polenta",
+      "sec": "rist",
+      "name": "Polenta e Gorgonzola novarese dolce e porcini",
+      "desc": "Allergeni: 7, 9",
+      "prices": [
+        [
+          "",
+          12
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s85": {
+      "id": "s85",
+      "cat": "Polenta",
+      "sec": "rist",
+      "name": "Polenta Taragna",
+      "desc": "Con Branzi e Formai de Mut fusi, burro e salvia · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          12
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s86": {
+      "id": "s86",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Tagliata di manzo 250 gr",
+      "desc": "Con rucola e grana · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          19
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s87": {
+      "id": "s87",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Tagliata di manzo 250 gr",
+      "desc": "Con porcini e fonduta di pecorino · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          20
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s88": {
+      "id": "s88",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Tagliata di wagyu",
+      "desc": "Con patate al forno o verdure grigliate · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          26
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s89": {
+      "id": "s89",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Galletto “Vallespluga” sfumato alla nostra Dolomiti rossa",
+      "desc": "Galletto con patate al cartoccio e burro, anche in versione piccante · Allergeni: 1, 7",
+      "prices": [
+        [
+          "",
+          17
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s90": {
+      "id": "s90",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Le Costine di maialino italiano",
+      "desc": "Cottura verticale, accompagnate da patata al cartoccio e burro · Allergeni: 7, 10",
+      "prices": [
+        [
+          "",
+          16
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s91": {
+      "id": "s91",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Picanha alla brace scaloppata",
+      "desc": "Con patata al cartoccio al burro o patate al forno · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          24
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s92": {
+      "id": "s92",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Filetto di manzo 300 gr",
+      "desc": "Con patata al cartoccio al burro o patate al forno · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          26
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s93": {
+      "id": "s93",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Grigliata del Peda *, per due persone",
+      "desc": "Costine, salsiccia, petto di pollo, lucanica, tagliata di manzo, arrosticini, pannocchia e polenta · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          40
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s94": {
+      "id": "s94",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Petto di pollo alla brace",
+      "desc": "Con patate al forno o verdure grigliate · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          12
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s95": {
+      "id": "s95",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Tour della birreria, per due persone",
+      "desc": "Filetto 300 g, controfiletto 250 g, picanha 250 g con polenta, misticanza e pomodori · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          55
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s96": {
+      "id": "s96",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Tomahawk",
+      "desc": "Con assaggio di polenta, pannocchia al burro, pomodorini e misticanza · Prezzo all'etto · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s97": {
+      "id": "s97",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Fiorentina",
+      "desc": "Con assaggio di polenta, pannocchia al burro, pomodorini e misticanza · Prezzo all'etto · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s98": {
+      "id": "s98",
+      "cat": "Brace",
+      "sec": "rist",
+      "name": "Entrecotte di black angus",
+      "desc": "Con polenta, rucola, pomodorini e scaglie di grana · Allergeni: 7",
+      "prices": [
+        [
+          "",
+          28
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s99": {
+      "id": "s99",
+      "cat": "Hamburger",
+      "sec": "rist",
+      "name": "Peda Cheese burger",
+      "desc": "Burger, insalata, pomodoro, cheddar, cetriolini, bacon, salsa Peda · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          14
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s100": {
+      "id": "s100",
+      "cat": "Hamburger",
+      "sec": "rist",
+      "name": "Tirolese",
+      "desc": "Burger, gorgonzola dolce DOP, speck, funghi alla piastra, crema di noci · Allergeni: 1, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          15
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s101": {
+      "id": "s101",
+      "cat": "Hamburger",
+      "sec": "rist",
+      "name": "Peda XXL",
+      "desc": "Doppio burger, doppio cheddar, doppio bacon e salsa wanted burger · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          20
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s102": {
+      "id": "s102",
+      "cat": "Hamburger",
+      "sec": "rist",
+      "name": "Double grilled chicken burger",
+      "desc": "Doppio petto di pollo, scamorza, bacon, verdure grigliate e salsa boscaiola · Allergeni: 1, 3, 6, 7, 10, 11",
+      "prices": [
+        [
+          "",
+          14
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s103": {
+      "id": "s103",
+      "cat": "Hamburger",
+      "sec": "rist",
+      "name": "Cotoletta burger",
+      "desc": "Petto di pollo impanato, pomodoro, soncino, maionese · Allergeni: 1, 3, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          14
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s104": {
+      "id": "s104",
+      "cat": "Hamburger",
+      "sec": "rist",
+      "name": "Salsiccia burger",
+      "desc": "Salsiccia luganica, rucola, pancetta arrotolata, uovo, scamorza, cipolla caramellata, salsa Peda · Allergeni: 1, 3, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          15
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s105": {
+      "id": "s105",
+      "cat": "Hamburger",
+      "sec": "rist",
+      "name": "Pulled pork",
+      "desc": "Sfilacciato di maiale con porri stufati, scamorza, bacon, anelli di cipolla in pastella e salsa bbq · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          14
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s106": {
+      "id": "s106",
+      "cat": "Hamburger",
+      "sec": "rist",
+      "name": "Black angus burger",
+      "desc": "Burger di black angus, soncino, mozzarella di bufala affumicata, salsa con pomodorini essiccati e menta · Allergeni: 1, 3, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          15
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s107": {
+      "id": "s107",
+      "cat": "Hamburger",
+      "sec": "rist",
+      "name": "Parmigianburger",
+      "desc": "Burger, spinacino, melanzana impanata con panko, ricotta al basilico, pomodoro confit · Allergeni: 1, 3, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          14
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s108": {
+      "id": "s108",
+      "cat": "Hamburger",
+      "sec": "rist",
+      "name": "Veggy burger",
+      "desc": "Hamburger vegetale, lattuga, pomodoro, bacon vegetale e maionese vegana. Vegetariano · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          12
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s109": {
+      "id": "s109",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Margherita",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, basilico fresco. Vegetariano · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s110": {
+      "id": "s110",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Marinara",
+      "desc": "Salsa di pomodoro, aglio, olio EVO, origano. Vegana · Allergeni: 1, 6, 10",
+      "prices": [
+        [
+          "",
+          6
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s111": {
+      "id": "s111",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Prosciutto e funghi",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, prosciutto cotto, funghi champignon · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s112": {
+      "id": "s112",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Quattro stagioni",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, prosciutto cotto, carciofi, funghi champignon, olive nere · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          10
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s113": {
+      "id": "s113",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Quattro formaggi",
+      "desc": "Mozzarella fiordilatte, gorgonzola, scamorza, brie. Vegetariana · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s114": {
+      "id": "s114",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Diavola",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, salame piccante. Piccante · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s115": {
+      "id": "s115",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Americana",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, wurstel, patatine · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          8.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s116": {
+      "id": "s116",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Ortolana grill",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, zucchine, melanzane, peperoni. Vegetariana · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s117": {
+      "id": "s117",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Bufalina",
+      "desc": "Salsa di pomodoro, mozzarella di bufala dopo cottura, basilico fresco. Vegetariana · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s118": {
+      "id": "s118",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Romana",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, acciughe, capperi, olive nere, origano · Allergeni: 1, 4, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s119": {
+      "id": "s119",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Dolomiti 2.0",
+      "desc": "Mozzarella fiordilatte, mortadella, burrata e pesto di pistacchio · Allergeni: 1, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s120": {
+      "id": "s120",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Chicken Pulled",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, chicken pulled, salsa wanted burger · Allergeni: 1, 6, 7, 10, 14",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s121": {
+      "id": "s121",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Rustichella",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, speck, brie e funghi porcini · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          10.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s122": {
+      "id": "s122",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Tonno e cipolle plus",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, tonno, cipolle e gorgonzola · Allergeni: 1, 4, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          10
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s123": {
+      "id": "s123",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Sfiziosa",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, salame piccante, mozzarella di bufala dopo cottura, rucola. Piccante · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          11.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s124": {
+      "id": "s124",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Inferno 2.0",
+      "desc": "Salsa di pomodoro, nduja, salame piccante, jalapeños, mozzarella di bufala dopo cottura. Piccante · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          11.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s125": {
+      "id": "s125",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Boscaiola",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, salsiccia, porcini e zola · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          11.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s126": {
+      "id": "s126",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Salsiccia e friarielli Plus",
+      "desc": "Mozzarella fiordilatte, salsiccia, friarielli, scamorza · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          10.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s127": {
+      "id": "s127",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Monte Civetta",
+      "desc": "Salsa di pomodoro, mozzarella fiordilatte, porcini, peperoni, salame piccante. Piccante · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          10.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s128": {
+      "id": "s128",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Iberica",
+      "desc": "Mozzarella, patanegra, mozzarella di bufala affumicata dopo cottura, miele e noci · Allergeni: 1, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          13.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s129": {
+      "id": "s129",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Tirolese",
+      "desc": "Mozzarella, crema di noci, gorgonzola, speck e noci · Allergeni: 1, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          11.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s130": {
+      "id": "s130",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Parmigiana",
+      "desc": "Salsa di pomodoro, mozzarella, melanzana fritta, ricotta e basilico. Vegetariana · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s131": {
+      "id": "s131",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Focaccia Tricolore",
+      "desc": "Mozzarella di bufala dopo cottura, rucola, pomodorini. Vegetariana · Allergeni: 1, 6, 7, 10",
+      "prices": [
+        [
+          "",
+          11
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s132": {
+      "id": "s132",
+      "cat": "Pizze",
+      "sec": "rist",
+      "name": "Focaccia IBERICA",
+      "desc": "Prosciutto crudo Iberico Patanegra, mozzarella di bufala affumicata, miele e noci · Allergeni: 1, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          13.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s133": {
+      "id": "s133",
+      "cat": "Menù bambini",
+      "sec": "rist",
+      "name": "Pasta al pomodoro o al pesto",
+      "desc": "Vegetariano · Allergeni: 1, 6, 7, 8",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s134": {
+      "id": "s134",
+      "cat": "Menù bambini",
+      "sec": "rist",
+      "name": "Risotto allo zafferano",
+      "desc": "Vegetariano · Allergeni: 6, 7",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s135": {
+      "id": "s135",
+      "cat": "Menù bambini",
+      "sec": "rist",
+      "name": "Risotto al parmigiano",
+      "desc": "Vegetariano · Allergeni: 6, 7",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s136": {
+      "id": "s136",
+      "cat": "Menù bambini",
+      "sec": "rist",
+      "name": "Hot dog baby",
+      "desc": "Con patatine fritte · Allergeni: 1",
+      "prices": [
+        [
+          "",
+          8
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s137": {
+      "id": "s137",
+      "cat": "Menù bambini",
+      "sec": "rist",
+      "name": "Cotoletta impanata",
+      "desc": "Con patatine fritte o insalata · Allergeni: 1, 3, 7",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s138": {
+      "id": "s138",
+      "cat": "Menù bambini",
+      "sec": "rist",
+      "name": "Peda Cheeseburger baby",
+      "desc": "Con patatine fritte o insalata · Allergeni: 1, 7",
+      "prices": [
+        [
+          "",
+          9
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s139": {
+      "id": "s139",
+      "cat": "Dolci",
+      "sec": "rist",
+      "name": "Cheesecake",
+      "desc": "Allergeni: 1, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s140": {
+      "id": "s140",
+      "cat": "Dolci",
+      "sec": "rist",
+      "name": "Panna cotta",
+      "desc": "Allergeni: 1, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          6
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s141": {
+      "id": "s141",
+      "cat": "Dolci",
+      "sec": "rist",
+      "name": "Crema catalana",
+      "desc": "Allergeni: 1, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          6
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s142": {
+      "id": "s142",
+      "cat": "Dolci",
+      "sec": "rist",
+      "name": "Tiramisù",
+      "desc": "Allergeni: 1, 3, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s143": {
+      "id": "s143",
+      "cat": "Dolci",
+      "sec": "rist",
+      "name": "Birramisu",
+      "desc": "Allergeni: 1, 3, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          6.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s144": {
+      "id": "s144",
+      "cat": "Dolci",
+      "sec": "rist",
+      "name": "Calzone alla nutella",
+      "desc": "Allergeni: 1, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          7
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s145": {
+      "id": "s145",
+      "cat": "Dolci",
+      "sec": "rist",
+      "name": "Torte assortite (giornaliere)",
+      "desc": "Torte del giorno",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s146": {
+      "id": "s146",
+      "cat": "Dolci",
+      "sec": "rist",
+      "name": "Polenta e nutella",
+      "desc": "Allergeni: 1, 6, 7, 8, 10",
+      "prices": [
+        [
+          "",
+          5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s147": {
+      "id": "s147",
+      "cat": "Bevande",
+      "sec": "bar",
+      "name": "Bibita alla spina 0,4 lt",
+      "desc": "Pepsi, 7up, Schweppes orange",
+      "prices": [
+        [
+          "",
+          4
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s148": {
+      "id": "s148",
+      "cat": "Bevande",
+      "sec": "bar",
+      "name": "Bibita in lattina",
+      "desc": "Coca cola, Coca cola zero, Lemon soda, Schweppes tonica, Estathe, Aranciata amara",
+      "prices": [
+        [
+          "",
+          3.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s149": {
+      "id": "s149",
+      "cat": "Birre alla spina",
+      "sec": "bar",
+      "name": "Ama Bianca",
+      "desc": "4,2% vol. · Allergeni: 1",
+      "prices": [
+        [
+          "",
+          3.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s150": {
+      "id": "s150",
+      "cat": "Birre in bottiglia",
+      "sec": "bar",
+      "name": "Birra del Borgo Reale (IPA)",
+      "desc": "33 cl · 6,4 vol. · Allergeni: 1",
+      "prices": [
+        [
+          "",
+          6
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s151": {
+      "id": "s151",
+      "cat": "Caffetteria",
+      "sec": "bar",
+      "name": "Caffè, decaffeinato",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          2
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s152": {
+      "id": "s152",
+      "cat": "Caffetteria",
+      "sec": "bar",
+      "name": "Caffè corretto, ginseng, orzo",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          2.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s153": {
+      "id": "s153",
+      "cat": "Dopo cena",
+      "sec": "bar",
+      "name": "Amari",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          3.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s154": {
+      "id": "s154",
+      "cat": "Dopo cena",
+      "sec": "bar",
+      "name": "Grappe",
+      "desc": "",
+      "prices": [
+        [
+          "",
+          4.5
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    },
+    "s155": {
+      "id": "s155",
+      "cat": "Dopo cena",
+      "sec": "bar",
+      "name": "Rum, Whisky e liquori premium",
+      "desc": "Richiedi la lista al personale di servizio · Prezzo da",
+      "prices": [
+        [
+          "",
+          6
+        ]
+      ],
+      "out": false,
+      "img": "",
+      "rem": [],
+      "add": []
+    }
   }
- }
 }
